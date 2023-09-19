@@ -42,7 +42,7 @@
 }
 
 [data-termynal]:after {
-  content: 'albovo@desktop';
+  content: 'albovo@archlinux';
   position: absolute;
   color: var(--color-text-subtle);
   top: 5px;
@@ -70,7 +70,7 @@
 }
 
 [data-ty="input"]:before {
-  content: 'albovo@desktop:~$';
+  content: 'albovo@archlinux:~$';
 }
 
 [data-ty][data-ty-prompt]:before {

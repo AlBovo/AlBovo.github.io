@@ -14,10 +14,10 @@ minify:
   disableXML: true
   # minifyOutput: true
 
-taxonomies:
-    category: categories
-    tag: tags
-    series: series
+# taxonomies:
+#     category: categories
+#     tag: tags
+#     series: series
 
 languages:
   en:

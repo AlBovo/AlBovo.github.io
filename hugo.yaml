@@ -14,6 +14,11 @@ minify:
   disableXML: true
   # minifyOutput: true
 
+taxonomies:
+    category: categories
+    tag: tags
+    series: series
+
 languages:
   en:
     languageName: "🇬🇧 En"

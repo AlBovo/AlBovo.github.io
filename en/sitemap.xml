@@ -30,18 +30,6 @@
                 href="https://albovo.github.io/en/categories/"
                 />
   </url><url>
-    <loc>https://albovo.github.io/en/series/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/series/"
-                />
-  </url><url>
     <loc>https://albovo.github.io/en/tags/</loc>
     <xhtml:link
                 rel="alternate"

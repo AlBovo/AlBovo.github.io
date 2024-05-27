@@ -2,40 +2,113 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://albovo.github.io/it/categories/</loc>
+    <loc>https://albovo.tech/it/tags/c&#43;&#43;/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://albovo.github.io/en/categories/"
+                href="https://albovo.tech/en/tags/c&#43;&#43;/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="it"
-                href="https://albovo.github.io/it/categories/"
+                href="https://albovo.tech/it/tags/c&#43;&#43;/"
                 />
   </url><url>
-    <loc>https://albovo.github.io/it/</loc>
+    <loc>https://albovo.tech/it/progetti/mines/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://albovo.tech/it/tags/game/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://albovo.github.io/en/"
+                href="https://albovo.tech/en/tags/game/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="it"
-                href="https://albovo.github.io/it/"
+                href="https://albovo.tech/it/tags/game/"
                 />
   </url><url>
-    <loc>https://albovo.github.io/it/tags/</loc>
+    <loc>https://albovo.tech/it/tags/mine/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://albovo.github.io/en/tags/"
+                href="https://albovo.tech/en/tags/mine/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="it"
-                href="https://albovo.github.io/it/tags/"
+                href="https://albovo.tech/it/tags/mine/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/minesweeper/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/minesweeper/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/minesweeper/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/progetti/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://albovo.tech/it/tags/python/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/python/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/python/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/categories/"
                 />
   </url>
 </urlset>

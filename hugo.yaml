@@ -1,4 +1,4 @@
-baseURL: "https://albovo.github.io/"
+baseURL: "https://albovo.tech/"
 title: Portfolio
 paginate: 5
 theme: PaperMod
@@ -9,6 +9,7 @@ buildFuture: false
 buildExpired: false
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: true
+enableEmoji: true
 
 minify:
   disableXML: true
@@ -21,12 +22,12 @@ minify:
 
 languages:
   en:
-    languageName: "🇬🇧 En"
+    languageName: ":uk: En"
     weight: 1
     contentDir: content/en
 
   it:
-    languageName: "🇮🇹 It"
+    languageName: ":it: It"
     weight: 2
     title: Portfolio
     contentDir: content/it
@@ -42,18 +43,18 @@ languages:
         imageHeight: 150
         imageTitle: profile image
         buttons:
-          - name: "📒 Progetti"
-            url: projects/
-          - name: "⚙ Writeups"
+          - name: "\U0001f4d2 Progetti"
+            url: progetti/
+          - name: "\U00002699 Writeups"
             url: ctf/
     menu:
       main:
         - identifier: progetti
-          name: "📒 Progetti"
-          url: projects/
+          name: "\U0001f4d2 Progetti"
+          url: progetti/
           weight: 10
         - identifier: writeups
-          name: "⚙ Writeups"
+          name: "\U00002699 Writeups"
           url: ctf/
           weight: 20
         - identifier: example
@@ -88,6 +89,7 @@ params:
   hideSummary: false
   showtoc: false
   tocopen: false
+  enableEmoji: true
   displayFullLangName: true
 
   assets:
@@ -106,23 +108,24 @@ params:
 
   # profile-mode
   profileMode:
+    enableEmoji: true
     enabled: true # needs to be explicitly set
     title: Alan Davide Bovo
-    subtitle: "An italian 🇮🇹 cybersecurity and competitive programming enthusiast."
+    subtitle: "An italian :it: cybersecurity and competitive programming enthusiast."
     imageUrl: "/albovo.jpg"
     imageWidth: 150
     imageHeight: 150
     imageTitle: profile image
     buttons:
-      - name: "📒 Projects"
+      - name: "\U0001f4d2 Projects"
         url: projects/
-      - name: "⚙ Writeups"
+      - name: "\U00002699 Writeups"
         url: ctf/
 
-  # home-info mode
-  homeInfoParams:
-    Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+  # # home-info mode
+  # homeInfoParams:
+  #   Title: "Hi there \U0001F44B"
+  #   Content: Welcome to my blog
 
   socialIcons:
     - name: github
@@ -164,11 +167,11 @@ params:
 menu:
   main:
     - identifier: projects
-      name: "📒 Projects"
+      name: "\U0001f4d2 Projects"
       url: projects/
       weight: 10
     - identifier: writeups
-      name: "⚙ Writeups"
+      name: "\U00002699 Writeups"
       url: ctf/
       weight: 20
     - identifier: example

@@ -48,14 +48,14 @@ languages:
         imageTitle: profile image
         buttons:
           - name: "\U0001f4d2 Progetti"
-            url: progetti/
+            url: projects/
           - name: "\U00002699 Writeups"
             url: ctf/
     menu:
       main:
         - identifier: progetti
           name: "\U0001f4d2 Progetti"
-          url: progetti/
+          url: projects/
           weight: 10
         - identifier: writeups
           name: "\U00002699 Writeups"

@@ -11,7 +11,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Un progetto riguardo il gioco Campo minato per terminale e interfaccia web."
-canonicalURL: "https://albovo.tech/it/projects/"
+canonicalURL: "https://albovo.tech/it/project/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

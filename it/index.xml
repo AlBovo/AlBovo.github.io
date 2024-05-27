@@ -15,5 +15,12 @@
       <guid>https://albovo.tech/it/progetti/mines/</guid>
       <description>Un progetto riguardo il gioco Campo minato per terminale e interfaccia web.</description>
     </item>
+    <item>
+      <title>M0lecon CTF 2023 Beginner</title>
+      <link>https://albovo.tech/it/ctf/m0leconctf2023/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/it/ctf/m0leconctf2023/</guid>
+      <description>Alcune writeups della m0lecon Beginner ctf edizione 2023.</description>
+    </item>
   </channel>
 </rss>

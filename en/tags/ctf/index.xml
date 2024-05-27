@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ctf on Portfolio</title>
+    <link>https://albovo.tech/en/tags/ctf/</link>
+    <description>Recent content in Ctf on Portfolio</description>
+    <generator>Hugo -- 0.125.7</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://albovo.tech/en/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>M0lecon CTF 2023 Beginner</title>
+      <link>https://albovo.tech/en/ctf/m0leconctf2023/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/ctf/m0leconctf2023/</guid>
+      <description>Some writeups of the m0lecon Beginner ctf 2023 edition.</description>
+    </item>
+  </channel>
+</rss>

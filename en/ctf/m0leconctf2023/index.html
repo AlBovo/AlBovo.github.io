@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>M0lecon CTF 2023 Beginner | Portfolio</title>
+<meta name="keywords" content="m0lecon, ctf, binary, crypto, web, m0lecon2023">
+<meta name="description" content="Some writeups of the m0lecon Beginner ctf 2023 edition.">
+<meta name="author" content="AlBovo">
+<link rel="canonical" href="https://albovo.tech/en/ctf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://albovo.tech/en/ctf/m0leconctf2023/">
+<link rel="alternate" hreflang="it" href="https://albovo.tech/it/ctf/m0leconctf2023/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="M0lecon CTF 2023 Beginner" />
+<meta property="og:description" content="Some writeups of the m0lecon Beginner ctf 2023 edition." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://albovo.tech/en/ctf/m0leconctf2023/" />
+<meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" /><meta property="article:section" content="ctf" />
+<meta property="article:published_time" content="2024-05-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-27T00:00:00+00:00" /><meta property="og:site_name" content="Portfolio" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" />
+<meta name="twitter:title" content="M0lecon CTF 2023 Beginner"/>
+<meta name="twitter:description" content="Some writeups of the m0lecon Beginner ctf 2023 edition."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Ctf",
+      "item": "https://albovo.tech/en/ctf/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "M0lecon CTF 2023 Beginner",
+      "item": "https://albovo.tech/en/ctf/m0leconctf2023/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "M0lecon CTF 2023 Beginner",
+  "name": "M0lecon CTF 2023 Beginner",
+  "description": "Some writeups of the m0lecon Beginner ctf 2023 edition.",
+  "keywords": [
+    "m0lecon", "ctf", "binary", "crypto", "web", "m0lecon2023"
+  ],
+  "articleBody": "m0lecon CTF 2023 Beginner Web 🌐 Unguessable This challenge was the easiest in the CTF (it had more solves than the sanity check, lol). In fact, to solve it, all you had to do was understand that the website fetched the flag from an endpoint /vjfYkHzyZGJ4A7cPNutFeM/flag, and to obtain it we opened the endpoint sniffed the whole network.\n... function update(res) { // the function used by the site to get the flag if (res === \"wrong\") { card.style.backgroundColor = \"red\"; text.innerText = \"Wrong, try again\"; } else { card.style.backgroundColor = \"green\"; fetch(\"/vjfYkHzyZGJ4A7cPNutFeM/flag\") .then((response) =\u003e response.text()) .then((str) =\u003e { text.innerText = str }); } card.removeAttribute(\"hidden\"); } ... Secure Access The challenge had an attachment, a Python bytecode file (.pyc), which once decompiled, resulted in this function:\ndef generate_token(nonce: str): username = 'user001' secret = hashlib.sha256(username.encode() + nonce.encode()).hexdigest() bundle = {'user':username, 'secret':secret} return base64.b64encode(json.dumps(bundle).encode()) The challenge required an username (obviously admin) and an access token that could be calculated using a nonce provided to the endpoint /stage2?username=admin. Once the token was calculated using the previously mentioned function, all that was needed to obtain the flag was to send the token and automatically gain access to the admin panel.\nPiano Carriera For those who participated in the m0lecon CTF beginner 2021 and remembered the Exam Booking challenge, they might recall the scenario where the user had to register for an exam when all available spots were already taken.\nIn a similar way, this problem involves bypassing a client-side check that blocks the registration request. Once all the required data is obtained, the only thing left to do is to call the API to register and obtain the flag. The necessary parameters for this are cod_ins (20FWYOV), cod_ins_padre (29EBHOV), and id_padre (244355).\nCryptography 🔒 Fast RSA This time, the challenge requires decrypting the flag encrypted in RSA where p - q = 4. This, of course, is very vulnerable because if p equals q then it’s easy to calculate the square root of the modulus N and then look for a value such that N mod v = 0. At this point, v will be p and q will be calculated by dividing the modulus by q. The problem can be then solved by calculating the key d.\nAND Cipher This challenge required decrypting a cipher that used the bitwise AND operation. Obviously, this operation is not reversible, so one way to solve this problem is to make several requests to the API endpoint to obtain the encrypted flag each time with a different key.\nAt this point, it’s necessary to save the maximum value of the bytes for each position, and if a good bound is chosen, the flag will be found.\nfor _ in range(250): json = requests.get(URL + \"api/encrypt\").json() json = bytes.fromhex(json['encrypted']) for i in range(26): flag[i] = max(flag[i], json[i]) CrazyXOR CrazyXOR provides an attachment containing source code that calculates the crazy XOR of 7 random numbers from 10^5 to 5*10^5. It uses one of these numbers randomly to seed the random generator, which will then generate the key used to encrypt the flag.\ndef crazy_xor(x): primes = prime_factors(x) res = 0 for p1 in primes: for p2 in primes: if p1 \u003c= p2: res = res ^ math.lcm(p1, p2) # Least common multiple return res Once it’s observed that the 7 iterations in the challenge meant to make brute-forcing the seed more complex are actually unnecessary, and that brute-forcing each x passed to the crazy XOR directly is sufficient, one just needs to emulate the various steps and check if decrypting the text yields the flag to complete this challenge as well.\nPoliTO Ch(e)atbot After a brief study of the challenge website, the objective became clear: encrypt the token I'm Bob Masters, gimme the flag! using the available AES-128 ECB tool.\nInitially, attempts were made to split the token into two 16-byte blocks and encrypt them separately. However, this approach failed because the webpage blacklisted the second block as it was. Through experimentation, it was observed that 'a' * 16 encrypted was the same as 'a' * 16 + 'b'. This indicated that the tool was only encrypting the first 16 bytes of the inserted plaintext.\nFollowing this observation, to bypass the control, it was sufficient to write the second block concatenated with some random text. This action resulted in the encryption of the second block and consequently revealed the flag.\nPoliTOcheatbot 2.0 In this challenge, the objective is to encrypt a password using an OTP (One-Time Pad) unknown to us. After several attempts, we noticed that the tool encrypted any plaintext we sent and sent us back the XOR between the plaintext and a key like xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx (where obviously x stands for a printable ASCII character). After several other attempts, we observed that if initially the key was aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, in the subsequent encryption it became bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb. Having made this observation, it was enough for us to calculate the key once to compute the next one and encrypt the password accordingly. Once the encrypted password was sent, we obtained the flag as expected.\nBinary 💻 Polito Pay 2 Win Probably to solve Polito Pay 2 Win, the basic idea was to patch the binary/DLL provided in the challenge attachment to immediately purchase the flag. However, our idea (hopefully intended) was to open the market.py file to be able to see the flag in plaintext.\nMemory Wizard Memory Wizard has attached a 64-bit x86-64 ELF binary that requests an address from which to read data and then prints it to the standard output.\nAnalyzing the executable, it can be observed that both variables are declared on the stack with an 8-byte difference. Therefore, by using the leaked stack address, the flag address can be calculated like this 0xADDRESS + 8 = 0xFLAGADDRESS. OURsql OURsql was one of the most interesting challenge in this CTF. It seems it was a binary that read a database a text file and used it for some queries. Upon analysis, I noticed that when the maximum number of users was reached, the program began to overwrite users at the beginning of the list. This allowed me to overwriting the password of the user with the flag. The exploit in fact involved spamming registrations until the user with the flag was overwritten. Afterward, logging in would have solved the challenge.\nThe Wall The Wall had an attachment, a 64-bit ELF file named null_wall (it will be useful later lol). Once decompiled, it provided approximately this result: Once decompiled, we looked at how the variables were arranged and noticed that the flag was located 20 bytes after our input pointer, preceded by a null byte. This null byte prevented the flag from being printed if fewer than 19 bytes were written. However, once exactly 19 bytes (0x13 bytes) were written, the flag was leaked. Miscellaneous 🧭 Strange Extension So, this challenge was solved simply by opening the file attached to the challenge using this website, immediately obtaining the flag. P.S.: Maybe it wasn’t the cleanest way to resolve it but we did it anyway.\nA sky full of 5t4r5 This time, the challenge contained an image (frighteningly heavy, about 211 MB) that resembled this screenshot: Once analyzed with ExifTool, it gave this result from which one can obviously notice the comment in the metadata of the photo which is Some people say there is a question mark in this picture, can you find the flag near it? At this point, it was just a matter of looking around the photo for a while for a question mark (bottom right) to actually find the flag.\nStrangers in the Noise “Strangers in the Noise” contained the famous Frank Sinatra song “Stranger in the Night”. While analyzing it, we didn’t find much until we used this website and managed to notice letters in the spectrum of the song as it progressed. Once we obtained the entire flag still encrypted as swp{v0p3wk1qj_1q_b0xu_h4u5_z4v_vr_4qq0b1qj}, all we had to do was use a Caesar cipher decoder to obtain the final flag.\nHere you can see the first part of the flag sw.\n",
+  "wordCount" : "1348",
+  "inLanguage": "en",
+  "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2024-05-27T00:00:00Z",
+  "dateModified": "2024-05-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "AlBovo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://albovo.tech/en/ctf/m0leconctf2023/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://albovo.tech/%3Clink%20/%20abs%20url%3E"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://albovo.tech/en/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://albovo.tech/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Home</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://albovo.tech/it/" title="Italian"
+                            aria-label=":it: It">🇮🇹 It</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://albovo.tech/en/projects/" title="📒 Projects">
+                    <span>📒 Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.tech/en/ctf/" title="⚙ Writeups">
+                    <span>⚙ Writeups</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://example.org" title="example.org">
+                    <span>example.org</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://albovo.tech/en/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.tech/en/ctf/">Ctf</a></div>
+    <h1 class="post-title entry-hint-parent">
+      M0lecon CTF 2023 Beginner
+    </h1>
+    <div class="post-description">
+      Some writeups of the m0lecon Beginner ctf 2023 edition.
+    </div>
+    <div class="post-meta"><span title='2024-05-27 00:00:00 +0000 UTC'>May 27, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;1348 words&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://albovo.tech/it/ctf/m0leconctf2023/">🇮🇹 It</a>
+    </li>
+</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/m0leconCTF2023.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-">Web 🌐</a>
+      <ul>
+        <li><a href="#unguessable">Unguessable</a></li>
+        <li><a href="#secure-access">Secure Access</a></li>
+        <li><a href="#piano-carriera">Piano Carriera</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-">Cryptography 🔒</a>
+      <ul>
+        <li><a href="#fast-rsa">Fast RSA</a></li>
+        <li><a href="#and-cipher">AND Cipher</a></li>
+        <li><a href="#crazyxor">CrazyXOR</a></li>
+        <li><a href="#polito-cheatbot">PoliTO Ch(e)atbot</a></li>
+        <li><a href="#politocheatbot-20">PoliTOcheatbot 2.0</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-">Binary 💻</a>
+      <ul>
+        <li><a href="#polito-pay-2-win">Polito Pay 2 Win</a></li>
+        <li><a href="#memory-wizard">Memory Wizard</a></li>
+        <li><a href="#oursql">OURsql</a></li>
+        <li><a href="#the-wall">The Wall</a></li>
+      </ul>
+    </li>
+    <li><a href="#miscellaneous-">Miscellaneous 🧭</a>
+      <ul>
+        <li><a href="#strange-extension">Strange Extension</a></li>
+        <li><a href="#a-sky-full-of-5t4r5">A sky full of 5t4r5</a></li>
+        <li><a href="#strangers-in-the-noise">Strangers in the Noise</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="m0lecon-ctf-2023-beginner">m0lecon CTF 2023 Beginner<a hidden class="anchor" aria-hidden="true" href="#m0lecon-ctf-2023-beginner">#</a></h1>
+<p><img loading="lazy" src="/images/m0lecon.png" alt="m0lecon logo"  />
+</p>
+<h2 id="web-">Web 🌐<a hidden class="anchor" aria-hidden="true" href="#web-">#</a></h2>
+<h3 id="unguessable">Unguessable<a hidden class="anchor" aria-hidden="true" href="#unguessable">#</a></h3>
+<p>This challenge was the easiest in the CTF (it had <strong>more solves than</strong> the sanity check, lol). In fact, to solve it, all you had to do was understand that the website fetched the flag from an endpoint <code>/vjfYkHzyZGJ4A7cPNutFeM/flag</code>, and to obtain it we <del>opened the endpoint</del> sniffed the whole network.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">update</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// the function used by the site to get the flag
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nx">res</span> <span class="o">===</span> <span class="s2">&#34;wrong&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">card</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">text</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&#34;Wrong, try again&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">card</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">&#34;green&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fetch</span><span class="p">(</span><span class="s2">&#34;/vjfYkHzyZGJ4A7cPNutFeM/flag&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">str</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">text</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">str</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">card</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">&#34;hidden&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><h3 id="secure-access">Secure Access<a hidden class="anchor" aria-hidden="true" href="#secure-access">#</a></h3>
+<p>The challenge had an attachment, a Python bytecode file (.pyc), which once decompiled, resulted in this function:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">generate_token</span><span class="p">(</span><span class="n">nonce</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;user001&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">secret</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">username</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span> <span class="o">+</span> <span class="n">nonce</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bundle</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span><span class="n">username</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">:</span><span class="n">secret</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span></code></pre></div><p>The challenge required an username (obviously <code>admin</code>) and an access token that could be calculated using a nonce provided to the endpoint <code>/stage2?username=admin</code>. Once the token was calculated using the previously mentioned function, all that was needed to obtain the flag was to send the token and automatically gain access to the admin panel.</p>
+<p><img loading="lazy" src="/images/m0leconWeb.png" alt="the beatiful home page of the challenge"  />
+</p>
+<h3 id="piano-carriera">Piano Carriera<a hidden class="anchor" aria-hidden="true" href="#piano-carriera">#</a></h3>
+<p>For those who participated in the <code>m0lecon CTF beginner 2021</code> and remembered the Exam Booking challenge, they might recall the scenario where the user had to register for an exam when all available spots were already taken.</p>
+<p>In a similar way, this problem involves bypassing a client-side check that blocks the registration request. Once all the required data is obtained, the only thing left to do is to call the API to register and obtain the flag. The necessary parameters for this are <code>cod_ins</code> (20FWYOV), <code>cod_ins_padre</code> (29EBHOV), and <code>id_padre</code> (244355).</p>
+<p><img loading="lazy" src="/images/pianocarriera.png" alt="the page of the challenge"  />
+</p>
+<h2 id="cryptography-">Cryptography 🔒<a hidden class="anchor" aria-hidden="true" href="#cryptography-">#</a></h2>
+<h3 id="fast-rsa">Fast RSA<a hidden class="anchor" aria-hidden="true" href="#fast-rsa">#</a></h3>
+<p>This time, the challenge requires decrypting the flag encrypted in RSA where <code>p - q = 4</code>. This, of course, is very vulnerable because if <code>p equals q</code> then it&rsquo;s easy to calculate the square root of the modulus N and then look for a value such that <code>N mod v = 0</code>. At this point, <code>v</code> will be <code>p</code> and <code>q</code> will be calculated by dividing the modulus by <code>q</code>. The problem can be then solved by calculating the key <code>d</code>.</p>
+<h3 id="and-cipher">AND Cipher<a hidden class="anchor" aria-hidden="true" href="#and-cipher">#</a></h3>
+<p>This challenge required decrypting a cipher that used the bitwise AND operation. Obviously, this operation is not reversible, so one way to solve this problem is to make several requests to the API endpoint to obtain the encrypted flag each time with a different key.</p>
+<p>At this point, it&rsquo;s necessary to save the maximum value of the bytes for each position, and if a good bound is chosen, the flag will be found.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">250</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span> <span class="o">+</span> <span class="s2">&#34;api/encrypt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">json</span> <span class="o">=</span> <span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;encrypted&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">flag</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">json</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></span></code></pre></div><h3 id="crazyxor">CrazyXOR<a hidden class="anchor" aria-hidden="true" href="#crazyxor">#</a></h3>
+<p>CrazyXOR provides an attachment containing source code that calculates the crazy XOR of 7 random numbers from <code>10^5</code> to <code>5*10^5</code>. It uses one of these numbers randomly to seed the random generator, which will then generate the key used to encrypt the flag.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">crazy_xor</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="n">primes</span> <span class="o">=</span> <span class="n">prime_factors</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">p1</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="n">p2</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="n">p1</span> <span class="o">&lt;=</span> <span class="n">p2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">				<span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">^</span> <span class="n">math</span><span class="o">.</span><span class="n">lcm</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span> <span class="c1"># Least common multiple</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">res</span>
+</span></span></code></pre></div><p>Once it&rsquo;s observed that the 7 iterations in the challenge meant to make brute-forcing the seed more complex are actually unnecessary, and that brute-forcing each x passed to the crazy XOR directly is sufficient, one just needs to emulate the various steps and check if decrypting the text yields the flag to complete this challenge as well.</p>
+<h3 id="polito-cheatbot">PoliTO Ch(e)atbot<a hidden class="anchor" aria-hidden="true" href="#polito-cheatbot">#</a></h3>
+<p>After a brief study of the challenge website, the objective became clear: encrypt the token <code>I'm Bob Masters, gimme the flag!</code> using the available <strong>AES-128 ECB tool</strong>.</p>
+<p>Initially, attempts were made to split the token into two 16-byte blocks and encrypt them separately. However, this approach failed because the webpage blacklisted the second block as it was. Through experimentation, it was observed that <code>'a' * 16</code> encrypted was the same as <code>'a' * 16 + 'b'</code>. This indicated that the tool was only encrypting the first 16 bytes of the inserted plaintext.</p>
+<p>Following this observation, to bypass the control, it was sufficient to write the second block concatenated with some random text. This action resulted in the encryption of the second block and consequently revealed the flag.</p>
+<p><img loading="lazy" src="/images/cheatbot1.png" alt="home page of the challenge site"  />
+</p>
+<h3 id="politocheatbot-20">PoliTOcheatbot 2.0<a hidden class="anchor" aria-hidden="true" href="#politocheatbot-20">#</a></h3>
+<p>In this challenge, the objective is to encrypt a password using an OTP (One-Time Pad) unknown to us. After several attempts, we noticed that the tool encrypted any plaintext we sent and sent us back the XOR between the plaintext and a key like <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> (where obviously x stands for a printable ASCII character).
+After several other attempts, we observed that if initially the key was <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code>, in the subsequent encryption it became <code>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</code>.
+Having made this observation, it was enough for us to calculate the key once to compute the next one and encrypt the password accordingly.
+Once the encrypted password was sent, we obtained the flag as expected.</p>
+<p><img loading="lazy" src="/images/cheatbot2.png" alt="chat with the bot"  />
+</p>
+<h2 id="binary-">Binary 💻<a hidden class="anchor" aria-hidden="true" href="#binary-">#</a></h2>
+<h3 id="polito-pay-2-win">Polito Pay 2 Win<a hidden class="anchor" aria-hidden="true" href="#polito-pay-2-win">#</a></h3>
+<p>Probably to solve Polito Pay 2 Win, the basic idea was to <strong>patch</strong> the binary/DLL provided in the challenge attachment to immediately purchase the flag. However, our idea (hopefully intended) was to open the <code>market.py</code> file to be able to see the flag in plaintext.</p>
+<h3 id="memory-wizard">Memory Wizard<a hidden class="anchor" aria-hidden="true" href="#memory-wizard">#</a></h3>
+<p>Memory Wizard has attached a <code>64-bit x86-64 ELF</code> binary that requests an address from which to read data and then prints it to the standard output.</p>
+<p>Analyzing the executable, it can be observed that both variables are declared on the stack with an 8-byte difference. Therefore, by using the leaked stack address, the flag address can be calculated like this <code>0xADDRESS + 8 = 0xFLAGADDRESS</code>.
+<img loading="lazy" src="/images/memorywizard.png" alt="memory wizard"  />
+</p>
+<h3 id="oursql">OURsql<a hidden class="anchor" aria-hidden="true" href="#oursql">#</a></h3>
+<p>OURsql was one of the most interesting challenge in this CTF. It seems it was a binary that read a <code>database</code> <del>a text file</del> and used it for some queries. <!-- raw HTML omitted -->
+Upon analysis, I noticed that when the maximum number of users was reached, the program began to overwrite users at the beginning of the list. This allowed me to overwriting the password of the user with the flag. The exploit in fact involved spamming registrations until the user with the flag was overwritten. Afterward, logging in would have solved the challenge.</p>
+<h3 id="the-wall">The Wall<a hidden class="anchor" aria-hidden="true" href="#the-wall">#</a></h3>
+<p>The Wall had an attachment, a 64-bit ELF file named <code>null_wall</code> (it will be useful later lol). Once decompiled, it provided approximately this result:
+<img loading="lazy" src="/images/nullwall.png" alt="the decompiled challenge elf"  />
+</p>
+<p>Once decompiled, we looked at how the variables were arranged and noticed that the flag was located 20 bytes after our input pointer, preceded by a <code>null</code> byte. This null byte prevented the flag from being printed if fewer than 19 bytes were written. However, once exactly 19 bytes (<code>0x13 bytes</code>) were written, the flag was leaked.
+<img loading="lazy" src="/images/nullwall2.png" alt="some sus memory place"  />
+</p>
+<h2 id="miscellaneous-">Miscellaneous 🧭<a hidden class="anchor" aria-hidden="true" href="#miscellaneous-">#</a></h2>
+<h3 id="strange-extension">Strange Extension<a hidden class="anchor" aria-hidden="true" href="#strange-extension">#</a></h3>
+<p>So, this challenge was solved simply by opening the file attached to the challenge using <a href="https://filext.com/online-file-viewer.html">this website</a>, immediately obtaining the flag. <!-- raw HTML omitted -->
+P.S.: Maybe it wasn&rsquo;t the cleanest way to resolve it but we did it anyway.</p>
+<h3 id="a-sky-full-of-5t4r5">A sky full of 5t4r5<a hidden class="anchor" aria-hidden="true" href="#a-sky-full-of-5t4r5">#</a></h3>
+<p>This time, the challenge contained an image (frighteningly heavy, about <code>211 MB</code>) that resembled this screenshot:
+<img loading="lazy" src="/images/skyfullofstars.png" alt="the challenge foto"  />
+</p>
+<p>Once analyzed with ExifTool, it gave this result from which one can obviously notice the comment in the metadata of the photo which is <code>Some people say there is a question mark in this picture, can you find the flag near it?</code>
+<img loading="lazy" src="/images/exiftool.png" alt="the result of exiftool"  />
+
+At this point, it was just a matter of looking around the photo for a while for a question mark (bottom right) to actually find the flag.</p>
+<h3 id="strangers-in-the-noise">Strangers in the Noise<a hidden class="anchor" aria-hidden="true" href="#strangers-in-the-noise">#</a></h3>
+<p>&ldquo;Strangers in the Noise&rdquo; contained the famous Frank Sinatra song &ldquo;Stranger in the Night&rdquo;. While analyzing it, we didn&rsquo;t find much until we used this website and managed to notice letters in the spectrum of the song as it progressed. Once we obtained the entire flag still encrypted as <code>swp{v0p3wk1qj_1q_b0xu_h4u5_z4v_vr_4qq0b1qj}</code>, all we had to do was use a <strong>Caesar cipher decoder</strong> to obtain the final flag.</p>
+<p><img loading="lazy" src="/images/strangerinthenoise.png" alt="the spectrum of the wav challenge"  />
+</p>
+<p>Here you can see the first part of the flag <code>sw</code>.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://albovo.tech/en/tags/m0lecon/">M0lecon</a></li>
+      <li><a href="https://albovo.tech/en/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.tech/en/tags/binary/">Binary</a></li>
+      <li><a href="https://albovo.tech/en/tags/crypto/">Crypto</a></li>
+      <li><a href="https://albovo.tech/en/tags/web/">Web</a></li>
+      <li><a href="https://albovo.tech/en/tags/m0lecon2023/">M0lecon2023</a></li>
+    </ul>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on x"
+            href="https://x.com/intent/tweet/?text=M0lecon%20CTF%202023%20Beginner&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f&amp;hashtags=m0lecon%2cctf%2cbinary%2ccrypto%2cweb%2cm0lecon2023">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f&amp;title=M0lecon%20CTF%202023%20Beginner&amp;summary=M0lecon%20CTF%202023%20Beginner&amp;source=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f&title=M0lecon%20CTF%202023%20Beginner">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on whatsapp"
+            href="https://api.whatsapp.com/send?text=M0lecon%20CTF%202023%20Beginner%20-%20https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on telegram"
+            href="https://telegram.me/share/url?text=M0lecon%20CTF%202023%20Beginner&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share M0lecon CTF 2023 Beginner on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=M0lecon%20CTF%202023%20Beginner&u=https%3a%2f%2falbovo.tech%2fen%2fctf%2fm0leconctf2023%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://albovo.tech/en/">Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

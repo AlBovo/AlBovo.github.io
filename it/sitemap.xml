@@ -2,6 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://albovo.tech/it/tags/binary/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/binary/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/binary/"
+                />
+  </url><url>
     <loc>https://albovo.tech/it/tags/c&#43;&#43;/</loc>
     <lastmod>2024-05-27T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -18,6 +31,45 @@
     <loc>https://albovo.tech/it/progetti/mines/</loc>
     <lastmod>2024-05-27T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://albovo.tech/it/tags/crypto/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/crypto/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/crypto/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/ctf/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/ctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/ctf/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/ctf/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/ctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/ctf/"
+                />
+  </url><url>
     <loc>https://albovo.tech/it/tags/game/</loc>
     <lastmod>2024-05-27T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -29,6 +81,45 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.tech/it/tags/game/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/m0lecon/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/m0lecon/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/m0lecon/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/ctf/m0leconctf2023/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/ctf/m0leconctf2023/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/ctf/m0leconctf2023/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/m0lecon2023/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/m0lecon2023/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/m0lecon2023/"
                 />
   </url><url>
     <loc>https://albovo.tech/it/tags/mine/</loc>
@@ -97,6 +188,19 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.tech/it/tags/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/web/</loc>
+    <lastmod>2024-05-27T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/web/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/web/"
                 />
   </url><url>
     <loc>https://albovo.tech/it/categories/</loc>

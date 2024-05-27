@@ -9,6 +9,13 @@
     <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.tech/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>M0lecon CTF 2023 Beginner</title>
+      <link>https://albovo.tech/en/ctf/m0leconctf2023/</link>
+      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/ctf/m0leconctf2023/</guid>
+      <description>Some writeups of the m0lecon Beginner ctf 2023 edition.</description>
+    </item>
+    <item>
       <title>Minesweeper 🚩</title>
       <link>https://albovo.tech/en/projects/mines/</link>
       <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>

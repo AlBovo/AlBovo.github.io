@@ -21,6 +21,9 @@ minify:
 #     tag: tags
 #     series: series
 
+staticDir:
+- static
+
 languages:
   en:
     languageName: ":uk: En"

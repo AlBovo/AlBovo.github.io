@@ -10,6 +10,7 @@ buildExpired: false
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: true
 enableEmoji: true
+pluralizeListTitles: false
 
 minify:
   disableXML: true

@@ -71,5 +71,5 @@ docker run mine/mine:latest
 In seguito, Docker mostrerà la porta locale su cui il sito web è ospitato.
 
 ## Come appare 👀
-![web gui](https://github.com/AlBovo/Mine/blob/main/screenWeb.png)
-![console](https://github.com/AlBovo/Mine/blob/main/screenTerminal.png)
+![web gui](/screenWeb.png)
+![console](/screenTerminal.png)

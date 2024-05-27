@@ -71,5 +71,5 @@ docker run mine/mine:latest
 Then Docker will display the local port where the website is being hosted.
 
 ## How does it look like 👀
-![web gui](https://github.com/AlBovo/Mine/blob/main/screenWeb.png)
-![console](https://github.com/AlBovo/Mine/blob/main/screenTerminal.png)
+![web gui](/screenWeb.png)
+![console](/screenTerminal.png)

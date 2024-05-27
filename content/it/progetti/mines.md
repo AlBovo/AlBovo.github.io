@@ -30,12 +30,12 @@ cover:
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en"
+    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/it"
     Text: "Suggerisci modifiche" # edit text
     appendFilePath: true # to append file path to Edit link
 ---
 # Campo minato 🚩
-> Campo minato è un classico gioco per computer che richiede una combinazione di strategia e logica. Il gioco si svolge su una griglia e l'obiettivo è scoprire tutte le mine nascoste senza farle esplodere. Per fare questo, i giocatori cliccano su singoli quadrati, e i numeri rivelati indicano il numero di mine nei quadrati adiacenti. Con queste informazioni, i giocatori utilizzano il ragionamento deduttivo per segnare con bandierine i quadrati che sospettano contengano mine e gradualmente liberare la griglia da tutte le aree non minate. La sfida sta nel fare ipotesi calcolate ed evitare le mine, e i giocatori di successo di Campo minato spesso sviluppano un occhio attento per i modelli e le strategie per conquistare il gioco.
+> Campo minato è un classico gioco per computer che richiede una combinazione di strategia e logica. Il gioco si svolge su una griglia e l'obiettivo è scoprire tutte le mine nascoste senza farle esplodere. Per fare questo, i giocatori cliccano su singoli quadrati, e i numeri rivelati indicano il numero di mine nei quadrati adiacenti. Con queste informazioni, i giocatori utilizzano il ragionamento deduttivo per segnare con bandierine i quadrati che sospettano contengano mine e gradualmente liberano la griglia da tutte le aree non minate. La sfida sta nel fare ipotesi calcolate ed evitare le mine, questo sviluppa nei giocatori di Campo minato un occhio attento per i modelli e strategie di questo gioco.
 
 ChatGPT.
 

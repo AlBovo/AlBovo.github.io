@@ -6,8 +6,15 @@
     <description>Recent content in Crypto on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 May 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.tech/en/tags/crypto/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nullCon CTF 2023</title>
+      <link>https://albovo.tech/en/ctf/nullconctf2023/</link>
+      <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/ctf/nullconctf2023/</guid>
+      <description>Some writeups of the nullCon ctf 2023 edition.</description>
+    </item>
     <item>
       <title>M0lecon CTF 2023 Beginner</title>
       <link>https://albovo.tech/en/ctf/m0leconctf2023/</link>

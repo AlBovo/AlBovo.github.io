@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Ctf on Portfolio</title>
-    <link>https://albovo.tech/it/ctf/</link>
-    <description>Recent content in Ctf on Portfolio</description>
+    <title>NullCon on Portfolio</title>
+    <link>https://albovo.tech/it/tags/nullcon/</link>
+    <description>Recent content in NullCon on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>it</language>
     <lastBuildDate>Tue, 28 May 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/it/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.tech/it/tags/nullcon/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nullCon CTF 2023</title>
       <link>https://albovo.tech/it/ctf/nullconctf2023/</link>
       <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
       <guid>https://albovo.tech/it/ctf/nullconctf2023/</guid>
       <description>Alcune writeups della nullCon ctf edizione 2023.</description>
-    </item>
-    <item>
-      <title>M0lecon CTF 2023 Beginner</title>
-      <link>https://albovo.tech/it/ctf/m0leconctf2023/</link>
-      <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/m0leconctf2023/</guid>
-      <description>Alcune writeups della m0lecon Beginner ctf edizione 2023.</description>
     </item>
   </channel>
 </rss>

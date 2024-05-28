@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="it" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>nullCon CTF 2023 | Portfolio</title>
+<meta name="keywords" content="nullCon, ctf, binary, crypto, web, nullCon2023">
+<meta name="description" content="Alcune writeups della nullCon ctf edizione 2023.">
+<meta name="author" content="AlBovo">
+<link rel="canonical" href="https://albovo.tech/it/ctf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://albovo.tech/en/ctf/nullconctf2023/">
+<link rel="alternate" hreflang="it" href="https://albovo.tech/it/ctf/nullconctf2023/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:title" content="nullCon CTF 2023" />
+<meta property="og:description" content="Alcune writeups della nullCon ctf edizione 2023." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://albovo.tech/it/ctf/nullconctf2023/" />
+<meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" /><meta property="article:section" content="ctf" />
+<meta property="article:published_time" content="2024-05-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-28T00:00:00+00:00" /><meta property="og:site_name" content="Portfolio" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" />
+<meta name="twitter:title" content="nullCon CTF 2023"/>
+<meta name="twitter:description" content="Alcune writeups della nullCon ctf edizione 2023."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Ctf",
+      "item": "https://albovo.tech/it/ctf/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "nullCon CTF 2023",
+      "item": "https://albovo.tech/it/ctf/nullconctf2023/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "nullCon CTF 2023",
+  "name": "nullCon CTF 2023",
+  "description": "Alcune writeups della nullCon ctf edizione 2023.",
+  "keywords": [
+    "nullCon", "ctf", "binary", "crypto", "web", "nullCon2023"
+  ],
+  "articleBody": "nullCon CTF 2023 Web 🌐 TYpical Boss In questa challenge, è possibile notare come se si accede all’endpoint ‘/’ della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato database.db, che era un database SQLite). Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell’admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero 0e. Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico 0. L’unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per 0e. Questa è una repository molto utile per quanto riguarda il pentesting: Repository\nDebugger In debugger per ottenere la flag era necessario che l’IP dell’attaccante fosse 127.0.0.0, cosa non direttamente modificabile a causa del fatto che utilizzava $_SERVER['REMOTE_ADDR'] per ottenere il suo indirizzo, utilizzando il seguente codice PHP:\nif(isset($_GET['action']) \u0026\u0026 $_GET['action']==\"debug\") { $is_admin = $_SERVER['REMOTE_ADDR'] == \"127.0.0.0\" ? 1 : 0; $debug_info = get_debug_info(extract($_GET['filters'])); if($is_admin) { echo implode($debug_info, '\\n'); } else { echo(\"Only local admins are allowed to debug!\"); } include_once \"flag.php\"; } La vulnerabilità a questo punto si trova nella funzione di PHP extract(), che importa variabili da un array nella tabella dei simboli corrente. Il mio exploit, nello specifico, sovrascriveva la variabile $is_admin con 1 usando il seguente payload in una richiesta GET /?action=debug\u0026filters[is_admin]=1. In questo modo ho avuto modo di ottenere la flag.\nColorful Questa challenge era particolarmente diversa dalle challenge di web security a cui sono abituato, richiedeva infatti la conoscenza di AES e le vulnerabilità riguardanti la mode ECB. In questo caso, il codice sorgente conteneva una parte di codice molto sospetta:\ndef parse(self, c): d = {} if c is None: return d for p in c.split(\"\u0026\"): try: k,v = p.split(\"=\") if not k in d: d[k]=v except: pass return d def new_session(self, r): id = secrets.token_hex(4) c = f\"_id={id}\u0026admin=0\u0026color=ffff00\u0026\" return self._c(c) def _c(self, v): try: v = v.encode() while len(v) % 16 != 0: v += b'\\x41' return AES.new(self.k,1).encrypt(v).hex() except: return None Dopo aver guardato un po’ a questo codice, ho notato che era impossibile cifrare dei blocchi arbitrari che, se creati correttamente, sarebbero mischiabili insieme per creare un cookie con privilegi da admin. A questo punto, quello che feci fu di riempire la porzione di cookie che non potevo modificare da me, _id={id}\u0026admin=0\u0026color= (dove id è una stringa di 4 * 2 caratteri esadecimali), con dei caratteri al fondo per rendere la lunghezza totale divisibile per 16 (in altre parole, creare blocchi interi). Ho quindi scritto admin=1 nel blocco successivo. In questo modo shiftando l’ultimo blocco all’inizio e sovrascrivendo il cookie sono riuscito ad ottenere la flag.\nIP Filters Questo era il codice sorgente di IPFilters:\nfunction fetch_backend($ip) { if(is_bad_ip($ip)) { return \"This IP is not allowed!\"; } return file_get_contents(\"http://\". $ip . \"/\"); } function is_bad_ip($ip) { if(!preg_match('/^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$/', $ip)) { return true; } $frontend = gethostbyname(gethostname()); $backend = gethostbyname(\"ipfilter_backend\"); $subnet = long2ip(ip2long($frontend) \u0026 ip2long(\"255.255.255.0\")); $bcast = long2ip(ip2long($frontend) | ~ip2long(\"255.255.255.0\")); if(isset($_GET['debug_filter'])) { // Debugging echos that also print the backend local IP } if(inet_pton($ip) \u003c (int) inet_pton($subnet)) { return true; } if(! (inet_pton($ip) \u003c inet_pton($bcast))) { return true; } if($ip == $backend) { return true; } return false; } if(isset($_GET['fetch_backend']) ) { echo fetch_backend($_GET['bip']); } Apparentemente, non sembrano esserci bypass specifici da eseguire. Tuttavia, analizzando ogni funzione PHP utilizzata nel programma una per una, ho scoperto che inet_pton è vulnerabile poiché accetta anche indirizzi IPv4 contenenti zeri nell’ultimo sottogruppo. Ad esempio: xxx.xxx.x.00x. In questo modo ho potuto creare un indirizzo IP nel range della subnet passando l’IP printato dal debug con dei trailing zeros. Per esempio, 192.168.1.2 =\u003e 192.168.1.002.\nMagic Cars Questa challenge richiedeva di caricare un file GIF nel backend del sito in modo tale da poterlo vedere in seguito. Questo è il codice PHP del backend del sito:\n$files = $_FILES[\"fileToUpload\"]; $uploadOk = true; if($files[\"name\"] != \"\"){ $target_dir = urldecode(\"images/\" . $files[\"name\"]); if(strpos($target_dir,\"..\") !== false){ $uploadOk = false; } if(filesize($files[\"tmp_name\"]) \u003e 1*1000){ $uploadOk = false; echo \"too big!!!\"; } $extension = strtolower(pathinfo($target_dir,PATHINFO_EXTENSION)); $finfo = finfo_open(FILEINFO_MIME_TYPE); $type = finfo_file($finfo,$files[\"tmp_name\"]); finfo_close($finfo); if($extension != \"gif\" || strpos($type,\"image/gif\") === false){ echo \" Sorry, only gif files are accepted\"; $uploadOk = false; } $target_dir = strtok($target_dir,chr(0)); if($uploadOk \u0026\u0026 move_uploaded_file($files[\"tmp_name\"],$target_dir)){ echo \"uploaded gif here go see it!\"; } } Dopo alcuni tentativi, ho notato come il backend stesse controllando alcuni parametri dei file che gli passavo, come non essere troppo pesanti, non avere percorsi con dei traversal (es: ..\\ o ../), avere l’estensione .gif e avere i magic bytes corretti per un file GIF. Ho anche notato come dividesse usando i null byte come divisori usando la funzione strtok(), prendendo il primo pezzo come nome reale del file. Seguendo quest’osservazione sono riuscito a scrivere una reverse shell in PHP (che potete trovare sulla mia repository GitHub) che ho nominato rev.php%00.gif. Dandogli questo nome ho bypassato tutti i controlli ottenendo quindi un endpoint a rev.php.\nNon appena aprii il file all’indirizzo images/rev.php sono riuscito a mandare comandi alla shell mediante www-data.\nLoginbytepass La challenge Loginbytes permetteva di eseguire il login con gli username admin o flag. In questo caso lo username veniva iniettato nella query del database senza nessuna sanitizzazione, mentre la password veniva hashata due volte usando md5 senza venire convertita in una stringa esadecimale.\nA questo punto questa parte di codice è risultata molto utile:\nfunction check_auth($username, $password) { global $db; $username = mysqli_real_escape_string($db, $username); // preventSQLinjection $password = md5(md5($password, true), true); $res = mysqli_query($db, \"SELECT * FROM users WHERE username = '$username' AND password = '$password'\"); if (isset($res) \u0026\u0026 $res-\u003efetch_object()) { return true; } return false; } Io ed il mio team siamo riusciti quindi a scoprire che trovando un hash contenente prima_parte_dell_hash'='seconda_parte_dell_hash potevamo bypassare il login. Questo perchè PHP per colpa del type juggling trasformava entrami gli hash in 0, risultando quindi in una query come questa:\nSELECT * FROM users WHERE username='admin' AND true Che ci ha quindi permesso di ottenere la flag.\nBinary 💻 Babypwn Finalmente un po’ di pwn. Questa challenge aveva in allegato un file ELF. Eseguendo checkesec per esaminare il suo contenuto ho ottenuto questi risultati:\nArch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX disabled PIE: No PIE (0x400000) RWX: Has RWX segments A questo punto non rimaneva che analizzare con IDA il decompilato della challenge, questo allocava un buffer da 512 caratteri in cui però tramite una read ne potevo scrivere 1024.\n... char username[512]; printf(\"You shell play a game against @gehaxelt! Win it to get ./flag.txt!\\n\"); printf(\"Your game slot is at: %p\\n\", username); printf(\"What's your name?\\n\"); read(1, username, 1024); ... Questo ci permise di effettuare un buffer overflow. Siamo riusciti quindi a riempire il buffer con uno shellcode seguito da molti byte ‘a’ per riempire il resto del buffer. Una volta riempito il buffer era necessario solamente sovrascrivere il RBP e il return pointer con l’indirizzo dello shellcode per poter ottenere una shell sulla macchina remota.\nHeavens Flow Questa challenge è molto simile alla precedente ma questa volta usando checksec abbiamo NX enabled, non possiamo quindi utilizzare uno shellcode sullo stack poiché non è eseguibile. In ogni modo possiamo comunque sovrascrivere il return pointer per eseguire la funzione heavens_secret, che stamperà la flag su standard output.\nCryptography 🔒 Euclidean RSA Questa è la prima challenge di crittografia. Il codice in sè non è molto lungo, ma le sue funzionalità sono alquanto “strane” poiché utilizza una funzione esterna per generare quattro interi a, b, c e d, che devono rispettare questa relazione a^2 + b^2 = n, c^2 + d^2 = n\nwhile True: try: key = RSA.generate(2048) a,b,c,d = magic(key) break except: pass assert a**2 + b**2 == key.n assert c**2 + d**2 == key.n A questo punto usando il metodo di Brahmagupta–Fibonacci è possibile risolvere l’equazione seguendo questi passaggi:\n$$ \\begin{align*} \u0026 a^2 + b^2 = c^2 + d^2 = n \\\\ \u0026 (a^2 + b^2)(c^2 + d^2) = n^2 = (pq)^2 \\\\ \u0026 (ac + bd)^2 + (ad - bc)^2 = p^2 q^2 \\\\ \u0026 q^2 = s^2 + t^2 \\\\ \u0026 (ac + bd)^2 + (ad - bc)^2 = (p \\cdot s)^2 + (p \\cdot t)^2 \\\\ \u0026 ps = a \\cdot c + b \\cdot d \\\\ \u0026 pt = a \\cdot d - b \\cdot c \\\\ \u0026 p = \\text{gcd}(ps, pt) \\\\ \u0026 q = \\frac{n}{p} \\\\ \\end{align*} $$ Sebastian’s Secret Sharing In questa challenge il codice sorgente segue diversi passaggi per rendere la comprensione del codice il più difficile possibile. Osservando meglio come questo inizializza l’array contenente la flag è possibile notare un dettaglio:\ndef _a(self): c = [self.s] for i in range(self.t-1): a = Decimal(random.randint(self.s+1, self.s*2)) c.append(a) return c In questo caso, self.s rappresenta la flag, e possiamo osservare come questa sia presente alla posizione 0 dell’array quando questo è ritornato alla funzione chiamante. Se analizziamo meglio la funzione principale, la challenge ci permette di leggere un elemento alla posizione x mod n, dove x è il numero da noi scritto che deve essere nel range 1 \u003c= x \u003c= n. Quindi, se vogliamo ottenere l’elemento alla posizione 0 non dobbiamo fare altro se non inviare un input tale per cui x = n, in questo modo x mod n = 0.\nCounting Finalmente questa è l’ultima challenge che il mio team ha risolto. In questa challenge il servizio cifra i messaggi usando RSA con una semplice modifica (praticamente minuscola) in questo codice:\n... message = b'So far we had %03d failed attempts to find the token %s' % (counter, token) print(pow(bytes_to_long(message), key.e, key.n)) ... In questo caso si può provare l’attacco Franklin–Reiter bruteforceando il bit cambiato finché il messaggio decrittato dall’attaccante contiene il token da trovare. Una volta ottenuto il token si può mandare al servizio per ottenere la flag.\n",
+  "wordCount" : "1642",
+  "inLanguage": "it",
+  "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2024-05-28T00:00:00Z",
+  "dateModified": "2024-05-28T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "AlBovo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://albovo.tech/it/ctf/nullconctf2023/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://albovo.tech/%3Clink%20/%20abs%20url%3E"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://albovo.tech/it/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://albovo.tech/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Home</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://albovo.tech/en/" title="🇬🇧 En"
+                            aria-label=":uk: En">🇬🇧 En</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://albovo.tech/it/projects/" title="📒 Progetti">
+                    <span>📒 Progetti</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.tech/it/ctf/" title="⚙ Writeups">
+                    <span>⚙ Writeups</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://example.org" title="example.org">
+                    <span>example.org</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://albovo.tech/it/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.tech/it/ctf/">Ctf</a></div>
+    <h1 class="post-title entry-hint-parent">
+      nullCon CTF 2023
+    </h1>
+    <div class="post-description">
+      Alcune writeups della nullCon ctf edizione 2023.
+    </div>
+    <div class="post-meta"><span title='2024-05-28 00:00:00 +0000 UTC'>maggio 28, 2024</span>&nbsp;·&nbsp;8 minuti&nbsp;·&nbsp;1642 parole&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Traduzioni:
+<ul class="i18n_list">
+    <li>
+        <a href="https://albovo.tech/en/ctf/nullconctf2023/">🇬🇧 En</a>
+    </li>
+</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/it/ctf/nullconCTF2023.md" rel="noopener noreferrer" target="_blank">Suggerisci modifiche</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Indice contenuti</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#web-">Web 🌐</a>
+      <ul>
+        <li><a href="#typical-boss">TYpical Boss</a></li>
+        <li><a href="#debugger">Debugger</a></li>
+        <li><a href="#colorful">Colorful</a></li>
+        <li><a href="#ip-filters">IP Filters</a></li>
+        <li><a href="#magic-cars">Magic Cars</a></li>
+        <li><a href="#loginbytepass">Loginbytepass</a></li>
+      </ul>
+    </li>
+    <li><a href="#binary-">Binary 💻</a>
+      <ul>
+        <li><a href="#babypwn">Babypwn</a></li>
+        <li><a href="#heavens-flow">Heavens Flow</a></li>
+      </ul>
+    </li>
+    <li><a href="#cryptography-">Cryptography 🔒</a>
+      <ul>
+        <li><a href="#euclidean-rsa">Euclidean RSA</a></li>
+        <li><a href="#sebastians-secret-sharing">Sebastian&rsquo;s Secret Sharing</a></li>
+        <li><a href="#counting">Counting</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="nullcon-ctf-2023">nullCon CTF 2023<a hidden class="anchor" aria-hidden="true" href="#nullcon-ctf-2023">#</a></h1>
+<p><img loading="lazy" src="/images/nullcon.png" alt="logo della nullcon"  />
+</p>
+<h2 id="web-">Web 🌐<a hidden class="anchor" aria-hidden="true" href="#web-">#</a></h2>
+<h3 id="typical-boss">TYpical Boss<a hidden class="anchor" aria-hidden="true" href="#typical-boss">#</a></h3>
+<p>In questa challenge, è possibile notare come se si accede all&rsquo;endpoint &lsquo;/&rsquo; della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato <code>database.db</code>, che era un database SQLite).<!-- raw HTML omitted -->
+Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell&rsquo;admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero <code>0e</code>.<!-- raw HTML omitted -->
+Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico <code>0</code>. L&rsquo;unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per <code>0e</code>.<!-- raw HTML omitted -->
+Questa è una repository molto utile per quanto riguarda il pentesting: <a href="https://github.com/spaze/hashes/tree/master">Repository</a></p>
+<h3 id="debugger">Debugger<a hidden class="anchor" aria-hidden="true" href="#debugger">#</a></h3>
+<p>In debugger per ottenere la flag era necessario che l&rsquo;IP dell&rsquo;attaccante fosse 127.0.0.0, cosa non direttamente modificabile a causa del fatto che utilizzava <code>$_SERVER['REMOTE_ADDR']</code> per ottenere il suo indirizzo, utilizzando il seguente codice PHP:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&#34;debug&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$is_admin</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REMOTE_ADDR&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;127.0.0.0&#34;</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$debug_info</span> <span class="o">=</span> <span class="nx">get_debug_info</span><span class="p">(</span><span class="nx">extract</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;filters&#39;</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$is_admin</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nx">implode</span><span class="p">(</span><span class="nv">$debug_info</span><span class="p">,</span> <span class="s1">&#39;\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span><span class="p">(</span><span class="s2">&#34;Only local admins are allowed to debug!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">include_once</span> <span class="s2">&#34;flag.php&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>La vulnerabilità a questo punto si trova nella funzione di PHP <code>extract()</code>, che <a href="https://www.php.net/manual/en/function.extract.php">importa variabili</a> da un array nella tabella dei simboli corrente. Il mio exploit, nello specifico, sovrascriveva la variabile <code>$is_admin</code> con 1 usando il seguente payload in una richiesta GET <code>/?action=debug&amp;filters[is_admin]=1</code>.<!-- raw HTML omitted --> In questo modo ho avuto modo di ottenere la flag.</p>
+<h3 id="colorful">Colorful<a hidden class="anchor" aria-hidden="true" href="#colorful">#</a></h3>
+<p>Questa challenge era particolarmente diversa dalle challenge di web security a cui sono abituato, richiedeva infatti la conoscenza di <code>AES</code> e le vulnerabilità riguardanti la mode <code>ECB</code>.
+In questo caso, il codice sorgente conteneva una parte di codice molto sospetta:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">d</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;&amp;&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">v</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">d</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">new_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">id</span> <span class="o">=</span> <span class="n">secrets</span><span class="o">.</span><span class="n">token_hex</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;_id=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">&amp;admin=0&amp;color=ffff00&amp;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_c</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span> <span class="o">+=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x41</span><span class="s1">&#39;</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></div><p>Dopo aver guardato un po&rsquo; a questo codice, ho notato che era impossibile cifrare dei blocchi arbitrari che, se creati correttamente, sarebbero mischiabili insieme per creare un cookie con privilegi da admin.<!-- raw HTML omitted -->
+A questo punto, quello che feci fu di riempire la porzione di cookie che non potevo modificare da me, <code>_id={id}&amp;admin=0&amp;color=</code> (dove id è una stringa di 4 * 2 caratteri esadecimali), con dei caratteri al fondo per rendere la lunghezza totale divisibile per 16 (in altre parole, creare blocchi interi). Ho quindi scritto <code>admin=1</code> nel blocco successivo. In questo modo shiftando l&rsquo;ultimo blocco all&rsquo;inizio e sovrascrivendo il cookie sono riuscito ad ottenere la flag.</p>
+<h3 id="ip-filters">IP Filters<a hidden class="anchor" aria-hidden="true" href="#ip-filters">#</a></h3>
+<p>Questo era il codice sorgente di IPFilters:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">fetch_backend</span><span class="p">(</span><span class="nv">$ip</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">is_bad_ip</span><span class="p">(</span><span class="nv">$ip</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;This IP is not allowed!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">file_get_contents</span><span class="p">(</span><span class="s2">&#34;http://&#34;</span><span class="o">.</span> <span class="nv">$ip</span> <span class="o">.</span> <span class="s2">&#34;/&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">is_bad_ip</span><span class="p">(</span><span class="nv">$ip</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">preg_match</span><span class="p">(</span><span class="s1">&#39;/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/&#39;</span><span class="p">,</span> <span class="nv">$ip</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$frontend</span> <span class="o">=</span> <span class="nx">gethostbyname</span><span class="p">(</span><span class="nx">gethostname</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$backend</span> <span class="o">=</span> <span class="nx">gethostbyname</span><span class="p">(</span><span class="s2">&#34;ipfilter_backend&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$subnet</span> <span class="o">=</span> <span class="nx">long2ip</span><span class="p">(</span><span class="nx">ip2long</span><span class="p">(</span><span class="nv">$frontend</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nx">ip2long</span><span class="p">(</span><span class="s2">&#34;255.255.255.0&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$bcast</span> <span class="o">=</span> <span class="nx">long2ip</span><span class="p">(</span><span class="nx">ip2long</span><span class="p">(</span><span class="nv">$frontend</span><span class="p">)</span> <span class="o">|</span> <span class="o">~</span><span class="nx">ip2long</span><span class="p">(</span><span class="s2">&#34;255.255.255.0&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;debug_filter&#39;</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Debugging echos that also print the backend local IP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">inet_pton</span><span class="p">(</span><span class="nv">$ip</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nx">inet_pton</span><span class="p">(</span><span class="nv">$subnet</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span> <span class="p">(</span><span class="nx">inet_pton</span><span class="p">(</span><span class="nv">$ip</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nx">inet_pton</span><span class="p">(</span><span class="nv">$bcast</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$ip</span> <span class="o">==</span> <span class="nv">$backend</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;fetch_backend&#39;</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="nx">fetch_backend</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;bip&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Apparentemente, non sembrano esserci bypass specifici da eseguire. Tuttavia, analizzando ogni funzione PHP utilizzata nel programma una per una, ho scoperto che <code>inet_pton</code> è vulnerabile poiché accetta anche indirizzi IPv4 contenenti zeri nell&rsquo;ultimo sottogruppo. Ad esempio: <code>xxx.xxx.x.00x</code>.<!-- raw HTML omitted -->
+In questo modo ho potuto creare un indirizzo IP nel range della subnet passando l&rsquo;IP printato dal debug con dei <em>trailing zeros</em>.<!-- raw HTML omitted -->
+Per esempio, <code>192.168.1.2</code> =&gt; <code>192.168.1.002</code>.</p>
+<h3 id="magic-cars">Magic Cars<a hidden class="anchor" aria-hidden="true" href="#magic-cars">#</a></h3>
+<p>Questa challenge richiedeva di caricare un file <code>GIF</code> nel backend del sito in modo tale da poterlo vedere in seguito.
+Questo è il codice PHP del backend del sito:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$files</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s2">&#34;fileToUpload&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$uploadOk</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="nv">$files</span><span class="p">[</span><span class="s2">&#34;name&#34;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$target_dir</span> <span class="o">=</span> <span class="nx">urldecode</span><span class="p">(</span><span class="s2">&#34;images/&#34;</span> <span class="o">.</span> <span class="nv">$files</span><span class="p">[</span><span class="s2">&#34;name&#34;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">strpos</span><span class="p">(</span><span class="nv">$target_dir</span><span class="p">,</span><span class="s2">&#34;..&#34;</span><span class="p">)</span> <span class="o">!==</span> <span class="k">false</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$uploadOk</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">filesize</span><span class="p">(</span><span class="nv">$files</span><span class="p">[</span><span class="s2">&#34;tmp_name&#34;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$uploadOk</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;too big!!!&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$extension</span> <span class="o">=</span> <span class="nx">strtolower</span><span class="p">(</span><span class="nx">pathinfo</span><span class="p">(</span><span class="nv">$target_dir</span><span class="p">,</span><span class="nx">PATHINFO_EXTENSION</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$finfo</span> <span class="o">=</span> <span class="nx">finfo_open</span><span class="p">(</span><span class="nx">FILEINFO_MIME_TYPE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$type</span> <span class="o">=</span> <span class="nx">finfo_file</span><span class="p">(</span><span class="nv">$finfo</span><span class="p">,</span><span class="nv">$files</span><span class="p">[</span><span class="s2">&#34;tmp_name&#34;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">finfo_close</span><span class="p">(</span><span class="nv">$finfo</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$extension</span> <span class="o">!=</span> <span class="s2">&#34;gif&#34;</span> <span class="o">||</span> <span class="nx">strpos</span><span class="p">(</span><span class="nv">$type</span><span class="p">,</span><span class="s2">&#34;image/gif&#34;</span><span class="p">)</span> <span class="o">===</span> <span class="k">false</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34; Sorry, only gif files are accepted&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$uploadOk</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$target_dir</span> <span class="o">=</span> <span class="nx">strtok</span><span class="p">(</span><span class="nv">$target_dir</span><span class="p">,</span><span class="nx">chr</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nv">$uploadOk</span> <span class="o">&amp;&amp;</span> <span class="nx">move_uploaded_file</span><span class="p">(</span><span class="nv">$files</span><span class="p">[</span><span class="s2">&#34;tmp_name&#34;</span><span class="p">],</span><span class="nv">$target_dir</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="s2">&#34;&lt;a href=&#39;</span><span class="si">$target_dir</span><span class="s2">&#39;&gt;uploaded gif here go see it!&lt;/a&gt;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Dopo alcuni tentativi, ho notato come il backend stesse controllando alcuni parametri dei file che gli passavo, come non essere troppo pesanti, non avere percorsi con dei traversal (es: <code>..\</code> o <code>../</code>), avere l&rsquo;estensione <code>.gif</code> e avere i magic bytes corretti per un file <code>GIF</code>.<!-- raw HTML omitted -->
+Ho anche notato come dividesse usando i null byte come divisori usando la funzione <code>strtok()</code>, prendendo il primo pezzo come nome reale del file. Seguendo quest&rsquo;osservazione sono riuscito a scrivere una reverse shell in PHP (che potete trovare sulla mia repository <a href="https://github.com/AlBovo/CTF-Writeups/tree/main/nullcon%20CTF%202023">GitHub</a>) che ho nominato <code>rev.php%00.gif</code>. Dandogli questo nome ho bypassato tutti i controlli ottenendo quindi un endpoint a <code>rev.php</code>.<!-- raw HTML omitted --><br>
+Non appena aprii il file all&rsquo;indirizzo <code>images/rev.php</code> sono riuscito a mandare comandi alla shell mediante <code>www-data</code>.</p>
+<h3 id="loginbytepass">Loginbytepass<a hidden class="anchor" aria-hidden="true" href="#loginbytepass">#</a></h3>
+<p>La challenge Loginbytes permetteva di eseguire il login con gli username <code>admin</code> o <code>flag</code>. In questo caso lo username veniva iniettato nella query del database senza nessuna sanitizzazione, mentre la password veniva hashata due volte usando md5 senza venire convertita in una stringa esadecimale.</p>
+<p>A questo punto questa parte di codice è risultata molto utile:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">check_auth</span><span class="p">(</span><span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">global</span> <span class="nv">$db</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$username</span> <span class="o">=</span> <span class="nx">mysqli_real_escape_string</span><span class="p">(</span><span class="nv">$db</span><span class="p">,</span> <span class="nv">$username</span><span class="p">);</span> <span class="c1">// preventSQLinjection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$password</span> <span class="o">=</span> <span class="nx">md5</span><span class="p">(</span><span class="nx">md5</span><span class="p">(</span><span class="nv">$password</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$res</span> <span class="o">=</span> <span class="nx">mysqli_query</span><span class="p">(</span><span class="nv">$db</span><span class="p">,</span> <span class="s2">&#34;SELECT * FROM users WHERE username = &#39;</span><span class="si">$username</span><span class="s2">&#39; AND password = &#39;</span><span class="si">$password</span><span class="s2">&#39;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$res</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$res</span><span class="o">-&gt;</span><span class="na">fetch_object</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Io ed il mio team siamo riusciti quindi a scoprire che trovando un hash contenente <code>prima_parte_dell_hash'='seconda_parte_dell_hash</code> potevamo bypassare il login. Questo perchè PHP per colpa del type juggling trasformava entrami gli hash in <code>0</code>, risultando quindi in una query come questa:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">true</span><span class="w">
+</span></span></span></code></pre></div><p>Che ci ha quindi permesso di ottenere la flag.</p>
+<h2 id="binary-">Binary 💻<a hidden class="anchor" aria-hidden="true" href="#binary-">#</a></h2>
+<h3 id="babypwn">Babypwn<a hidden class="anchor" aria-hidden="true" href="#babypwn">#</a></h3>
+<p>Finalmente un po&rsquo; di pwn. Questa challenge aveva in allegato un file <code>ELF</code>. Eseguendo <code>checkesec</code> per esaminare il suo contenuto ho ottenuto questi risultati:</p>
+<pre tabindex="0"><code>Arch:     amd64-64-little
+RELRO:    Partial RELRO
+Stack:    No canary found
+NX:       NX disabled
+PIE:      No PIE (0x400000)
+RWX:      Has RWX segments
+</code></pre><p>A questo punto non rimaneva che analizzare con IDA il decompilato della challenge, questo allocava un buffer da <code>512</code> caratteri in cui però tramite una read ne potevo scrivere <code>1024</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">   <span class="kt">char</span> <span class="n">username</span><span class="p">[</span><span class="mi">512</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You shell play a game against @gehaxelt! Win it to get ./flag.txt!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Your game slot is at: %p</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">username</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;What&#39;s your name?</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="nf">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="mi">1024</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span>
+</span></span></code></pre></div><p>Questo ci permise di effettuare un <code>buffer overflow</code>. Siamo riusciti quindi a riempire il buffer con uno shellcode seguito da molti byte &lsquo;a&rsquo; per riempire il resto del buffer. Una volta riempito il buffer era necessario solamente sovrascrivere il <code>RBP</code> e il <code>return pointer</code> con l&rsquo;indirizzo dello shellcode per poter ottenere una shell sulla macchina remota.</p>
+<h3 id="heavens-flow">Heavens Flow<a hidden class="anchor" aria-hidden="true" href="#heavens-flow">#</a></h3>
+<p>Questa challenge è molto simile alla precedente ma questa volta usando checksec abbiamo <code>NX enabled</code>, non possiamo quindi utilizzare uno shellcode sullo stack poiché non è eseguibile. In ogni modo possiamo comunque sovrascrivere il <code>return pointer</code> per eseguire la funzione <code>heavens_secret</code>, che stamperà la flag su standard output.</p>
+<h2 id="cryptography-">Cryptography 🔒<a hidden class="anchor" aria-hidden="true" href="#cryptography-">#</a></h2>
+<h3 id="euclidean-rsa">Euclidean RSA<a hidden class="anchor" aria-hidden="true" href="#euclidean-rsa">#</a></h3>
+<p>Questa è la prima challenge di crittografia. Il codice in sè non è molto lungo, ma le sue funzionalità sono alquanto &ldquo;strane&rdquo; poiché utilizza una funzione esterna per generare quattro interi a, b, c e d, che devono rispettare questa relazione <code>a^2 + b^2 = n</code>, <code>c^2 + d^2 = n</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="n">key</span> <span class="o">=</span> <span class="n">RSA</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span> <span class="o">=</span> <span class="n">magic</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">break</span>
+</span></span><span class="line"><span class="cl">	<span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">pass</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="n">key</span><span class="o">.</span><span class="n">n</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">==</span> <span class="n">key</span><span class="o">.</span><span class="n">n</span>
+</span></span></code></pre></div><p>A questo punto usando il metodo di <code>Brahmagupta–Fibonacci</code> è possibile risolvere l&rsquo;equazione seguendo questi passaggi:</p>
+$$
+\begin{align*}
+& a^2 + b^2 = c^2 + d^2 = n \\
+& (a^2 + b^2)(c^2 + d^2) = n^2 = (pq)^2 \\
+& (ac + bd)^2 + (ad - bc)^2 = p^2 q^2 \\
+& q^2 = s^2 + t^2 \\
+& (ac + bd)^2 + (ad - bc)^2 = (p \cdot s)^2 + (p \cdot t)^2 \\
+& ps = a \cdot c + b \cdot d \\
+& pt = a \cdot d - b \cdot c \\
+& p = \text{gcd}(ps, pt) \\
+& q = \frac{n}{p} \\
+\end{align*}
+$$
+<h3 id="sebastians-secret-sharing">Sebastian&rsquo;s Secret Sharing<a hidden class="anchor" aria-hidden="true" href="#sebastians-secret-sharing">#</a></h3>
+<p>In questa challenge il codice sorgente segue diversi passaggi per rendere la comprensione del codice il più difficile possibile. Osservando meglio come questo inizializza l&rsquo;array contenente la flag è possibile notare un dettaglio:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">Decimal</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c</span>
+</span></span></code></pre></div><p>In questo caso, <code>self.s</code> rappresenta la flag, e possiamo osservare come questa sia presente alla posizione <code>0</code> dell&rsquo;array quando questo è ritornato alla funzione chiamante.<!-- raw HTML omitted -->
+Se analizziamo meglio la funzione principale, la challenge ci permette di leggere un elemento alla posizione <code>x mod n</code>, dove x è il numero da noi scritto che deve essere nel range <code>1 &lt;= x &lt;= n</code>. Quindi, se vogliamo ottenere l&rsquo;elemento alla posizione 0 non dobbiamo fare altro se non inviare un input tale per cui <code>x = n</code>, in questo modo <code>x mod n = 0</code>.</p>
+<h3 id="counting">Counting<a hidden class="anchor" aria-hidden="true" href="#counting">#</a></h3>
+<p>Finalmente questa è l&rsquo;ultima challenge che il mio team ha risolto. In questa challenge il servizio cifra i messaggi usando <code>RSA</code> con una semplice modifica (praticamente minuscola) in questo codice:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;So far we had </span><span class="si">%03d</span><span class="s1"> failed attempts to find the token </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">bytes_to_long</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">key</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">key</span><span class="o">.</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></div><p>In questo caso si può provare l&rsquo;attacco <a href="https://en.wikipedia.org/wiki/Coppersmith%27s_attack#Franklin%E2%80%93Reiter_related-message_attack">Franklin–Reiter</a> bruteforceando il bit cambiato finché il messaggio decrittato dall&rsquo;attaccante contiene il token da trovare. Una volta ottenuto il token si può mandare al servizio per ottenere la flag.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://albovo.tech/it/tags/nullcon/">NullCon</a></li>
+      <li><a href="https://albovo.tech/it/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.tech/it/tags/binary/">Binary</a></li>
+      <li><a href="https://albovo.tech/it/tags/crypto/">Crypto</a></li>
+      <li><a href="https://albovo.tech/it/tags/web/">Web</a></li>
+      <li><a href="https://albovo.tech/it/tags/nullcon2023/">NullCon2023</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://albovo.tech/it/ctf/m0leconctf2023/">
+    <span class="title">Successivo »</span>
+    <br>
+    <span>M0lecon CTF 2023 Beginner</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on x"
+            href="https://x.com/intent/tweet/?text=nullCon%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f&amp;hashtags=nullCon%2cctf%2cbinary%2ccrypto%2cweb%2cnullCon2023">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f&amp;title=nullCon%20CTF%202023&amp;summary=nullCon%20CTF%202023&amp;source=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f&title=nullCon%20CTF%202023">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on whatsapp"
+            href="https://api.whatsapp.com/send?text=nullCon%20CTF%202023%20-%20https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on telegram"
+            href="https://telegram.me/share/url?text=nullCon%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share nullCon CTF 2023 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=nullCon%20CTF%202023&u=https%3a%2f%2falbovo.tech%2fit%2fctf%2fnullconctf2023%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="https://albovo.tech/it/">Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

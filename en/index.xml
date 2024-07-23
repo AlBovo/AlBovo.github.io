@@ -6,8 +6,15 @@
     <description>Recent content on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 May 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.tech/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solitario Croce</title>
+      <link>https://albovo.tech/en/projects/solitario/</link>
+      <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/projects/solitario/</guid>
+      <description>A school project about a solitaire card game designed by a small team of students.</description>
+    </item>
     <item>
       <title>nullCon CTF 2023</title>
       <link>https://albovo.tech/en/ctf/nullconctf2023/</link>

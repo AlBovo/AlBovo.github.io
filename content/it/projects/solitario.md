@@ -47,7 +47,8 @@ Questo progetto è sviluppato da:
 
 
 ## Gioco 🎮
-Il gioco da sviluppare è il [Solitario a Croce](https://www.youtube.com/watch?v=g7TJviLmuMg)
+Il gioco da sviluppare è il Solitario a Croce.
+{{< youtube g7TJviLmuMg >}}
 
 **Come si gioca 🤔:** 5 carte del *mazzo* vengono posizionate al centro del tavolo a formare una **croce ➕**. Sono lasciate libere 4 postazioni dette *basi*.
 

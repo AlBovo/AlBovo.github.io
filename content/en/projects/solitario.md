@@ -47,7 +47,8 @@ This project has been developed by:
 
 
 ## Game 🎮
-The game we developed is the [Solitario a Croce](https://www.youtube.com/watch?v=g7TJviLmuMg)
+The game we developed is the Solitario a Croce.
+{{< youtube g7TJviLmuMg >}}
 
 **How to play 🤔:** Five cards from the *deck* are placed in the center of the table to form a **cross ➕**. Four positions, called *bases*, are left free.
 

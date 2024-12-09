@@ -146,7 +146,7 @@ Analyzing the executable, it can be observed that both variables are declared on
 ![memory wizard](/images/memorywizard.png)
 
 ### OURsql
-OURsql was one of the most interesting challenge in this CTF. It seems it was a binary that read a `database` ~~a text file~~ and used it for some queries. <br>
+OURsql was one of the most interesting challenge in this CTF. It seems it was a binary that read a `database` ~~a text file~~ and used it for some queries. 
 Upon analysis, I noticed that when the maximum number of users was reached, the program began to overwrite users at the beginning of the list. This allowed me to overwriting the password of the user with the flag. The exploit in fact involved spamming registrations until the user with the flag was overwritten. Afterward, logging in would have solved the challenge.
 
 ### The Wall
@@ -158,7 +158,7 @@ Once decompiled, we looked at how the variables were arranged and noticed that t
 
 ## Miscellaneous 🧭
 ### Strange Extension
-So, this challenge was solved simply by opening the file attached to the challenge using [this website](https://filext.com/online-file-viewer.html), immediately obtaining the flag. <br>
+So, this challenge was solved simply by opening the file attached to the challenge using [this website](https://filext.com/online-file-viewer.html), immediately obtaining the flag. 
 P.S.: Maybe it wasn't the cleanest way to resolve it but we did it anyway.
 
 ### A sky full of 5t4r5

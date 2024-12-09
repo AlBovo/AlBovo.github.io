@@ -42,9 +42,9 @@ editPost:
 
 ## Web 🌐
 ### TYpical Boss
-In questa challenge, è possibile notare come se si accede all'endpoint '/' della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato `database.db`, che era un database SQLite).<br>
-Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell'admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero `0e`.<br>
-Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico `0`. L'unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per `0e`.<br>
+In questa challenge, è possibile notare come se si accede all'endpoint '/' della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato `database.db`, che era un database SQLite).
+Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell'admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero `0e`.
+Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico `0`. L'unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per `0e`.
 Questa è una repository molto utile per quanto riguarda il pentesting: [Repository](https://github.com/spaze/hashes/tree/master)
 
 ### Debugger
@@ -61,7 +61,7 @@ if(isset($_GET['action']) && $_GET['action']=="debug") {
     include_once "flag.php";
 }
 ```
-La vulnerabilità a questo punto si trova nella funzione di PHP `extract()`, che [importa variabili](https://www.php.net/manual/en/function.extract.php) da un array nella tabella dei simboli corrente. Il mio exploit, nello specifico, sovrascriveva la variabile `$is_admin` con 1 usando il seguente payload in una richiesta GET `/?action=debug&filters[is_admin]=1`.<br> In questo modo ho avuto modo di ottenere la flag. 
+La vulnerabilità a questo punto si trova nella funzione di PHP `extract()`, che [importa variabili](https://www.php.net/manual/en/function.extract.php) da un array nella tabella dei simboli corrente. Il mio exploit, nello specifico, sovrascriveva la variabile `$is_admin` con 1 usando il seguente payload in una richiesta GET `/?action=debug&filters[is_admin]=1`. In questo modo ho avuto modo di ottenere la flag. 
 
 ### Colorful
 Questa challenge era particolarmente diversa dalle challenge di web security a cui sono abituato, richiedeva infatti la conoscenza di `AES` e le vulnerabilità riguardanti la mode `ECB`.
@@ -94,7 +94,7 @@ def _c(self, v):
     except:
         return None
 ```
-Dopo aver guardato un po' a questo codice, ho notato che era impossibile cifrare dei blocchi arbitrari che, se creati correttamente, sarebbero mischiabili insieme per creare un cookie con privilegi da admin.<br>
+Dopo aver guardato un po' a questo codice, ho notato che era impossibile cifrare dei blocchi arbitrari che, se creati correttamente, sarebbero mischiabili insieme per creare un cookie con privilegi da admin.
 A questo punto, quello che feci fu di riempire la porzione di cookie che non potevo modificare da me, `_id={id}&admin=0&color=` (dove id è una stringa di 4 * 2 caratteri esadecimali), con dei caratteri al fondo per rendere la lunghezza totale divisibile per 16 (in altre parole, creare blocchi interi). Ho quindi scritto `admin=1` nel blocco successivo. In questo modo shiftando l'ultimo blocco all'inizio e sovrascrivendo il cookie sono riuscito ad ottenere la flag.
 
 ### IP Filters
@@ -135,8 +135,8 @@ if(isset($_GET['fetch_backend']) ) {
     echo fetch_backend($_GET['bip']);
 }
 ```
-Apparentemente, non sembrano esserci bypass specifici da eseguire. Tuttavia, analizzando ogni funzione PHP utilizzata nel programma una per una, ho scoperto che `inet_pton` è vulnerabile poiché accetta anche indirizzi IPv4 contenenti zeri nell'ultimo sottogruppo. Ad esempio: `xxx.xxx.x.00x`.<br>
-In questo modo ho potuto creare un indirizzo IP nel range della subnet passando l'IP printato dal debug con dei _trailing zeros_.<br>
+Apparentemente, non sembrano esserci bypass specifici da eseguire. Tuttavia, analizzando ogni funzione PHP utilizzata nel programma una per una, ho scoperto che `inet_pton` è vulnerabile poiché accetta anche indirizzi IPv4 contenenti zeri nell'ultimo sottogruppo. Ad esempio: `xxx.xxx.x.00x`.
+In questo modo ho potuto creare un indirizzo IP nel range della subnet passando l'IP printato dal debug con dei _trailing zeros_.
 Per esempio, `192.168.1.2` => `192.168.1.002`.
 
 ### Magic Cars
@@ -168,8 +168,8 @@ if($files["name"] != ""){
     }
 }
 ```
-Dopo alcuni tentativi, ho notato come il backend stesse controllando alcuni parametri dei file che gli passavo, come non essere troppo pesanti, non avere percorsi con dei traversal (es: `..\` o `../`), avere l'estensione `.gif` e avere i magic bytes corretti per un file `GIF`.<br>
-Ho anche notato come dividesse usando i null byte come divisori usando la funzione `strtok()`, prendendo il primo pezzo come nome reale del file. Seguendo quest'osservazione sono riuscito a scrivere una reverse shell in PHP (che potete trovare sulla mia repository [GitHub](https://github.com/AlBovo/CTF-Writeups/tree/main/nullcon%20CTF%202023)) che ho nominato `rev.php%00.gif`. Dandogli questo nome ho bypassato tutti i controlli ottenendo quindi un endpoint a `rev.php`.<br>  
+Dopo alcuni tentativi, ho notato come il backend stesse controllando alcuni parametri dei file che gli passavo, come non essere troppo pesanti, non avere percorsi con dei traversal (es: `..\` o `../`), avere l'estensione `.gif` e avere i magic bytes corretti per un file `GIF`.
+Ho anche notato come dividesse usando i null byte come divisori usando la funzione `strtok()`, prendendo il primo pezzo come nome reale del file. Seguendo quest'osservazione sono riuscito a scrivere una reverse shell in PHP (che potete trovare sulla mia repository [GitHub](https://github.com/AlBovo/CTF-Writeups/tree/main/nullcon%20CTF%202023)) che ho nominato `rev.php%00.gif`. Dandogli questo nome ho bypassato tutti i controlli ottenendo quindi un endpoint a `rev.php`.  
 Non appena aprii il file all'indirizzo `images/rev.php` sono riuscito a mandare comandi alla shell mediante `www-data`.
 
 ### Loginbytepass
@@ -262,7 +262,7 @@ def _a(self):
         c.append(a)
     return c
 ```
-In questo caso, `self.s` rappresenta la flag, e possiamo osservare come questa sia presente alla posizione `0` dell'array quando questo è ritornato alla funzione chiamante.<br>
+In questo caso, `self.s` rappresenta la flag, e possiamo osservare come questa sia presente alla posizione `0` dell'array quando questo è ritornato alla funzione chiamante.
 Se analizziamo meglio la funzione principale, la challenge ci permette di leggere un elemento alla posizione `x mod n`, dove x è il numero da noi scritto che deve essere nel range `1 <= x <= n`. Quindi, se vogliamo ottenere l'elemento alla posizione 0 non dobbiamo fare altro se non inviare un input tale per cui `x = n`, in questo modo `x mod n = 0`. 
 
 ### Counting

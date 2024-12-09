@@ -1,6 +1,5 @@
 baseURL: "https://albovo.tech/"
 title: Portfolio
-paginate: 5
 theme: PaperMod
 
 enableRobotsTXT: true

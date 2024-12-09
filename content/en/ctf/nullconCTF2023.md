@@ -42,9 +42,9 @@ editPost:
 
 ## Web 🌐
 ### TYpical Boss
-In this challenge, it was noticeable that if you accessed the main directory '/' of the challenge's website, the web server would render all the files and directories present on the page (including a file named `database.db`, which was an SQLite database).<br>
-As soon as I found this file, I analyzed its contents until I discovered the hashed password of the admin. This hash (in SHA-1) started with a very famous prefix known for its vulnerabilities in PHP, namely `0e`.<br>
-In fact, the password would be interpreted by PHP as a number, specifically `0`. The only way I had to bypass the login was to find a SHA-1 hash that also started with `0e`.<br>
+In this challenge, it was noticeable that if you accessed the main directory '/' of the challenge's website, the web server would render all the files and directories present on the page (including a file named `database.db`, which was an SQLite database).
+As soon as I found this file, I analyzed its contents until I discovered the hashed password of the admin. This hash (in SHA-1) started with a very famous prefix known for its vulnerabilities in PHP, namely `0e`.
+In fact, the password would be interpreted by PHP as a number, specifically `0`. The only way I had to bypass the login was to find a SHA-1 hash that also started with `0e`.
 This is one useful repository with a lot of these hashes: [Repository](https://github.com/spaze/hashes/tree/master)
 
 ### Debugger
@@ -61,7 +61,7 @@ if(isset($_GET['action']) && $_GET['action']=="debug") {
     include_once "flag.php";
 }
 ```
-The vulnerability at this point lies in the PHP `extract()` function, which [imports variables](https://www.php.net/manual/en/function.extract.php) from an array into the current symbol table. My exploit, more precisely, involved overwriting the `$is_admin` variable with 1 by using the following payload in the GET request URL `/?action=debug&filters[is_admin]=1`<br> This way, I managed to obtain the flag.
+The vulnerability at this point lies in the PHP `extract()` function, which [imports variables](https://www.php.net/manual/en/function.extract.php) from an array into the current symbol table. My exploit, more precisely, involved overwriting the `$is_admin` variable with 1 by using the following payload in the GET request URL `/?action=debug&filters[is_admin]=1` This way, I managed to obtain the flag.
 
 ### Colorful
 This challenge was notably different from the standard web challenges I'm familiar with, as it required knowledge of `AES` vulnerabilities in `ECB` mode.
@@ -94,7 +94,7 @@ def _c(self, v):
     except:
         return None
 ```
-After looking at this code for a while, I noticed that it was possible to easily encrypt arbitrary blocks that, if crafted correctly, could be mixed together to create a cookie with admin privileges.<br>
+After looking at this code for a while, I noticed that it was possible to easily encrypt arbitrary blocks that, if crafted correctly, could be mixed together to create a cookie with admin privileges.
 At this point, what I did was fill the portion of the cookie that I couldn't modify myself, `_id={id}&admin=0&color=` (where id is a string of 4 * 2 hexadecimal characters), with characters at the end to make its length divisible by 16 (in other words, full blocks). Then, I wrote `admin=1` in the next block. This way, I could shift the last block to the beginning and overwrite the original cookie to obtain the flag.
 
 ### IP Filters
@@ -134,8 +134,8 @@ if(isset($_GET['fetch_backend']) ) {
     echo fetch_backend($_GET['bip']);
 }
 ```
-Apparently, there don't seem to be any specific bypasses to perform. However, by analyzing each PHP function used in the program one by one, I discovered that `inet_pton` is vulnerable because it also accepts IPv4 addresses containing zeros in the last subset. For example: `xxx.xxx.x.00x`.<br>
-In this way, I can fit the backend's IP address within the subnet range by passing it the same IP printed by the debug, with trailing zeros.<br>
+Apparently, there don't seem to be any specific bypasses to perform. However, by analyzing each PHP function used in the program one by one, I discovered that `inet_pton` is vulnerable because it also accepts IPv4 addresses containing zeros in the last subset. For example: `xxx.xxx.x.00x`.
+In this way, I can fit the backend's IP address within the subnet range by passing it the same IP printed by the debug, with trailing zeros.
 For instance, `192.168.1.2` => `192.168.1.002`.
 
 ### Magic Cars
@@ -167,8 +167,8 @@ if($files["name"] != ""){
     }
 }
 ```
-After a few attempts, I noticed that the backend was checking certain parameters of the file, such as not being too memory-intensive, not having a traversal path in its name, having a `.gif` extension, and having the correct magic numbers for a valid `GIF` file.<br>
-I also observed how it used `strtok()` between the file name and a null byte, taking the first part of the string as the actual file name. Following this observation, I was able to write a PHP reverse shell (which is in my [GitHub](https://github.com/AlBovo/CTF-Writeups/tree/main/nullcon%20CTF%202023) repository) named `rev.php%00.gif`. This file name successfully bypassed all the checks, and after the function execution, the actual file name would become `rev.php`.<br>
+After a few attempts, I noticed that the backend was checking certain parameters of the file, such as not being too memory-intensive, not having a traversal path in its name, having a `.gif` extension, and having the correct magic numbers for a valid `GIF` file.
+I also observed how it used `strtok()` between the file name and a null byte, taking the first part of the string as the actual file name. Following this observation, I was able to write a PHP reverse shell (which is in my [GitHub](https://github.com/AlBovo/CTF-Writeups/tree/main/nullcon%20CTF%202023) repository) named `rev.php%00.gif`. This file name successfully bypassed all the checks, and after the function execution, the actual file name would become `rev.php`.
 As soon as I opened the file at the URL `images/rev.php`, I could execute commands in the shell as `www-data`.
 
 ### Loginbytepass
@@ -261,7 +261,7 @@ def _a(self):
         c.append(a)
     return c
 ```
-In this case, `self.s` represents the flag, and we can observe that it is located at position `0` within the array when it is returned to the caller.<br>
+In this case, `self.s` represents the flag, and we can observe that it is located at position `0` within the array when it is returned to the caller.
 Continuing to analyze the main function, the challenge allows us to read an element at position `x mod n`, where x is the input we provide and must be within the range `1 <= x <= n`. Now, if we want to retrieve the value at position 0, we just need to send the service an input of `x = n`, so that `x mod n = 0`.
 
 ### Counting

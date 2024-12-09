@@ -144,7 +144,7 @@ Analizzando l'eseguibile, è possibile osservare che entrambe le variabili (flag
 ![memory wizard](/images/memorywizard.png)
 
 ### OURsql
-OURsql è sicuramente una delle challenge più interessanti in questa CTF. Sembrerebbe a prima vista un binario che legge un `database` ~~file di testo~~ e lo usa per farci alcune query. <br>
+OURsql è sicuramente una delle challenge più interessanti in questa CTF. Sembrerebbe a prima vista un binario che legge un `database` ~~file di testo~~ e lo usa per farci alcune query. 
 Dopo altre analisi, ho notato che nel caso in cui il massimo numero di utenti fosse raggiunto, il programma avrebbe iniziato a sovrascrivere gli utenti all'inizio della lista. Questo mi ha quindi permesso di sovrascrivere la password dell'utente con la flag. Il mio exploit prevedeva infatti di spammare registrazioni finchè l'untente con la flag fosse sovrascritto. Questo mi permise di accedere come "admin", risolvendo la challenge.
 
 ### The Wall
@@ -156,7 +156,7 @@ Una volta decompilato, abbiamo osservato come erano organizzate le variabili e a
 
 ## Miscellaneous 🧭
 ### Strange Extension
-Quindi, questa challenge era risolvibile semplicemente aprendo il file in allegato nella challenge usando [questo sito](https://filext.com/online-file-viewer.html) per poter immediatamente ottenere la flag. <br>
+Quindi, questa challenge era risolvibile semplicemente aprendo il file in allegato nella challenge usando [questo sito](https://filext.com/online-file-viewer.html) per poter immediatamente ottenere la flag. 
 P.S.: Probabilmente non era il modo più pulito per risolvere questa challenge ma la abbiamo risolta comunque così. 
 
 ### A sky full of 5t4r5

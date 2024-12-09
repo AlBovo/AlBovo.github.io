@@ -50,6 +50,8 @@ languages:
             url: projects/
           - name: "\U00002699 Writeups"
             url: ctf/
+          - name: "\U0001f384 Advent of Code"
+            url: aoc/
     menu:
       main:
         - identifier: progetti
@@ -60,9 +62,9 @@ languages:
           name: "\U00002699 Writeups"
           url: ctf/
           weight: 20
-        - identifier: example
-          name: example.org
-          url: https://example.org
+        - identifier: advent-of-code
+          name: "\U0001f384 Advent of Code"
+          url: aoc/
           weight: 30
 
 params:
@@ -126,6 +128,8 @@ params:
         url: projects/
       - name: "\U00002699 Writeups"
         url: ctf/
+      - name: "\U0001f384 Advent of Code"
+        url: aoc/
 
   # # home-info mode
   # homeInfoParams:
@@ -179,9 +183,9 @@ menu:
       name: "\U00002699 Writeups"
       url: ctf/
       weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
+    - identifier: advent-of-code
+      name: "\U0001f384 Advent of Code"
+      url: aoc/
       weight: 30
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma

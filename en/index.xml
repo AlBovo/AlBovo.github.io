@@ -36,5 +36,12 @@
       <guid>https://albovo.tech/en/projects/mines/</guid>
       <description>A project about the famous minesweeper game made for Console or Web GUI.</description>
     </item>
+    <item>
+      <title>My 1st post</title>
+      <link>https://albovo.tech/en/aoc/2024/day-1/</link>
+      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      <guid>https://albovo.tech/en/aoc/2024/day-1/</guid>
+      <description>Desc Text.</description>
+    </item>
   </channel>
 </rss>

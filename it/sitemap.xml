@@ -158,6 +158,19 @@
                 href="https://albovo.tech/it/tags/binary/"
                 />
   </url><url>
+    <loc>https://albovo.tech/it/ctf/</loc>
+    <lastmod>2024-05-28T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/ctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/ctf/"
+                />
+  </url><url>
     <loc>https://albovo.tech/it/tags/crypto/</loc>
     <lastmod>2024-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -182,19 +195,6 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.tech/it/tags/ctf/"
-                />
-  </url><url>
-    <loc>https://albovo.tech/it/ctf/</loc>
-    <lastmod>2024-05-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.tech/en/ctf/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.tech/it/ctf/"
                 />
   </url><url>
     <loc>https://albovo.tech/it/tags/nullcon/</loc>
@@ -351,6 +351,45 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.tech/it/tags/python/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/aoc/</loc>
+    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/aoc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/aoc/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/first/</loc>
+    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/first/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/first/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/aoc/2024/day-1/</loc>
+    <lastmod>2020-09-15T11:30:03+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/aoc/2024/day-1/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/aoc/2024/day-1/"
                 />
   </url><url>
     <loc>https://albovo.tech/it/categories/</loc>

@@ -36,5 +36,12 @@
       <guid>https://albovo.tech/it/ctf/m0leconctf2023/</guid>
       <description>Alcune writeups della m0lecon Beginner ctf edizione 2023.</description>
     </item>
+    <item>
+      <title>My 1st post</title>
+      <link>https://albovo.tech/it/aoc/2024/day-1/</link>
+      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
+      <guid>https://albovo.tech/it/aoc/2024/day-1/</guid>
+      <description>Desc Text.</description>
+    </item>
   </channel>
 </rss>

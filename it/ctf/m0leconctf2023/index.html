@@ -10,7 +10,7 @@
 <meta name="description" content="Alcune writeups della m0lecon Beginner ctf edizione 2023.">
 <meta name="author" content="AlBovo">
 <link rel="canonical" href="https://albovo.tech/it/ctf/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.b609c58d5c11bb90b1a54e04005d74ad1ddf22165eb79f5533967e57df9c3b50.css" integrity="sha256-tgnFjVwRu5CxpU4EAF10rR3fIhZet59VM5Z&#43;V9&#43;cO1A=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
 <link rel="icon" type="image/png" sizes="16x16" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
 <link rel="icon" type="image/png" sizes="32x32" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
@@ -59,18 +59,26 @@
 </noscript>
   
 
-<meta property="og:title" content="M0lecon CTF 2023 Beginner" />
-<meta property="og:description" content="Alcune writeups della m0lecon Beginner ctf edizione 2023." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://albovo.tech/it/ctf/m0leconctf2023/" />
-<meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" /><meta property="article:section" content="ctf" />
-<meta property="article:published_time" content="2024-05-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-05-27T00:00:00+00:00" /><meta property="og:site_name" content="Portfolio" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" />
-<meta name="twitter:title" content="M0lecon CTF 2023 Beginner"/>
-<meta name="twitter:description" content="Alcune writeups della m0lecon Beginner ctf edizione 2023."/>
+<meta property="og:url" content="https://albovo.tech/it/ctf/m0leconctf2023/">
+  <meta property="og:site_name" content="Portfolio">
+  <meta property="og:title" content="M0lecon CTF 2023 Beginner">
+  <meta property="og:description" content="Alcune writeups della m0lecon Beginner ctf edizione 2023.">
+  <meta property="og:locale" content="it">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ctf">
+    <meta property="article:published_time" content="2024-05-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-27T00:00:00+00:00">
+    <meta property="article:tag" content="M0lecon">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Binary">
+    <meta property="article:tag" content="Crypto">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="M0lecon2023">
+    <meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:title" content="M0lecon CTF 2023 Beginner">
+<meta name="twitter:description" content="Alcune writeups della m0lecon Beginner ctf edizione 2023.">
 
 
 <script type="application/ld+json">
@@ -265,8 +273,7 @@
 </div>
 
   <div class="post-content"><h1 id="m0lecon-ctf-2023-beginner">m0lecon CTF 2023 Beginner<a hidden class="anchor" aria-hidden="true" href="#m0lecon-ctf-2023-beginner">#</a></h1>
-<p><img loading="lazy" src="/images/m0lecon.png" alt="m0lecon logo"  />
-</p>
+<p><img alt="m0lecon logo" loading="lazy" src="/images/m0lecon.png"></p>
 <h2 id="web-">Web 🌐<a hidden class="anchor" aria-hidden="true" href="#web-">#</a></h2>
 <h3 id="unguessable">Unguessable<a hidden class="anchor" aria-hidden="true" href="#unguessable">#</a></h3>
 <p>Questa sfida è stata la più facile nella CTF (aveva <strong>più risoluzioni</strong> del sanity check, lol). Infatti, per risolverla, tutto ciò che dovevi fare era capire che il sito web recuperava la bandiera da un punto finale <code>/vjfYkHzyZGJ4A7cPNutFeM/flag</code>, e per ottenerla abbiamo <del>aperto l&rsquo;endpoint</del> enumerato l&rsquo;intero sito.</p>
@@ -295,13 +302,11 @@
 </span></span><span class="line"><span class="cl">    <span class="n">bundle</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span><span class="n">username</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">:</span><span class="n">secret</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">bundle</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
 </span></span></code></pre></div><p>La challenge richiedeva un username (ovviamente <code>admin</code>) e un token di accesso che si poteva calcolare mediante un nonce dato dall&rsquo;endpoint <code>/stage2?username=admin</code>. Una volta finito di calcolare il token usando la funzione menzionata precedentemente, tutto quello che rimaneva da fare per ottenere la flag era mandare il token e automaticamente ottenere accesso al pannello da amministratore.</p>
-<p><img loading="lazy" src="/images/m0leconWeb.png" alt="la bellissima pagina della challenge"  />
-</p>
+<p><img alt="la bellissima pagina della challenge" loading="lazy" src="/images/m0leconWeb.png"></p>
 <h3 id="piano-carriera">Piano Carriera<a hidden class="anchor" aria-hidden="true" href="#piano-carriera">#</a></h3>
 <p>Tutti quelli che hanno partecipato alla <code>m0lecon CTF beginner 2021</code> e si ricordano la challenge <code>Exam Booking</code>, potrebbero riconoscere la situazione in cui un utente doveva registrare una data di esame già esaurita.</p>
 <p>In un modo simile, questo problema richiede di bypassare un check client-side che blocca la richiesta di registrazione. Una volta che tutti i dati sono stati ricavati, l&rsquo;unica cosa che resta da fare è fare una richiesta alle API per registrarsi e ottenere la flag. I parametri necessari per fare ciò sono <code>cod_ins</code> (20FWYOV), <code>cod_ins_padre</code> (29EBHOV), e <code>id_padre</code> (244355).</p>
-<p><img loading="lazy" src="/images/pianocarriera.png" alt="la pagina della challenge"  />
-</p>
+<p><img alt="la pagina della challenge" loading="lazy" src="/images/pianocarriera.png"></p>
 <h2 id="crittografia-">Crittografia 🔒<a hidden class="anchor" aria-hidden="true" href="#crittografia-">#</a></h2>
 <h3 id="fast-rsa">Fast RSA<a hidden class="anchor" aria-hidden="true" href="#fast-rsa">#</a></h3>
 <p>Questa volta, la challenge richiede di decifrare una flag encriptata usando RSA dove però <code>p - q = 4</code>. Ciò, ovviamente, è molto vulnerabile poichè se <code>p ugaule q</code> allora è facile calcolare la radice quadrata del modulo N e poi cercare un valore tale per qui <code>N mod V = 0</code>. A questo punto, <code>v</code> sarà uguale a <code>p</code> e <code>q</code> sarà il risultato della deivisione intera di N per <code>p</code>. Questa challenge può essere quindi finita calcolando la chiave privata <code>d</code>.</p>
@@ -330,49 +335,41 @@
 <p>Dopo una breve analisi del sito l&rsquo;obbiettivo era chiaro: cifrare il token <code>I'm Bob Masters, gimme the flag!</code> usando il tool <strong>AES-128 ECB</strong>.</p>
 <p>Inizialmente, abbiamo provato a dividere il token in due blocchi da 16 bytes e cifrarli separatamente. In ogni modo però questo approccio non era corretto poiché la pagina blacklistava il secondo blocco così com&rsquo;era. Facendo altri tentativi abbiamo notato che <code>'a' * 16</code> cifrato risultava uguale a <code>'a' * 16 + 'b'</code>. Questo indicava che il tool cifrava solamente i primi 16 bytes del plaintext inserito.</p>
 <p>Seguendo quest&rsquo;osservazione, per bypassare il controllo, bastava scrivere il secondo blocco concatenato con qualche testo randomico. Questo portava il tool a encriptare il secondo blocco rivelando di conseguenza la flag.</p>
-<p><img loading="lazy" src="/images/cheatbot1.png" alt="homepage del sito della challenge"  />
-</p>
+<p><img alt="homepage del sito della challenge" loading="lazy" src="/images/cheatbot1.png"></p>
 <h3 id="politocheatbot-20">PoliTOcheatbot 2.0<a hidden class="anchor" aria-hidden="true" href="#politocheatbot-20">#</a></h3>
 <p>In questa challenge, l&rsquo;obiettivo era quello di cifrare una password usando un OTP (One-Time-Pad) a noi sconosciuto. Dopo diversi tentativi, abbiamo notato come il tool cifrasse tutti i plaintext da noi inseriti e mandasse indietro lo xor tra il plaintext ed una key <code>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code> (dove ovviamente le x erano caratteri ASCII printabili).
 Dopo diversi tentativi, abbiamo notato come se all&rsquo;inizio la chiave fosse <code>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</code>, nel tentativo successivo la chiave fosse <code>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</code>.
 Avendo fatto quest&rsquo;osservazione, per calcolare la chiave con cui cifrare l&rsquo;OTP ci bastava conoscere la chiave usata in precedenza per cifrare un testo a caso.
 Una volta cifrata e spedita la password, abbiamo ottenuto la flag come da aspettative.</p>
-<p><img loading="lazy" src="/images/cheatbot2.png" alt="la chat con il bot"  />
-</p>
+<p><img alt="la chat con il bot" loading="lazy" src="/images/cheatbot2.png"></p>
 <h2 id="binary-">Binary 💻<a hidden class="anchor" aria-hidden="true" href="#binary-">#</a></h2>
 <h3 id="polito-pay-2-win">Polito Pay 2 Win<a hidden class="anchor" aria-hidden="true" href="#polito-pay-2-win">#</a></h3>
 <p>Probabilmente per risolvere Polito Pay 2 Win, l&rsquo;idea base era di <strong>patchare</strong> il binario/DLL fornito negli allegati della challenge per comprare immediatamente la flag. In ogni modo, la nostra idea (forse unintended) fu di aprire il file <code>market.py</code> e poter leggere la flag direttamente in chiaro.</p>
 <h3 id="memory-wizard">Memory Wizard<a hidden class="anchor" aria-hidden="true" href="#memory-wizard">#</a></h3>
 <p>Memory Wizard aveva in allegato un binario <code>64-bit x86-64 ELF</code> che richiedeva un indirizzo da qui leggere della memoria per poi printarla nello standard output.</p>
 <p>Analizzando l&rsquo;eseguibile, è possibile osservare che entrambe le variabili (flag ecc..) erano presenti nello stack a 8 bytes di distanza. A questo punto, usando l&rsquo;address leakkato dalla challenge, era possibile trovare la flag calcolando <code>0xADDRESS + 8 = 0xFLAGADDRESS</code>.
-<img loading="lazy" src="/images/memorywizard.png" alt="memory wizard"  />
-</p>
+<img alt="memory wizard" loading="lazy" src="/images/memorywizard.png"></p>
 <h3 id="oursql">OURsql<a hidden class="anchor" aria-hidden="true" href="#oursql">#</a></h3>
-<p>OURsql è sicuramente una delle challenge più interessanti in questa CTF. Sembrerebbe a prima vista un binario che legge un <code>database</code> <del>file di testo</del> e lo usa per farci alcune query. <!-- raw HTML omitted -->
+<p>OURsql è sicuramente una delle challenge più interessanti in questa CTF. Sembrerebbe a prima vista un binario che legge un <code>database</code> <del>file di testo</del> e lo usa per farci alcune query.
 Dopo altre analisi, ho notato che nel caso in cui il massimo numero di utenti fosse raggiunto, il programma avrebbe iniziato a sovrascrivere gli utenti all&rsquo;inizio della lista. Questo mi ha quindi permesso di sovrascrivere la password dell&rsquo;utente con la flag. Il mio exploit prevedeva infatti di spammare registrazioni finchè l&rsquo;untente con la flag fosse sovrascritto. Questo mi permise di accedere come &ldquo;admin&rdquo;, risolvendo la challenge.</p>
 <h3 id="the-wall">The Wall<a hidden class="anchor" aria-hidden="true" href="#the-wall">#</a></h3>
 <p>The Wall aveva in allegato un ELF a 64-bit con il nome <code>null_wall</code> (ci sarà utile più tardi lol). Una volta decompilato, ci restituiva circa questo risultato:
-<img loading="lazy" src="/images/nullwall.png" alt="il decompilato dell&amp;rsquo;elf della challenge"  />
-</p>
+<img alt="il decompilato dell&rsquo;elf della challenge" loading="lazy" src="/images/nullwall.png"></p>
 <p>Una volta decompilato, abbiamo osservato come erano organizzate le variabili e abbiamo notato come la flag fosse presente 20 bytes dopo l&rsquo;inizio del nostro buffer, seguita da un <code>null</code> byte. Questo null byte evitava che la flag venisse printata se venivano mandati meno di 19 byte. In ogni modo, una volta scritti esattamente 19 bytes (<code>0x13 bytes</code>), la flag veniva leakkata.
-<img loading="lazy" src="/images/nullwall2.png" alt="qualche area di memoria sus"  />
-</p>
+<img alt="qualche area di memoria sus" loading="lazy" src="/images/nullwall2.png"></p>
 <h2 id="miscellaneous-">Miscellaneous 🧭<a hidden class="anchor" aria-hidden="true" href="#miscellaneous-">#</a></h2>
 <h3 id="strange-extension">Strange Extension<a hidden class="anchor" aria-hidden="true" href="#strange-extension">#</a></h3>
-<p>Quindi, questa challenge era risolvibile semplicemente aprendo il file in allegato nella challenge usando <a href="https://filext.com/online-file-viewer.html">questo sito</a> per poter immediatamente ottenere la flag. <!-- raw HTML omitted -->
+<p>Quindi, questa challenge era risolvibile semplicemente aprendo il file in allegato nella challenge usando <a href="https://filext.com/online-file-viewer.html">questo sito</a> per poter immediatamente ottenere la flag.
 P.S.: Probabilmente non era il modo più pulito per risolvere questa challenge ma la abbiamo risolta comunque così.</p>
 <h3 id="a-sky-full-of-5t4r5">A sky full of 5t4r5<a hidden class="anchor" aria-hidden="true" href="#a-sky-full-of-5t4r5">#</a></h3>
 <p>Questa volta, la challenge conteneva l&rsquo;immagine (paurosamente pesante, circa <code>211 MB</code>) che è riassunta in questo screenshot:
-<img loading="lazy" src="/images/skyfullofstars.png" alt="la foto della challenge"  />
-</p>
+<img alt="la foto della challenge" loading="lazy" src="/images/skyfullofstars.png"></p>
 <p>Dopo aver analizzato la foto con ExifTool abbiamo notato come nei commenti dei metadata fosse presente questa frase <code>Some people say there is a question mark in this picture, can you find the flag near it?</code>.
-<img loading="lazy" src="/images/exiftool.png" alt="the result of exiftool"  />
-
+<img alt="the result of exiftool" loading="lazy" src="/images/exiftool.png">
 A questo punto, non rimaneva che cercare in giro per la foto per un po&rsquo; un punto di domanda (in alto a destra) per trovare di fatto la flag.</p>
 <h3 id="strangers-in-the-noise">Strangers in the Noise<a hidden class="anchor" aria-hidden="true" href="#strangers-in-the-noise">#</a></h3>
 <p>&ldquo;Strangers in the Noise&rdquo; conteneva la famosa canzone di Frank Sinatra &ldquo;Stranger in the Night&rdquo;. Analizzando la challenge non abbiamo trovato molto finché non abbiamo osservato lo spettro della canzone mentre questa era in riproduzione. Una volta osservato lo spettro abbiamo ottenuto uan sorta di flag cifrata ovvero <code>swp{v0p3wk1qj_1q_b0xu_h4u5_z4v_vr_4qq0b1qj}</code>, tutto quello che ci rimaneva per risolvere la challenge era di usare il <strong>Cifrario di Cesare</strong> per decifrare la flag e risolvere la challenge.</p>
-<p><img loading="lazy" src="/images/strangerinthenoise.png" alt="lo spettro della canzone"  />
-
+<p><img alt="lo spettro della canzone" loading="lazy" src="/images/strangerinthenoise.png">
 Qui è visibile una parte iniziale della flag <code>sw</code>.</p>
 
 

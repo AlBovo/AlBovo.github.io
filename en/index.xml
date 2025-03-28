@@ -16,6 +16,13 @@
       <description>Some writeups of the pascalCTF Beginner ctf 2025 edition.</description>
     </item>
     <item>
+      <title>Day 1 - Dicember 2024</title>
+      <link>https://albovo.tech/en/aoc/2024/day-1/</link>
+      <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/aoc/2024/day-1/</guid>
+      <description>The first problem of AoC 2024.</description>
+    </item>
+    <item>
       <title>Solitario Croce</title>
       <link>https://albovo.tech/en/projects/solitario/</link>
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
@@ -42,13 +49,6 @@
       <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
       <guid>https://albovo.tech/en/projects/mines/</guid>
       <description>A project about the famous minesweeper game made for Console or Web GUI.</description>
-    </item>
-    <item>
-      <title>My 1st post</title>
-      <link>https://albovo.tech/en/aoc/2024/day-1/</link>
-      <pubDate>Tue, 15 Sep 2020 11:30:03 +0000</pubDate>
-      <guid>https://albovo.tech/en/aoc/2024/day-1/</guid>
-      <description>Desc Text.</description>
     </item>
   </channel>
 </rss>

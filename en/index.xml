@@ -50,5 +50,12 @@
       <guid>https://albovo.tech/en/projects/mines/</guid>
       <description>A project about the famous minesweeper game made for Console or Web GUI.</description>
     </item>
+    <item>
+      <title>TFC CTF 2023</title>
+      <link>https://albovo.tech/en/ctf/tfcctf2023/</link>
+      <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/ctf/tfcctf2023/</guid>
+      <description>Some writeups of the TFC CTF 2023 edition.</description>
+    </item>
   </channel>
 </rss>

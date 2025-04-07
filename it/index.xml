@@ -50,5 +50,12 @@
       <guid>https://albovo.tech/it/ctf/m0leconctf2023/</guid>
       <description>Alcune writeups della m0lecon Beginner ctf edizione 2023.</description>
     </item>
+    <item>
+      <title>TFC CTF 2023</title>
+      <link>https://albovo.tech/it/ctf/tfcctf2023/</link>
+      <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/it/ctf/tfcctf2023/</guid>
+      <description>Alcune writeup della TFC CTF 2023.</description>
+    </item>
   </channel>
 </rss>

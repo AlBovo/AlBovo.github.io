@@ -205,6 +205,19 @@ Biscotto Il backend di Biscotto contiene solo due endpoint:...</p>
   <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>maggio 27, 2024</span>&nbsp;·&nbsp;7 minuti&nbsp;·&nbsp;1365 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to M0lecon CTF 2023 Beginner" href="https://albovo.tech/it/ctf/m0leconctf2023/"></a>
 </article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">TFC CTF 2023
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes All’apparenza, questa challenge sembrava un semplice sito per la condivisione di note, ma un rapido sguardo al codice sorgente ha svelato come leggere la flag. Infatti, il file database.db includeva una query per inizializzare la tabella delle note, configurata nel seguente modo:
+query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all’URL http://challs....</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>agosto 20, 2023</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2119 parole&nbsp;·&nbsp;AlBovo</footer>
+  <a class="entry-link" aria-label="post link to TFC CTF 2023" href="https://albovo.tech/it/ctf/tfcctf2023/"></a>
+</article>
     </main>
     
 <footer class="footer">

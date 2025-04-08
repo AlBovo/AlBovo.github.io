@@ -31,7 +31,7 @@ cover:
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en"
+    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/it"
     Text: "Suggerisci modifiche" # edit text
     appendFilePath: true # to append file path to Edit link
 ---

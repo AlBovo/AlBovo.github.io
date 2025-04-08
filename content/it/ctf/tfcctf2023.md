@@ -12,7 +12,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Alcune writeup della TFC CTF 2023."
-canonicalURL: "https://albovo.tech/en/ctf/"
+canonicalURL: "https://albovo.tech/it/ctf/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
@@ -27,12 +27,12 @@ UseHugoToc: true
 cover:
     image: "https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups" # image path/url
     alt: "TFC CTF 2023" # alt text
-    caption: "Some writeups of the TFC CTF 2023 edition." # display caption under cover
+    caption: "Alcune writeup della TFC CTF 2023." # display caption under cover
     relative: false # when using page bundles set this to true
     hidden: true # only hide on current single page
 editPost:
-    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en"
-    Text: "Suggest Changes" # edit text
+    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/it"
+    Text: "Suggerisci modifiche" # edit text
     appendFilePath: true # to append file path to Edit link
 ---
 

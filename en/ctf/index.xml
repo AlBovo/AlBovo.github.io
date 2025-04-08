@@ -6,8 +6,15 @@
     <description>Recent content in Capture The Flag 🚩 on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.tech/en/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UlisseCTF 2025</title>
+      <link>https://albovo.tech/en/ctf/ulissectf2025/</link>
+      <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/ctf/ulissectf2025/</guid>
+      <description>All the writeups of the challenges I&amp;#39;ve written for the UlisseCTF 2025 edition.</description>
+    </item>
     <item>
       <title>Pascal CTF Beginner 2025</title>
       <link>https://albovo.tech/en/ctf/pascalctf2025/</link>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>UlisseCTF 2025 | Portfolio</title>
+<meta name="keywords" content="ulissectf, ctf, binary, crypto, web, ulissectf2025">
+<meta name="description" content="All the writeups of the challenges I&#39;ve written for the UlisseCTF 2025 edition.">
+<meta name="author" content="AlBovo">
+<link rel="canonical" href="https://albovo.tech/en/ctf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://albovo.tech/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://albovo.tech/en/ctf/ulissectf2025/">
+<link rel="alternate" hreflang="it" href="https://albovo.tech/it/ctf/ulissectf2025/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+  
+
+<meta property="og:url" content="https://albovo.tech/en/ctf/ulissectf2025/">
+  <meta property="og:site_name" content="Portfolio">
+  <meta property="og:title" content="UlisseCTF 2025">
+  <meta property="og:description" content="All the writeups of the challenges I&#39;ve written for the UlisseCTF 2025 edition.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ctf">
+    <meta property="article:published_time" content="2025-04-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-04-08T00:00:00+00:00">
+    <meta property="article:tag" content="Ulissectf">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Binary">
+    <meta property="article:tag" content="Crypto">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Ulissectf2025">
+    <meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:title" content="UlisseCTF 2025">
+<meta name="twitter:description" content="All the writeups of the challenges I&#39;ve written for the UlisseCTF 2025 edition.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Capture The Flag 🚩",
+      "item": "https://albovo.tech/en/ctf/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "UlisseCTF 2025",
+      "item": "https://albovo.tech/en/ctf/ulissectf2025/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "UlisseCTF 2025",
+  "name": "UlisseCTF 2025",
+  "description": "All the writeups of the challenges I've written for the UlisseCTF 2025 edition.",
+  "keywords": [
+    "ulissectf", "ctf", "binary", "crypto", "web", "ulissectf2025"
+  ],
+  "articleBody": "UlisseCTF 2025 🚩 Telemetry 🌐 Overview Telemetry was a web application that allowed users to upload files (max 10), while internally logging all errors and relevant events into files located at paths like logs/username/user-uuid.txt.\nThe application also featured a template testing endpoint, which let users check whether a given Jinja2 template from the template directory could be successfully rendered.\nAnalysis The challenge provided a register endpoint where users were asked to supply a username and a custom log filename. These values were then used to generate a UUID that uniquely identified the user’s logfile.\nWhile analyzing the available routes, the most interesting endpoint was /check, which attempts to render a Jinja2 template within a sandboxed environment:\n@app.route('/check', methods=['GET', 'POST']) def check(): if request.method == 'GET': return render_template('check.html') template = secure_filename(request.form['template']) if not os.path.exists(os.path.join('templates', template)): flash('Template not found', 'danger') return redirect('/check') try: render_template(template) flash('Template rendered successfully', 'success') except: flash('Error rendering template', 'danger') return redirect('/check') This endpoint, however, is not directly vulnerable, the use of secure_filename and the strict reliance on files inside the templates/ directory (which users cannot modify) prevents straightforward exploitation.\nA more interesting function was the 404 error handler, which logs failed page accesses:\n@app.errorhandler(404) def page_not_found(e): if user := session.get('user', None): if not os.path.exists(os.path.join('logs', user[1], user[0] + '.txt')): session.clear() return 'Page not found', 404 with open(os.path.join('logs', user[1], user[0] + '.txt'), 'a') as f: f.write(f'[{time.time()}] - Error at page: {unquote(request.url)}\\n') return redirect('/') return 'Page not found', 404 This function logs the full, unquoted URL path to the user’s log file. However, the log path is constructed using:\nos.path.join('logs', user[1], user[0] + '.txt') If the username is set to a directory traversal string like ../, the path becomes:\nlogs/../.txt -\u003e .txt This effectively allows the user to break out of the logs/ directory and write files into unintended locations, making it vulnerable to Path traversal and template injection, especially if later rendered or included by the application.\nExploit Once the vulnerabilities were understood, the exploitation path was pretty straightforward.\nAn attacker could register with a username like ../templates/ and a random log filename (e.g., fsafsafsasfa).\nThis causes the log file to be created at:\ntemplates/.txt Since the UUID is deterministically derived from the attacker-controlled log filename, the attacker knows the exact name of the file they are writing into. At this point, the attacker has achieved a path traversal that places an arbitrary file directly inside the templates/ directory.\nExploiting Blind SSTI With the ability to write into templates/, and the /check endpoint acting as a Jinja2 rendering oracle, the attacker can now abuse blind Server-Side Template Injection (SSTI).\nBy crafting malicious payloads and injecting them into their log file (via 404 requests), the attacker can trigger rendering by submitting the filename to /check.\nTo extract the flag, a blind error-based character-by-character brute-force can be performed. For example:\n{{ 'lol' if config['FLAG'][x] == 'y' else raise('lol') }} This payload accesses config['FLAG'] and compares the character at index x with the guessed character 'y'.\nIf the guess is incorrect, an exception is raised and the render fails. If correct, the render succeeds.\nBy iterating over each character position and all printable characters, the attacker can recover the flag using only the success/failure feedback.\nStackBank1 🌐 Overview Stack Bank is a web application that allows users to perform typical banking operations such as transferring money to other users or sending funds directly to the administrator of the service.\nAfter initiating a transaction, users are required to wait up to 10 seconds for the operation to complete. This delay is due to an internal bot that asynchronously verifies the transaction’s values and integrity before marking it as successful.\nHowever, there is one exception: transactions sent to the administrator are immediately marked as successful, without undergoing any verification or integrity check.\nAnalysis The challenge provides multiple services behind an nginx reverse proxy configured as follows:\nlocation /service/ { proxy_pass http://backend:4000/; ... } location / { proxy_pass http://frontend:3000; ... } The frontend is a web application built with Next.js, while the backend is a Flask application that exposes various functionalities. Notably, the backend integrates with native C code via CTypes, using a shared object library called libackend.so to implement some of its core logic.\nThe first flag is inserted into the MongoDB database during the backend’s initialization phase.\nIt is stored as part of a transaction where both the sender and the receiver are set to the administrator user.\nVulnerabilities Since the flag can be found inside the transaction involving the administrator, it may be useful to analyze the endpoint provided in the frontend, located at app/api/dashboard/route.ts. This file implements the following code:\nconst filter = searchParams.get(\"filter\")?.trim(); const value = searchParams.get(\"value\"); let [balance, transactions] = await Promise.all([ db.collection(\"balances\").findOne({ _id: userId }), db .collection(\"transactions\") .find({ $or: [{ sender_id: userId }, { receiver_id: userId }], }) .toArray(), ]); if ( filter \u0026\u0026 value \u0026\u0026 !filter.startsWith(\"sender\") \u0026\u0026 !filter.startsWith(\"receiver\") ) { const regex = new RegExp(`.*${escapeRegex(value)}.*`, \"i\"); transactions = await db .collection\u003cTransaction\u003e(\"transactions\") .find({ $where: function () { let t = Object.fromEntries( Object.keys(transactions).map((key) =\u003e [key, \"\"]), ); t.sender = user.username as string; t.receiver = user.username as string; for (let i = 0; i \u003c transactions.length; i++) { if (regex.test(transactions[i].note)) { t[filter] = transactions[i].note; } } return this.sender === t.sender \u0026\u0026 this.receiver === t.receiver; }, }) .toArray(); } balance = balance?.amount; return NextResponse.json({ balance, transactions }); This function is vulnerable because an attacker can manipulate the provided values in such a way that both the sender and receiver are set to administrator, thus retrieving the admin transaction containing the flag.\nThe vulnerability arises due to prototype pollution, which is possible because of this code:\nt[filter] = transactions[i].note; An attacker could craft a payload like:\nfilter: __proto__ transaction note: {'a': 'b'} This would cause the t object to gain an additional property (a) due to prototype pollution, effectively making t.a = 'b'. As a result, the attacker can manipulate the object in ways that bypass the intended functionality and access restricted data, such as the flag.\nThe final piece required to exploit this challenge can be found in the /service/transaction endpoint in the backend:\n@app.route('/transaction', methods=['POST']) @login_required def transaction(user): ... # validation checks on the value omitted for brevity if receiver['username'] == 'administrator': return invest(user) ... # The following route is no longer used... # @app.route('/invest', methods=['POST']) # @login_required def invest(user): amount = request.json['amount'] note = request.json['note'] mongo.db.balances.update_one( {\"user_id\": user[0]}, {\"$inc\": {\"amount\": -amount}} ) mongo.db.transactions.insert_one({ 'sender_id': user[0], 'sender': user[1], 'receiver_id': mongo.db.users.find_one({'username': 'administrator'})['_id'], 'receiver': 'administrator', 'amount': amount, 'note': note, 'status': 'success' }) return jsonify({'message': 'Investment added'}), 200 An attacker can exploit the system by sending funds directly to the administrator account, which triggers the invest function that allows the attacker to set their own note field (e.g., {'sender': 'administrator', 'receiver': 'administrator'}).\nUnintended Solutions I sincerely apologize for any unintended solutions that may have unintentionally oversimplified the challenge, such as sending payloads like filter= sender\u0026value=a or filter=^\u0026value=a (that leaked all the database transactions). Moving forward, I promise to conduct more thorough testing on my future challenges to ensure the best possible experience for participants next year ᕙ( •̀ ᗜ •́ )ᕗ\nStackBank2 🌐 / 🖥️ Overview The overview of this challenge has already been analyzed in the StackBank1 writeup. If you’re interested, check it out! ;)\nAnalysis The second flag in StackBank can be obtained after becoming an “admin.” This is achieved by having at least 10k in the balance and submitting the correct ADMIN_KEY, which is randomly generated by the backend.\nAt this point, it’s worth analyzing the libbackend.so library, written in C and invoked using ctypes. Here’s a simplified snippet from the library:\n... v16 = __readfsqword(0x28u); memset(v14, 0, sizeof(v14)); v15 = 0; dest = (char *)malloc(0x12u); strcpy(dest, a1); strncpy(v14, a9, 0x1F3u); s = (char *)malloc(0x1F4u); v13 = (char *)malloc(0x10u); strcpy(v13, \"error\"); if (a7 \u003c a8) return s; if (a8 \u003c= 0) return s; format = parse(v14); if (format) { snprintf(s, 0x1F3u, format); *(_QWORD *)v13 = 0x73736563637573LL; free(format); free(dest); } While this function may seem difficult to understand at first, we can clarify things by looking at the Python structs used with ctypes in models.py:\nclass Transaction(Structure): _fields_ = [ ('sender_balance', c_int64), ('amount', c_int64), ('note', c_char_p), ] def __init__(self, id, *args, **kw): super().__init__(*args, **kw) self.id = id class Result(Structure): _fields_ = [ ('note', c_char_p), ('status', c_char_p), ] In this context, here’s the corresponding C function logic with the transaction struct:\nmemset(v7, 0, sizeof(v7)); v8 = 0; dest = (char *)malloc(0x12u); strcpy(dest, key); strncpy(v7, t.note, 0x1F3u); s = (char *)malloc(0x1F4u); s_8 = (char *)malloc(0x10u); strcpy(s_8, \"error\"); if (t.sender_balance \u003c t.amount) return s; if (t.amount \u003c= 0) return s; format = parse(v7); if (format) { snprintf(s, 0x1F3u, format); *(_QWORD *)s_8 = 'sseccus'; free(format); free(dest); } return s; After some reversing, it becomes clear that the parse function is actually safe and not vulnerable (lol). The real issue lies in the behavior of handle_transaction. When it calls snprintf, the function is vulnerable to a format string vulnerability.\nAnother important behavior to note is in the Flask application, which spawns an asynchronous bot. This bot checks for new transactions every 10 seconds and processes them using the previously analyzed C function. This creates a race condition, as the bot checks the sender’s balance and the transaction amount only after inserting the transaction into the processing queue. An attacker can exploit this by rapidly sending transactions (e.g., 100 transactions of 100€ each), quickly reaching the 10k balance needed to become an admin.\nFinally, the ADMIN_KEY can be obtained by sending a %6$s format string in the note field of a transaction. This leaks the first string in the $rsp, which is the actual copy of the ADMIN_KEY.\nYetAnotherOracle 🔑 Overview This challenge provided an oracle that encrypts a plaintext (at least 32 bits) using a random key generated by Python’s random module, which was seeded with the process’s start time (time.time()).\nThe function below was used to encrypt a plaintext using a given key:\ndef mysteriousFunction(plaintext: bytes, key: bytes): a = bytes_to_long(plaintext) b = bytes_to_long(key) c, t = 0, 0 while a \u003e 0 and b \u003e 0: v1 = (a \u0026 0xf) ^ ((b \u0026 (0xff - 0xf)) \u003e\u003e 4) v2 = (b \u0026 0xf) ^ ((a \u0026 (0xff - 0xf)) \u003e\u003e 4) c += (v1 | (v2 \u003c\u003c 4)) \u003c\u003c t a, b = a \u003e\u003e 8, b \u003e\u003e 8 t += 8 if a \u003e 0: c += a \u003c\u003c t elif b \u003e 0: c += b \u003c\u003c t return long_to_bytes(c) This function works byte-by-byte, mixing nibbles (4-bit values) from the plaintext and key using XOR operations and shifting. The resulting output is a scrambled combination of both inputs.\nIn addition to the oracle, the challenge also included an encryption of the flag using another randomly generated 32-bit key.\nExploit Given both the ciphertext and the corresponding plaintext, it is possible to recover the key used during encryption by reversing the logic of the mysteriousFunction. This effectively leaks all the bits of the key, which are generated by Python’s internal Mersenne Twister PRNG (used in the random module).\nBy collecting enough of these keys (specifically, 624 consecutive 32-bit outputs), libraries like randcrack can be used to reconstruct the internal state of the PRNG. Once the state is recovered, the original seed can be derived, and all future (and past) random values can be predicted.\nOnce the seed is recovered, the encrypted flag can be decrypted by generating the next random 32-bit value (which was used to encrypt the flag) using the reconstructed PRNG state. This predicted value serves as the key, and by applying the reverse of the mysteriousFunction, the original flag can be successfully recovered.\nUnintended solution The procedure is the same, but in this case, it was also possible to brute-force the seed directly due to the fact that it was generated using time.time(). Since time.time() returns the number of seconds since the Unix epoch, the entropy is relatively low — especially if the attacker knows an approximate time window in which the challenge was started.\nBy trying all possible seeds within a small range (e.g., a few minutes), it becomes feasible to regenerate the exact PRNG state and predict the key used to encrypt the flag, without needing to collect 624 outputs.\nx864Oracle 🖥️ Overview This challenge provided a dynamically linked ELF binary along with its libc.so.6 and linker. Upon connecting to the remote service, the binary prompts the user to input the length of their name, followed by the name itself. The input is echoed back after each step, including a final prompt asking the user for a brief description, which is also echoed.\nBinary Analysis The binary was compiled from C source code using gcc, with several mitigations enabled:\nPIE: Enabled Stack canary: Enabled NX (Non-eXecutable stack): Enabled RELRO: Partial RELRO The presence of Partial RELRO and the provided libc suggests a potential ret2libc exploitation path, particularly since the GOT is only partially protected.\nFunctions of Interest The following functions are implemented in the binary:\nmain readString readSize setSecurity init main() The main function implements the core challenge logic. Interestingly, it attempts to manually zero out GOT entries in a naive attempt to prevent typical ret2libc exploitation:\ninit(argc, argv, envp); printf(\"Write the size of your name: \"); Size = readSize(v8); printf(\"You chose a name of size %s\\n\", v8); printf(\"Write your name: \"); readString(v7, Size); printf(\"Hello %s\\n\", v7); // RWX memory mapping v6 = (const char *)mmap((void *)0x13370000, 0x50u, 7, 34, -1, 0); printf(\"Write a description: \"); readString(v6, 80); printf(\"Your description is: %s\\n\", v6); puts(\"Bye\"); setSecurity(); // GOT wiping attempt for (i = 0; i \u003c= 10; ++i) *(\u0026stdin + i - 14) = 0; It’s also important to notice that the description is stored in a memory region explicitly mapped at 0x13370000 with RWX permissions via mmap.\nreadString() This function is fairly straightforward and not particularly interesting from an exploitation perspective. It reads n bytes from stdin into a user-supplied buffer and removes the trailing newline character if present:\nv3 = read(0, a1, a2); result = (unsigned __int8 *)a1[v3 - 1]; if ((_BYTE)result == 10) { result = \u0026a1[v3 - 1]; *result = 0; } return result; Despite its simplicity, note that the function does not enforce strict bounds checking — depending on the context in which it is used, this could lead to buffer overflows or memory corruption.\nreadSize() This function contains a subtle but interesting vulnerability related to inconsistent input parsing. It first reads up to 17 bytes into a buffer, then validates the input using atoi, and finally returns the parsed result using strtol.\nendptr[1] = (char *)__readfsqword(0x28u); // stack canary reference readString(a1, 17); if ((unsigned int)atoi((const char *)a1) \u003e 40) { puts(\"Invalid size\"); exit(0); } return strtol((const char *)a1, endptr, 0); The key issue here is the discrepancy between how atoi and strtol interpret numeric strings.\nFrom the man page:\nThe atoi() function converts the initial portion of the string pointed to by nptr to int.\nThe behavior is the same as: strtol(nptr, NULL, 10);\nHowever, in this case, strtol is called with a base of 0, which enables automatic base detection:\nA prefix of 0x will be interpreted as hexadecimal A prefix of 0 will be interpreted as octal No prefix will be interpreted as decimal This creates an inconsistent parsing bug: the validation with atoi assumes base 10, while strtol may interpret the same input differently depending on the format. For example:\nInput: 0x100 → atoi returns 0 (fails the check), but strtol returns 256 Input: 040 → atoi returns 40 (passes the check), but strtol returns 32 (octal) Input: 100 → both atoi and strtol return 100 (decimal) This inconsistency can be exploited to bypass the validation logic and feed in a size greater than 40, potentially leading to an overflow or memory corruption in the calling function (main).\nsetSecurity() This function installs a basic Seccomp Filter that blacklists all syscalls except for read and write, effectively sandboxing any code executed from the description’s memory region.\nline CODE JT JF K ================================= 0000: 0x20 0x00 0x00 0x00000008 A = instruction_pointer 0001: 0x35 0x00 0x05 0x13370000 if (A \u003c 0x13370000) goto 0007 0002: 0x35 0x04 0x00 0x13370050 if (A \u003e= 0x13370050) goto 0007 0003: 0x20 0x00 0x00 0x00000000 A = sys_number 0004: 0x15 0x02 0x00 0x00000000 if (A == read) goto 0007 0005: 0x15 0x01 0x00 0x00000001 if (A == write) goto 0007 0006: 0x06 0x00 0x00 0x00000000 return KILL 0007: 0x06 0x00 0x00 0x7fff0000 return ALLOW P.S.: Apologies for the inconvenience caused by the missing PR_SET_NO_NEW_PRIVS.\ninit() Nothing particularly interesting happens inside this function, it simply sets the buffering mode for the standard I/O streams to unbuffered using setvbuf.\nConnect the dots Basically, this challenge provided an opportunity to exploit a buffer overflow in the main function’s stack buffer (protected by the stack canary), as well as the ability to write shellcode in a memory region with a known address, which is controlled by the attacker.\nAdditionally, the buffer overflow caused by reading the attacker’s name could lead to a leak of the canary value, specifically through the overwriting of its null byte (\\0).\nExploit Once the behavior of the binary was understood, several exploitation paths became apparent. The intended exploitation path was as follows:\nLeak the canary: As mentioned previously, the attacker could overwrite the null byte of the canary, causing it to be printed along with the user’s name. This would allow the attacker to leak the canary value, bypassing the stack protection.\nWrite shellcode inside the description memory region with the following steps:\nRead the address of the __libc_start_main function from the stack frame. Store this address in a register and subtract the known offset to get the base address of libc. Add the offset of either the system or execve function to the libc base address. Call the function with the correct parameters (e.g., /bin/sh), which could be stored anywhere, leveraging the shellcode itself for flexibility. Overflow the return address of the main stack frame to redirect execution to the shellcode, effectively gaining control of the process and executing the payload.\n",
+  "wordCount" : "3004",
+  "inLanguage": "en",
+  "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2025-04-08T00:00:00Z",
+  "dateModified": "2025-04-08T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "AlBovo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://albovo.tech/en/ctf/ulissectf2025/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://albovo.tech/%3Clink%20/%20abs%20url%3E"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://albovo.tech/en/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://albovo.tech/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Home</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://albovo.tech/it/" title="Italian"
+                            aria-label=":it: It">🇮🇹 It</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://albovo.tech/en/projects/" title="📒 Projects">
+                    <span>📒 Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.tech/en/ctf/" title="⚙ Writeups">
+                    <span>⚙ Writeups</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.tech/en/aoc/" title="🎄 Advent of Code">
+                    <span>🎄 Advent of Code</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://albovo.tech/en/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.tech/en/ctf/">Capture The Flag 🚩</a></div>
+    <h1 class="post-title entry-hint-parent">
+      UlisseCTF 2025
+    </h1>
+    <div class="post-description">
+      All the writeups of the challenges I&#39;ve written for the UlisseCTF 2025 edition.
+    </div>
+    <div class="post-meta"><span title='2025-04-08 00:00:00 +0000 UTC'>April 8, 2025</span>&nbsp;·&nbsp;15 min&nbsp;·&nbsp;3004 words&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://albovo.tech/it/ctf/ulissectf2025/">🇮🇹 It</a>
+    </li>
+</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/UlisseCTF2025.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#telemetry-">Telemetry 🌐</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+        <li><a href="#exploit">Exploit</a></li>
+      </ul>
+    </li>
+    <li><a href="#stackbank1-">StackBank1 🌐</a>
+      <ul>
+        <li><a href="#overview-1">Overview</a></li>
+        <li><a href="#analysis-1">Analysis</a></li>
+        <li><a href="#vulnerabilities">Vulnerabilities</a></li>
+        <li><a href="#unintended-solutions">Unintended Solutions</a></li>
+      </ul>
+    </li>
+    <li><a href="#stackbank2---">StackBank2 🌐 / 🖥️</a>
+      <ul>
+        <li><a href="#overview-2">Overview</a></li>
+        <li><a href="#analysis-2">Analysis</a></li>
+      </ul>
+    </li>
+    <li><a href="#yetanotheroracle-">YetAnotherOracle 🔑</a>
+      <ul>
+        <li><a href="#overview-3">Overview</a></li>
+        <li><a href="#exploit-1">Exploit</a></li>
+        <li><a href="#unintended-solution">Unintended solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#x864oracle-">x864Oracle 🖥️</a>
+      <ul>
+        <li><a href="#overview-4">Overview</a></li>
+        <li><a href="#binary-analysis">Binary Analysis</a></li>
+        <li><a href="#connect-the-dots">Connect the dots</a></li>
+        <li><a href="#exploit-2">Exploit</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="ulissectf-2025-">UlisseCTF 2025 🚩<a hidden class="anchor" aria-hidden="true" href="#ulissectf-2025-">#</a></h1>
+<p><img alt="ulisse logo" loading="lazy" src="/images/ulisse.png"></p>
+<h2 id="telemetry-">Telemetry 🌐<a hidden class="anchor" aria-hidden="true" href="#telemetry-">#</a></h2>
+<h3 id="overview">Overview<a hidden class="anchor" aria-hidden="true" href="#overview">#</a></h3>
+<p><strong>Telemetry</strong> was a web application that allowed users to upload files (max 10), while internally logging all errors and relevant events into files located at paths like <code>logs/username/user-uuid.txt</code>.</p>
+<p>The application also featured a template testing endpoint, which let users check whether a given <strong>Jinja2 template</strong> from the <code>template</code> directory could be successfully rendered.</p>
+<h3 id="analysis">Analysis<a hidden class="anchor" aria-hidden="true" href="#analysis">#</a></h3>
+<p>The challenge provided a <strong>register</strong> endpoint where users were asked to supply a username and a custom <strong>log filename</strong>. These values were then used to generate a <code>UUID</code> that uniquely identified the user’s logfile.</p>
+<p>While analyzing the available routes, the most interesting endpoint was <code>/check</code>, which attempts to render a Jinja2 template within a <strong>sandboxed environment</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/check&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">check</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;check.html&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">template</span> <span class="o">=</span> <span class="n">secure_filename</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;template&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;templates&#39;</span><span class="p">,</span> <span class="n">template</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Template not found&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/check&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Template rendered successfully&#39;</span><span class="p">,</span> <span class="s1">&#39;success&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;Error rendering template&#39;</span><span class="p">,</span> <span class="s1">&#39;danger&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/check&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>This endpoint, however, is <strong>not directly vulnerable</strong>, the use of <code>secure_filename</code> and the strict reliance on files inside the <code>templates/</code> directory (which users cannot modify) prevents straightforward exploitation.</p>
+<p>A more interesting function was the <strong>404 error handler</strong>, which logs failed page accesses:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.errorhandler</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">page_not_found</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">user</span> <span class="o">:=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">session</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s1">&#39;Page not found&#39;</span><span class="p">,</span> <span class="mi">404</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="si">}</span><span class="s1">] - Error at page: </span><span class="si">{</span><span class="n">unquote</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;Page not found&#39;</span><span class="p">,</span> <span class="mi">404</span>
+</span></span></code></pre></div><p>This function logs the full, <strong>unquoted URL path</strong> to the user’s log file. However, the log path is constructed using:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>If the <strong>username</strong> is set to a directory traversal string like <code>../</code>, the path becomes:</p>
+<pre tabindex="0"><code>logs/../&lt;uuid&gt;.txt -&gt; &lt;uuid&gt;.txt
+</code></pre><p>This effectively allows the user to <strong>break out of the <code>logs/</code> directory</strong> and write files into unintended locations, making it vulnerable to <strong>Path traversal</strong> and <strong>template injection</strong>, especially if later rendered or included by the application.</p>
+<h3 id="exploit">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit">#</a></h3>
+<p>Once the vulnerabilities were understood, the exploitation path was pretty straightforward.<br>
+An attacker could register with a <strong>username</strong> like <code>../templates/</code> and a random <strong>log filename</strong> (e.g., <code>fsafsafsasfa</code>).</p>
+<p>This causes the log file to be created at:</p>
+<pre tabindex="0"><code>templates/&lt;uuid&gt;.txt
+</code></pre><p>Since the <code>UUID</code> is deterministically derived from the attacker-controlled log filename, the attacker <strong>knows the exact name</strong> of the file they are writing into. At this point, the attacker has achieved a <strong>path traversal</strong> that places an arbitrary file directly inside the <code>templates/</code> directory.</p>
+<h4 id="exploiting-blind-ssti">Exploiting Blind SSTI<a hidden class="anchor" aria-hidden="true" href="#exploiting-blind-ssti">#</a></h4>
+<p>With the ability to write into <code>templates/</code>, and the <code>/check</code> endpoint acting as a <strong>Jinja2 rendering oracle</strong>, the attacker can now abuse <strong>blind Server-Side Template Injection (SSTI)</strong>.</p>
+<p>By crafting malicious payloads and injecting them into their log file (via 404 requests), the attacker can trigger rendering by submitting the filename to <code>/check</code>.</p>
+<p>To extract the flag, a <strong>blind error-based character-by-character brute-force</strong> can be performed. For example:</p>
+<pre tabindex="0"><code class="language-jinja2" data-lang="jinja2">{{ &#39;lol&#39; if config[&#39;FLAG&#39;][x] == &#39;y&#39; else raise(&#39;lol&#39;) }}
+</code></pre><p>This payload accesses <code>config['FLAG']</code> and compares the character at index <code>x</code> with the guessed character <code>'y'</code>.<br>
+If the guess is incorrect, an exception is raised and the render fails. If correct, the render succeeds.</p>
+<p>By iterating over each character position and all printable characters, the attacker can recover the flag using <strong>only the success/failure feedback</strong>.</p>
+<h2 id="stackbank1-">StackBank1 🌐<a hidden class="anchor" aria-hidden="true" href="#stackbank1-">#</a></h2>
+<h3 id="overview-1">Overview<a hidden class="anchor" aria-hidden="true" href="#overview-1">#</a></h3>
+<p><strong>Stack Bank</strong> is a web application that allows users to perform typical banking operations such as transferring money to other users or sending funds directly to the <strong>administrator</strong> of the service.</p>
+<p>After initiating a transaction, users are required to wait up to <strong>10 seconds</strong> for the operation to complete. This delay is due to an internal <strong>bot</strong> that asynchronously verifies the transaction&rsquo;s values and integrity before marking it as successful.</p>
+<p>However, there is one exception: <strong>transactions sent to the administrator</strong> are immediately marked as successful, without undergoing any verification or integrity check.</p>
+<h3 id="analysis-1">Analysis<a hidden class="anchor" aria-hidden="true" href="#analysis-1">#</a></h3>
+<p>The challenge provides multiple services behind an <code>nginx</code> reverse proxy configured as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">/service/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://backend:4000/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">...</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://frontend:3000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">...</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></div><p>The <strong>frontend</strong> is a web application built with <strong>Next.js</strong>, while the <strong>backend</strong> is a <strong>Flask</strong> application that exposes various functionalities. Notably, the backend integrates with native C code via <strong>CTypes</strong>, using a shared object library called <code>libackend.so</code> to implement some of its core logic.</p>
+<p>The first flag is inserted into the <strong>MongoDB</strong> database during the backend&rsquo;s initialization phase.<br>
+It is stored as part of a <strong>transaction</strong> where both the <strong>sender</strong> and the <strong>receiver</strong> are set to the <code>administrator</code> user.</p>
+<h3 id="vulnerabilities">Vulnerabilities<a hidden class="anchor" aria-hidden="true" href="#vulnerabilities">#</a></h3>
+<p>Since the flag can be found inside the transaction involving the administrator, it may be useful to analyze the endpoint provided in the frontend, located at <code>app/api/dashboard/route.ts</code>. This file implements the following code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">filter</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s2">&#34;filter&#34;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">searchParams</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s2">&#34;value&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="p">[</span><span class="nx">balance</span><span class="p">,</span> <span class="nx">transactions</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">&#34;balances&#34;</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">_id</span>: <span class="kt">userId</span> <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="s2">&#34;transactions&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$or</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">sender_id</span>: <span class="kt">userId</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">receiver_id</span>: <span class="kt">userId</span> <span class="p">}],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">toArray</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">filter</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">value</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">filter</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&#34;sender&#34;</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">filter</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&#34;receiver&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sb">`.*</span><span class="si">${</span><span class="nx">escapeRegex</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span><span class="sb">.*`</span><span class="p">,</span> <span class="s2">&#34;i&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">transactions</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">db</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">collection</span><span class="p">&lt;</span><span class="nt">Transaction</span><span class="p">&gt;(</span><span class="s2">&#34;transactions&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">find</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">$where</span>: <span class="kt">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">t</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">fromEntries</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">transactions</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">key</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">]),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">t</span><span class="p">.</span><span class="nx">sender</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="kr">as</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">t</span><span class="p">.</span><span class="nx">receiver</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="kr">as</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">transactions</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">transactions</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">note</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">t</span><span class="p">[</span><span class="nx">filter</span><span class="p">]</span> <span class="o">=</span> <span class="nx">transactions</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">note</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">sender</span> <span class="o">===</span> <span class="nx">t</span><span class="p">.</span><span class="nx">sender</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">receiver</span> <span class="o">===</span> <span class="nx">t</span><span class="p">.</span><span class="nx">receiver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">toArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">balance</span> <span class="o">=</span> <span class="nx">balance</span><span class="o">?</span><span class="p">.</span><span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="nx">NextResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="nx">balance</span><span class="p">,</span> <span class="nx">transactions</span> <span class="p">});</span>
+</span></span></code></pre></div><p>This function is <strong>vulnerable</strong> because an attacker can manipulate the provided values in such a way that both the <strong>sender</strong> and <strong>receiver</strong> are set to <code>administrator</code>, thus retrieving the <strong>admin transaction</strong> containing the flag.</p>
+<p>The vulnerability arises due to <strong>prototype pollution</strong>, which is possible because of this code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="nx">t</span><span class="p">[</span><span class="nx">filter</span><span class="p">]</span> <span class="o">=</span> <span class="nx">transactions</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">note</span><span class="p">;</span>
+</span></span></code></pre></div><p>An attacker could craft a payload like:</p>
+<ul>
+<li><strong>filter</strong>: <code>__proto__</code></li>
+<li><strong>transaction note</strong>: <code>{'a': 'b'}</code></li>
+</ul>
+<p>This would cause the <code>t</code> object to gain an additional property (<code>a</code>) due to prototype pollution, effectively making <code>t.a = 'b'</code>. As a result, the attacker can manipulate the object in ways that bypass the intended functionality and access restricted data, such as the flag.</p>
+<p>The final piece required to exploit this challenge can be found in the <code>/service/transaction</code> endpoint in the backend:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/transaction&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@login_required</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">transaction</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># validation checks on the value omitted for brevity</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">receiver</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;administrator&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">invest</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The following route is no longer used...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @app.route(&#39;/invest&#39;, methods=[&#39;POST&#39;])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># @login_required</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">invest</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">amount</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">note</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;note&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">    <span class="n">mongo</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">balances</span><span class="o">.</span><span class="n">update_one</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;user_id&#34;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="s2">&#34;$inc&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;amount&#34;</span><span class="p">:</span> <span class="o">-</span><span class="n">amount</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">mongo</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">transactions</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;sender_id&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;sender&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;receiver_id&#39;</span><span class="p">:</span> <span class="n">mongo</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;administrator&#39;</span><span class="p">})[</span><span class="s1">&#39;_id&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;receiver&#39;</span><span class="p">:</span> <span class="s1">&#39;administrator&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;amount&#39;</span><span class="p">:</span> <span class="n">amount</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;note&#39;</span><span class="p">:</span> <span class="n">note</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Investment added&#39;</span><span class="p">}),</span> <span class="mi">200</span>
+</span></span></code></pre></div><p>An attacker can exploit the system by sending funds directly to the <code>administrator</code> account, which triggers the <code>invest</code> function that allows the attacker to set their own <code>note</code> field (e.g., <code>{'sender': 'administrator', 'receiver': 'administrator'}</code>).</p>
+<h3 id="unintended-solutions">Unintended Solutions<a hidden class="anchor" aria-hidden="true" href="#unintended-solutions">#</a></h3>
+<p>I sincerely apologize for any unintended solutions that may have unintentionally oversimplified the challenge, such as sending payloads like <code>filter= sender&amp;value=a</code> or <code>filter=^&amp;value=a</code> (that leaked all the database transactions). Moving forward, I promise to conduct more thorough testing on my future challenges to ensure the best possible experience for participants next year <strong><code>ᕙ(  •̀ ᗜ •́  )ᕗ</code></strong></p>
+<h2 id="stackbank2---">StackBank2 🌐 / 🖥️<a hidden class="anchor" aria-hidden="true" href="#stackbank2---">#</a></h2>
+<h3 id="overview-2">Overview<a hidden class="anchor" aria-hidden="true" href="#overview-2">#</a></h3>
+<p>The overview of this challenge has already been analyzed in the StackBank1 writeup. If you&rsquo;re interested, check it out! ;)</p>
+<h3 id="analysis-2">Analysis<a hidden class="anchor" aria-hidden="true" href="#analysis-2">#</a></h3>
+<p>The second flag in StackBank can be obtained after becoming an &ldquo;admin.&rdquo; This is achieved by having at least 10k in the balance and submitting the correct <code>ADMIN_KEY</code>, which is randomly generated by the backend.</p>
+<p>At this point, it’s worth analyzing the <code>libbackend.so</code> library, written in C and invoked using <strong>ctypes</strong>. Here&rsquo;s a simplified snippet from the library:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">v16</span> <span class="o">=</span> <span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">memset</span><span class="p">(</span><span class="n">v14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v14</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">v15</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x12u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">strcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">a1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">strncpy</span><span class="p">(</span><span class="n">v14</span><span class="p">,</span> <span class="n">a9</span><span class="p">,</span> <span class="mh">0x1F3u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x1F4u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">v13</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x10u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">strcpy</span><span class="p">(</span><span class="n">v13</span><span class="p">,</span> <span class="s">&#34;error&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">a7</span> <span class="o">&lt;</span> <span class="n">a8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">a8</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">format</span> <span class="o">=</span> <span class="nf">parse</span><span class="p">(</span><span class="n">v14</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">format</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">snprintf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mh">0x1F3u</span><span class="p">,</span> <span class="n">format</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">v13</span> <span class="o">=</span> <span class="mh">0x73736563637573LL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">format</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>While this function may seem difficult to understand at first, we can clarify things by looking at the Python structs used with <strong>ctypes</strong> in <code>models.py</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Transaction</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;sender_balance&#39;</span><span class="p">,</span> <span class="n">c_int64</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="n">c_int64</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;note&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Result</span><span class="p">(</span><span class="n">Structure</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;note&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="n">c_char_p</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span></code></pre></div><p>In this context, here’s the corresponding C function logic with the transaction struct:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">memset</span><span class="p">(</span><span class="n">v7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">v7</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">v8</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x12u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">strcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">strncpy</span><span class="p">(</span><span class="n">v7</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">note</span><span class="p">,</span> <span class="mh">0x1F3u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x1F4u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">s_8</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x10u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">strcpy</span><span class="p">(</span><span class="n">s_8</span><span class="p">,</span> <span class="s">&#34;error&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">sender_balance</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">amount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">amount</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">format</span> <span class="o">=</span> <span class="nf">parse</span><span class="p">(</span><span class="n">v7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">format</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">snprintf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mh">0x1F3u</span><span class="p">,</span> <span class="n">format</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">s_8</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">sseccus</span><span class="err">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">format</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span></code></pre></div><p>After some reversing, it becomes clear that the <code>parse</code> function is actually safe and not vulnerable (lol). The real issue lies in the behavior of <code>handle_transaction</code>. When it calls <code>snprintf</code>, the function is vulnerable to a <strong>format string vulnerability</strong>.</p>
+<p>Another important behavior to note is in the Flask application, which spawns an asynchronous bot. This bot checks for new transactions every 10 seconds and processes them using the previously analyzed C function. This creates a <strong>race condition</strong>, as the bot checks the sender&rsquo;s balance and the transaction amount only after inserting the transaction into the processing queue. An attacker can exploit this by rapidly sending transactions (e.g., 100 transactions of 100€ each), quickly reaching the 10k balance needed to become an admin.</p>
+<p>Finally, the <code>ADMIN_KEY</code> can be obtained by sending a <code>%6$s</code> format string in the <code>note</code> field of a transaction. This leaks the first string in the <code>$rsp</code>, which is the actual copy of the <code>ADMIN_KEY</code>.</p>
+<h2 id="yetanotheroracle-">YetAnotherOracle 🔑<a hidden class="anchor" aria-hidden="true" href="#yetanotheroracle-">#</a></h2>
+<h3 id="overview-3">Overview<a hidden class="anchor" aria-hidden="true" href="#overview-3">#</a></h3>
+<p>This challenge provided an <em>oracle</em> that encrypts a plaintext (at least 32 bits) using a random key generated by Python’s <code>random</code> module, which was seeded with the process&rsquo;s start time (<code>time.time()</code>).</p>
+<p>The function below was used to encrypt a plaintext using a given key:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mysteriousFunction</span><span class="p">(</span><span class="n">plaintext</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="n">bytes_to_long</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v1</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">)</span> <span class="o">^</span> <span class="p">((</span><span class="n">b</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">-</span> <span class="mh">0xf</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v2</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">)</span> <span class="o">^</span> <span class="p">((</span><span class="n">a</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">-</span> <span class="mh">0xf</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">+=</span> <span class="p">(</span><span class="n">v1</span> <span class="o">|</span> <span class="p">(</span><span class="n">v2</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">+=</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">+=</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span> <span class="o">+=</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">long_to_bytes</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span></span></code></pre></div><p>This function works byte-by-byte, mixing nibbles (4-bit values) from the plaintext and key using XOR operations and shifting. The resulting output is a scrambled combination of both inputs.</p>
+<p>In addition to the oracle, the challenge also included an encryption of the flag using another randomly generated 32-bit key.</p>
+<h3 id="exploit-1">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit-1">#</a></h3>
+<p>Given both the ciphertext and the corresponding plaintext, it is possible to <strong>recover the key</strong> used during encryption by reversing the logic of the <code>mysteriousFunction</code>. This effectively leaks all the bits of the key, which are generated by Python’s internal <strong>Mersenne Twister</strong> PRNG (used in the <code>random</code> module).</p>
+<p>By collecting enough of these keys (specifically, 624 consecutive 32-bit outputs), libraries like <a href="https://github.com/tna0y/Python-random-module-cracker"><code>randcrack</code></a> can be used to <strong>reconstruct the internal state of the PRNG</strong>. Once the state is recovered, the original seed can be derived, and all future (and past) random values can be predicted.</p>
+<p>Once the seed is recovered, the <strong>encrypted flag</strong> can be decrypted by generating the next random 32-bit value (which was used to encrypt the flag) using the reconstructed PRNG state. This predicted value serves as the key, and by applying the reverse of the <code>mysteriousFunction</code>, the <strong>original flag</strong> can be successfully recovered.</p>
+<h3 id="unintended-solution">Unintended solution<a hidden class="anchor" aria-hidden="true" href="#unintended-solution">#</a></h3>
+<p>The procedure is the same, but in this case, it was also possible to <strong>brute-force the seed</strong> directly due to the fact that it was generated using <code>time.time()</code>. Since <code>time.time()</code> returns the number of seconds since the Unix epoch, the entropy is relatively low — especially if the attacker knows an approximate time window in which the challenge was started.</p>
+<p>By trying all possible seeds within a small range (e.g., a few minutes), it becomes feasible to regenerate the exact PRNG state and predict the key used to encrypt the flag, without needing to collect 624 outputs.</p>
+<h2 id="x864oracle-">x864Oracle 🖥️<a hidden class="anchor" aria-hidden="true" href="#x864oracle-">#</a></h2>
+<h3 id="overview-4">Overview<a hidden class="anchor" aria-hidden="true" href="#overview-4">#</a></h3>
+<p>This challenge provided a dynamically linked ELF binary along with its <code>libc.so.6</code> and linker. Upon connecting to the remote service, the binary prompts the user to input the length of their name, followed by the name itself. The input is echoed back after each step, including a final prompt asking the user for a brief description, which is also echoed.</p>
+<h3 id="binary-analysis">Binary Analysis<a hidden class="anchor" aria-hidden="true" href="#binary-analysis">#</a></h3>
+<p>The binary was compiled from C source code using <code>gcc</code>, with several mitigations enabled:</p>
+<ul>
+<li><strong><code>PIE</code></strong>: Enabled</li>
+<li><strong><code>Stack canary</code></strong>: Enabled</li>
+<li><strong><code>NX</code> (Non-eXecutable stack)</strong>: Enabled</li>
+<li><strong><code>RELRO</code></strong>: <em>Partial RELRO</em></li>
+</ul>
+<p>The presence of Partial RELRO and the provided <code>libc</code> suggests a potential <code>ret2libc</code> exploitation path, particularly since the GOT is only partially protected.</p>
+<h4 id="functions-of-interest">Functions of Interest<a hidden class="anchor" aria-hidden="true" href="#functions-of-interest">#</a></h4>
+<p>The following functions are implemented in the binary:</p>
+<ul>
+<li><code>main</code></li>
+<li><code>readString</code></li>
+<li><code>readSize</code></li>
+<li><code>setSecurity</code></li>
+<li><code>init</code></li>
+</ul>
+<h4 id="main">main()<a hidden class="anchor" aria-hidden="true" href="#main">#</a></h4>
+<p>The <code>main</code> function implements the core challenge logic. Interestingly, it attempts to manually zero out GOT entries in a naive attempt to prevent typical <code>ret2libc</code> exploitation:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Write the size of your name: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Size</span> <span class="o">=</span> <span class="nf">readSize</span><span class="p">(</span><span class="n">v8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;You chose a name of size %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">v8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Write your name: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">readString</span><span class="p">(</span><span class="n">v7</span><span class="p">,</span> <span class="n">Size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">v7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// RWX memory mapping
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">v6</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">mmap</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="mh">0x13370000</span><span class="p">,</span> <span class="mh">0x50u</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Write a description: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">readString</span><span class="p">(</span><span class="n">v6</span><span class="p">,</span> <span class="mi">80</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Your description is: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">v6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Bye&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">setSecurity</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// GOT wiping attempt
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stdin</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">14</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span></code></pre></div><p>It&rsquo;s also important to notice that the description is stored in a memory region explicitly mapped at <code>0x13370000</code> with <code>RWX</code> permissions via <code>mmap</code>.</p>
+<h4 id="readstring">readString()<a hidden class="anchor" aria-hidden="true" href="#readstring">#</a></h4>
+<p>This function is fairly straightforward and not particularly interesting from an exploitation perspective. It reads <code>n</code> bytes from <code>stdin</code> into a user-supplied buffer and removes the trailing newline character if present:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">v3</span> <span class="o">=</span> <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int8</span> <span class="o">*</span><span class="p">)</span><span class="n">a1</span><span class="p">[</span><span class="n">v3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">((</span><span class="n">_BYTE</span><span class="p">)</span><span class="n">result</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a1</span><span class="p">[</span><span class="n">v3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span></code></pre></div><p>Despite its simplicity, note that the function does not enforce strict bounds checking — depending on the context in which it is used, this could lead to buffer overflows or memory corruption.</p>
+<h4 id="readsize">readSize()<a hidden class="anchor" aria-hidden="true" href="#readsize">#</a></h4>
+<p>This function contains a subtle but interesting vulnerability related to inconsistent input parsing. It first reads up to 17 bytes into a buffer, then validates the input using <code>atoi</code>, and finally returns the parsed result using <code>strtol</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">endptr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>  <span class="c1">// stack canary reference
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">readString</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="mi">17</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="nf">atoi</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">a1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Invalid size&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="nf">strtol</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">a1</span><span class="p">,</span> <span class="n">endptr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span></code></pre></div><p>The key issue here is the discrepancy between how <code>atoi</code> and <code>strtol</code> interpret numeric strings.</p>
+<p>From the man page:</p>
+<blockquote>
+<p>The atoi() function converts the initial portion of the string pointed to by nptr to int.<br>
+The behavior is the same as: <code>strtol(nptr, NULL, 10);</code></p>
+</blockquote>
+<p>However, in this case, <code>strtol</code> is called with a base of <code>0</code>, which enables <strong>automatic base detection</strong>:</p>
+<ul>
+<li>A prefix of <code>0x</code> will be interpreted as hexadecimal</li>
+<li>A prefix of <code>0</code> will be interpreted as octal</li>
+<li>No prefix will be interpreted as decimal</li>
+</ul>
+<p>This creates an <strong>inconsistent parsing bug</strong>: the validation with <code>atoi</code> assumes base 10, while <code>strtol</code> may interpret the same input differently depending on the format. For example:</p>
+<ul>
+<li>Input: <code>0x100</code> → <code>atoi</code> returns 0 (fails the check), but <code>strtol</code> returns 256</li>
+<li>Input: <code>040</code> → <code>atoi</code> returns 40 (passes the check), but <code>strtol</code> returns 32 (octal)</li>
+<li>Input: <code>100</code> → both <code>atoi</code> and <code>strtol</code> return 100 (decimal)</li>
+</ul>
+<p>This inconsistency can be exploited to bypass the validation logic and feed in a size greater than 40, potentially leading to an overflow or memory corruption in the calling function (main).</p>
+<h4 id="setsecurity">setSecurity()<a hidden class="anchor" aria-hidden="true" href="#setsecurity">#</a></h4>
+<p>This function installs a basic <a href="https://www.kernel.org/doc/html/v5.0/userspace-api/seccomp_filter.html">Seccomp Filter</a> that blacklists all syscalls except for <code>read</code> and <code>write</code>, effectively sandboxing any code executed from the description&rsquo;s memory region.</p>
+<pre tabindex="0"><code> line  CODE  JT   JF      K
+=================================
+ 0000: 0x20 0x00 0x00 0x00000008  A = instruction_pointer
+ 0001: 0x35 0x00 0x05 0x13370000  if (A &lt; 0x13370000) goto 0007
+ 0002: 0x35 0x04 0x00 0x13370050  if (A &gt;= 0x13370050) goto 0007
+ 0003: 0x20 0x00 0x00 0x00000000  A = sys_number
+ 0004: 0x15 0x02 0x00 0x00000000  if (A == read) goto 0007
+ 0005: 0x15 0x01 0x00 0x00000001  if (A == write) goto 0007
+ 0006: 0x06 0x00 0x00 0x00000000  return KILL
+ 0007: 0x06 0x00 0x00 0x7fff0000  return ALLOW
+</code></pre><p><strong>P.S.</strong>: Apologies for the inconvenience caused by the missing <code>PR_SET_NO_NEW_PRIVS</code>.</p>
+<h4 id="init">init()<a hidden class="anchor" aria-hidden="true" href="#init">#</a></h4>
+<p>Nothing particularly interesting happens inside this function, it simply sets the buffering mode for the standard I/O streams to <strong>unbuffered</strong> using <code>setvbuf</code>.</p>
+<h3 id="connect-the-dots">Connect the dots<a hidden class="anchor" aria-hidden="true" href="#connect-the-dots">#</a></h3>
+<p>Basically, this challenge provided an opportunity to exploit a <strong>buffer overflow</strong> in the main function&rsquo;s stack buffer (protected by the <strong>stack canary</strong>), as well as the ability to write <strong>shellcode</strong> in a memory region with a known address, which is controlled by the attacker.</p>
+<p>Additionally, the buffer overflow caused by reading the attacker&rsquo;s name could lead to a leak of the <strong>canary</strong> value, specifically through the overwriting of its null byte (<code>\0</code>).</p>
+<h3 id="exploit-2">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit-2">#</a></h3>
+<p>Once the behavior of the binary was understood, several exploitation paths became apparent. The intended exploitation path was as follows:</p>
+<ol>
+<li>
+<p><strong>Leak the canary</strong>: As mentioned previously, the attacker could overwrite the null byte of the canary, causing it to be printed along with the user&rsquo;s name. This would allow the attacker to leak the canary value, bypassing the stack protection.</p>
+</li>
+<li>
+<p><strong>Write shellcode</strong> inside the description memory region with the following steps:</p>
+<ol>
+<li>Read the address of the <strong><code>__libc_start_main</code></strong> function from the stack frame.</li>
+<li>Store this address in a register and subtract the known offset to get the base address of <strong>libc</strong>.</li>
+<li>Add the offset of either the <strong><code>system</code></strong> or <strong><code>execve</code></strong> function to the libc base address.</li>
+<li>Call the function with the correct parameters (e.g., <code>/bin/sh</code>), which could be stored anywhere, leveraging the shellcode itself for flexibility.</li>
+</ol>
+</li>
+<li>
+<p><strong>Overflow</strong> the return address of the <code>main</code> stack frame to redirect execution to the shellcode, effectively gaining control of the process and executing the payload.</p>
+</li>
+</ol>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://albovo.tech/en/tags/ulissectf/">Ulissectf</a></li>
+      <li><a href="https://albovo.tech/en/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.tech/en/tags/binary/">Binary</a></li>
+      <li><a href="https://albovo.tech/en/tags/crypto/">Crypto</a></li>
+      <li><a href="https://albovo.tech/en/tags/web/">Web</a></li>
+      <li><a href="https://albovo.tech/en/tags/ulissectf2025/">Ulissectf2025</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://albovo.tech/en/ctf/pascalctf2025/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Pascal CTF Beginner 2025</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on x"
+            href="https://x.com/intent/tweet/?text=UlisseCTF%202025&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f&amp;hashtags=ulissectf%2cctf%2cbinary%2ccrypto%2cweb%2culissectf2025">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f&amp;title=UlisseCTF%202025&amp;summary=UlisseCTF%202025&amp;source=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f&title=UlisseCTF%202025">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on whatsapp"
+            href="https://api.whatsapp.com/send?text=UlisseCTF%202025%20-%20https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on telegram"
+            href="https://telegram.me/share/url?text=UlisseCTF%202025&amp;url=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share UlisseCTF 2025 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=UlisseCTF%202025&u=https%3a%2f%2falbovo.tech%2fen%2fctf%2fulissectf2025%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://albovo.tech/en/">Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

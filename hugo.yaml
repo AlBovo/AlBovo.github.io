@@ -52,6 +52,8 @@ languages:
             url: ctf/
           - name: "\U0001f384 Advent of Code"
             url: aoc/
+          - name: "\U0001F3C6 Competizioni"
+            url: competitions/
     menu:
       main:
         - identifier: progetti
@@ -66,6 +68,10 @@ languages:
           name: "\U0001f384 Advent of Code"
           url: aoc/
           weight: 30
+        - identifier: competitions
+          name: "\U0001F3C6 Competizioni"
+          url: competitions/
+          weight: 40
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -130,6 +136,8 @@ params:
         url: ctf/
       - name: "\U0001f384 Advent of Code"
         url: aoc/
+      - name: "\U0001F3C6 Competitions"
+        url: competitions/
 
   # # home-info mode
   # homeInfoParams:
@@ -187,6 +195,10 @@ menu:
       name: "\U0001f384 Advent of Code"
       url: aoc/
       weight: 30
+    - identifier: competitions
+      name: "\U0001F3C6 Competitions"
+      url: competitions/
+      weight: 40
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true

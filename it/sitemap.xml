@@ -2,6 +2,103 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://albovo.tech/it/competitions/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/competitions/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/competitions/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/cyberchallenge/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/cyberchallenge/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/cyberchallenge/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/cybersec/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/cybersec/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/cybersec/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/oii/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/oii/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/oii/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/olicyber/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/olicyber/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/olicyber/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/"
+                />
+  </url><url>
+    <loc>https://albovo.tech/it/tags/programmazione/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://albovo.tech/it/tags/superiori/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://albovo.tech/it/tags/</loc>
+    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.tech/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.tech/it/tags/"
+                />
+  </url><url>
     <loc>https://albovo.tech/it/tags/binary/</loc>
     <lastmod>2025-04-08T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -52,32 +149,6 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.tech/it/tags/ctf/"
-                />
-  </url><url>
-    <loc>https://albovo.tech/it/</loc>
-    <lastmod>2025-04-08T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.tech/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.tech/it/"
-                />
-  </url><url>
-    <loc>https://albovo.tech/it/tags/</loc>
-    <lastmod>2025-04-08T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.tech/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.tech/it/tags/"
                 />
   </url><url>
     <loc>https://albovo.tech/it/tags/ulissectf/</loc>

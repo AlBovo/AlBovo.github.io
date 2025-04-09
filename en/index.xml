@@ -6,8 +6,15 @@
     <description>Recent content on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.tech/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Competitions 🏆</title>
+      <link>https://albovo.tech/en/competitions/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.tech/en/competitions/</guid>
+      <description></description>
+    </item>
     <item>
       <title>UlisseCTF 2025</title>
       <link>https://albovo.tech/en/ctf/ulissectf2025/</link>

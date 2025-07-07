@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Minesweeper on Portfolio</title>
-    <link>https://albovo.tech/en/tags/minesweeper/</link>
+    <link>https://albovo.github.io/en/tags/minesweeper/</link>
     <description>Recent content in Minesweeper on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
     <lastBuildDate>Mon, 27 May 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/en/tags/minesweeper/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.github.io/en/tags/minesweeper/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minesweeper 🚩</title>
-      <link>https://albovo.tech/en/projects/mines/</link>
+      <link>https://albovo.github.io/en/projects/mines/</link>
       <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/en/projects/mines/</guid>
+      <guid>https://albovo.github.io/en/projects/mines/</guid>
       <description>A project about the famous minesweeper game made for Console or Web GUI.</description>
     </item>
   </channel>

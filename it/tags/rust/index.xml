@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Rust on Portfolio</title>
-    <link>https://albovo.tech/it/tags/rust/</link>
+    <link>https://albovo.github.io/it/tags/rust/</link>
     <description>Recent content in Rust on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>it</language>
     <lastBuildDate>Sat, 28 Dec 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/it/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.github.io/it/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Giorno 1 - Dicember 2024</title>
-      <link>https://albovo.tech/it/aoc/2024/day-1/</link>
+      <link>https://albovo.github.io/it/aoc/2024/day-1/</link>
       <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/aoc/2024/day-1/</guid>
+      <guid>https://albovo.github.io/it/aoc/2024/day-1/</guid>
       <description>Il primo problema di AoC 2024.</description>
     </item>
   </channel>

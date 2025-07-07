@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Wpf on Portfolio</title>
-    <link>https://albovo.tech/en/tags/wpf/</link>
+    <link>https://albovo.github.io/en/tags/wpf/</link>
     <description>Recent content in Wpf on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
     <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/en/tags/wpf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.github.io/en/tags/wpf/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Solitario Croce</title>
-      <link>https://albovo.tech/en/projects/solitario/</link>
+      <link>https://albovo.github.io/en/projects/solitario/</link>
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/en/projects/solitario/</guid>
+      <guid>https://albovo.github.io/en/projects/solitario/</guid>
       <description>A school project about a solitaire card game designed by a small team of students.</description>
     </item>
   </channel>

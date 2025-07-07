@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Portfolio</title>
-    <link>https://albovo.tech/it/</link>
+    <link>https://albovo.github.io/it/</link>
     <description>Recent content on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>it</language>
     <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/it/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.github.io/it/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Competizioni 🏆</title>
-      <link>https://albovo.tech/it/competitions/</link>
+      <link>https://albovo.github.io/it/competitions/</link>
       <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/competitions/</guid>
+      <guid>https://albovo.github.io/it/competitions/</guid>
       <description></description>
     </item>
     <item>
       <title>UlisseCTF 2025</title>
-      <link>https://albovo.tech/it/ctf/ulissectf2025/</link>
+      <link>https://albovo.github.io/it/ctf/ulissectf2025/</link>
       <pubDate>Tue, 08 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/ulissectf2025/</guid>
+      <guid>https://albovo.github.io/it/ctf/ulissectf2025/</guid>
       <description>Una raccolta di tutte le writeup delle challenges che ho scritto per la UlisseCTF 2025.</description>
     </item>
     <item>
       <title>Pascal CTF Beginner 2025</title>
-      <link>https://albovo.tech/it/ctf/pascalctf2025/</link>
+      <link>https://albovo.github.io/it/ctf/pascalctf2025/</link>
       <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/pascalctf2025/</guid>
+      <guid>https://albovo.github.io/it/ctf/pascalctf2025/</guid>
       <description>Alcune writeups della pascalCTF Beginner ctf 2025.</description>
     </item>
     <item>
       <title>Giorno 1 - Dicember 2024</title>
-      <link>https://albovo.tech/it/aoc/2024/day-1/</link>
+      <link>https://albovo.github.io/it/aoc/2024/day-1/</link>
       <pubDate>Sat, 28 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/aoc/2024/day-1/</guid>
+      <guid>https://albovo.github.io/it/aoc/2024/day-1/</guid>
       <description>Il primo problema di AoC 2024.</description>
     </item>
     <item>
       <title>Solitario Croce</title>
-      <link>https://albovo.tech/it/projects/solitario/</link>
+      <link>https://albovo.github.io/it/projects/solitario/</link>
       <pubDate>Tue, 23 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/projects/solitario/</guid>
+      <guid>https://albovo.github.io/it/projects/solitario/</guid>
       <description>Un progetto scolastico riguardo un solitario di carte progettato da un piccolo team di studenti.</description>
     </item>
     <item>
       <title>nullCon CTF 2023</title>
-      <link>https://albovo.tech/it/ctf/nullconctf2023/</link>
+      <link>https://albovo.github.io/it/ctf/nullconctf2023/</link>
       <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/nullconctf2023/</guid>
+      <guid>https://albovo.github.io/it/ctf/nullconctf2023/</guid>
       <description>Alcune writeups della nullCon ctf edizione 2023.</description>
     </item>
     <item>
       <title>Campo minato 🚩</title>
-      <link>https://albovo.tech/it/projects/mines/</link>
+      <link>https://albovo.github.io/it/projects/mines/</link>
       <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/projects/mines/</guid>
+      <guid>https://albovo.github.io/it/projects/mines/</guid>
       <description>Un progetto riguardo il gioco Campo minato per terminale e interfaccia web.</description>
     </item>
     <item>
       <title>M0lecon CTF 2023 Beginner</title>
-      <link>https://albovo.tech/it/ctf/m0leconctf2023/</link>
+      <link>https://albovo.github.io/it/ctf/m0leconctf2023/</link>
       <pubDate>Mon, 27 May 2024 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/m0leconctf2023/</guid>
+      <guid>https://albovo.github.io/it/ctf/m0leconctf2023/</guid>
       <description>Alcune writeups della m0lecon Beginner ctf edizione 2023.</description>
     </item>
     <item>
       <title>TFC CTF 2023</title>
-      <link>https://albovo.tech/it/ctf/tfcctf2023/</link>
+      <link>https://albovo.github.io/it/ctf/tfcctf2023/</link>
       <pubDate>Sun, 20 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/it/ctf/tfcctf2023/</guid>
+      <guid>https://albovo.github.io/it/ctf/tfcctf2023/</guid>
       <description>Alcune writeup della TFC CTF 2023.</description>
     </item>
   </channel>

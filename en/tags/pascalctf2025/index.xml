@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>PascalCTF2025 on Portfolio</title>
-    <link>https://albovo.tech/en/tags/pascalctf2025/</link>
+    <link>https://albovo.github.io/en/tags/pascalctf2025/</link>
     <description>Recent content in PascalCTF2025 on Portfolio</description>
     <generator>Hugo -- 0.125.7</generator>
     <language>en</language>
     <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://albovo.tech/en/tags/pascalctf2025/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://albovo.github.io/en/tags/pascalctf2025/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pascal CTF Beginner 2025</title>
-      <link>https://albovo.tech/en/ctf/pascalctf2025/</link>
+      <link>https://albovo.github.io/en/ctf/pascalctf2025/</link>
       <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>https://albovo.tech/en/ctf/pascalctf2025/</guid>
+      <guid>https://albovo.github.io/en/ctf/pascalctf2025/</guid>
       <description>Some writeups of the pascalCTF Beginner ctf 2025 edition.</description>
     </item>
   </channel>

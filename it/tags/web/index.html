@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/it/tags/web/">
+</noscript><meta property="og:url" content="https://albovo.github.io/it/tags/web/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Web">
   <meta property="og:description" content="My personal portfolio.">
@@ -166,7 +163,8 @@
   <div class="entry-content">
     <p>UlisseCTF 2025 🚩 Telemetry 🌐 Panoramica Telemetry è un’applicazione web che permetteva agli utenti di caricare file (massimo 10), registrando internamente tutti gli errori e gli eventi rilevanti in file posizionati in percorsi come logs/username/user-uuid.txt.
 L’app offriva anche un endpoint di test dei template, che consentiva agli utenti di verificare se un determinato template Jinja2 presente nella directory template potesse essere renderizzato correttamente.
-Analisi La challenge forniva un endpoint di registrazione, dove l’utente poteva scegliere un nome utente e un nome personalizzato per il file di log....</p>
+Analisi La challenge forniva un endpoint di registrazione, dove l’utente poteva scegliere un nome utente e un nome personalizzato per il file di log. Questi valori venivano poi usati per generare un UUID che identificava in modo univoco il file di log dell’utente.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2025-04-08 00:00:00 +0000 UTC'>aprile 8, 2025</span>&nbsp;·&nbsp;13 minuti&nbsp;·&nbsp;2733 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to UlisseCTF 2025" href="https://albovo.github.io/it/ctf/ulissectf2025/"></a>
@@ -179,7 +177,7 @@ Analisi La challenge forniva un endpoint di registrazione, dove l’utente potev
   </header>
   <div class="entry-content">
     <p>Pascal CTF Beginner 2025 Web 🌐 Static Fl@g Questa challenge è una delle più semplici nel contesto della sicurezza web, in quanto si basa su un controllo lato client per rivelare la flag. La flag è incorporata nel codice JavaScript della pagina index, codificata in base64, il che la rende facilmente individuabile tramite ispezione del codice. Di conseguenza, non è necessario scrivere uno script per risolvere questa challenge.
-Biscotto Il backend di Biscotto contiene solo due endpoint:...</p>
+...</p>
   </div>
   <footer class="entry-footer"><span title='2025-03-26 00:00:00 +0000 UTC'>marzo 26, 2025</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2003 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to Pascal CTF Beginner 2025" href="https://albovo.github.io/it/ctf/pascalctf2025/"></a>
@@ -191,9 +189,10 @@ Biscotto Il backend di Biscotto contiene solo due endpoint:...</p>
     </h2>
   </header>
   <div class="entry-content">
-    <p>nullCon CTF 2023 Web 🌐 TYpical Boss In questa challenge, è possibile notare come se si accede all’endpoint ‘/’ della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato database.db, che era un database SQLite). Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell’admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero 0e....</p>
+    <p>nullCon CTF 2023 Web 🌐 TYpical Boss In questa challenge, è possibile notare come se si accede all’endpoint ‘/’ della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato database.db, che era un database SQLite). Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell’admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero 0e. Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico 0. L’unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per 0e. Questa è una repository molto utile per quanto riguarda il pentesting: Repository
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>maggio 28, 2024</span>&nbsp;·&nbsp;8 minuti&nbsp;·&nbsp;1642 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>maggio 28, 2024</span>&nbsp;·&nbsp;8 minuti&nbsp;·&nbsp;1641 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to nullCon CTF 2023" href="https://albovo.github.io/it/ctf/nullconctf2023/"></a>
 </article>
 
@@ -204,7 +203,8 @@ Biscotto Il backend di Biscotto contiene solo due endpoint:...</p>
   </header>
   <div class="entry-content">
     <p>m0lecon CTF 2023 Beginner Web 🌐 Unguessable Questa sfida è stata la più facile nella CTF (aveva più risoluzioni del sanity check, lol). Infatti, per risolverla, tutto ciò che dovevi fare era capire che il sito web recuperava la bandiera da un punto finale /vjfYkHzyZGJ4A7cPNutFeM/flag, e per ottenerla abbiamo aperto l’endpoint enumerato l’intero sito.
-... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card....</p>
+... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card.style.backgroundColor = &#34;red&#34;; text.innerText = &#34;Wrong, try again&#34;; } else { card.style.backgroundColor = &#34;green&#34;; fetch(&#34;/vjfYkHzyZGJ4A7cPNutFeM/flag&#34;) .then((response) =&gt; response.text()) .then((str) =&gt; { text.innerText = str }); } card.removeAttribute(&#34;hidden&#34;); } ... Secure Access La challenge aveva un allegato, un file di bytecode Python (.pyc), che una volta decompilato, aveva questa funzione:
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>maggio 27, 2024</span>&nbsp;·&nbsp;7 minuti&nbsp;·&nbsp;1365 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to M0lecon CTF 2023 Beginner" href="https://albovo.github.io/it/ctf/m0leconctf2023/"></a>
@@ -217,7 +217,8 @@ Biscotto Il backend di Biscotto contiene solo due endpoint:...</p>
   </header>
   <div class="entry-content">
     <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes All’apparenza, questa challenge sembrava un semplice sito per la condivisione di note, ma un rapido sguardo al codice sorgente ha svelato come leggere la flag. Infatti, il file database.db includeva una query per inizializzare la tabella delle note, configurata nel seguente modo:
-query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all’URL http://challs....</p>
+query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all’URL http://challs.tfcctf.com:port/posts/view/admin, dove la flag era visibile.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>agosto 20, 2023</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2119 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to TFC CTF 2023" href="https://albovo.github.io/it/ctf/tfcctf2023/"></a>

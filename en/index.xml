@@ -4,10 +4,24 @@
     <title>Portfolio</title>
     <link>https://albovo.github.io/en/</link>
     <description>Recent content on Portfolio</description>
-    <generator>Hugo -- 0.125.7</generator>
+    <generator>Hugo -- 0.142.0</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Email Harvester 🕵</title>
+      <link>https://albovo.github.io/en/projects/emailharvester/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/en/projects/emailharvester/</guid>
+      <description>A tool that discovers email addresses associated with a company&amp;#39;s domain and checks whether the organization has been involved in any past data breaches.</description>
+    </item>
+    <item>
+      <title>Suricata Testing 🛡</title>
+      <link>https://albovo.github.io/en/projects/suricata/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/en/projects/suricata/</guid>
+      <description>A setup for Suricata in IDS mode (and IPS if needed) to protect a simulated industrial network.</description>
+    </item>
     <item>
       <title>Competitions 🏆</title>
       <link>https://albovo.github.io/en/competitions/</link>

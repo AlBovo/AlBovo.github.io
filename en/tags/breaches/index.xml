@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Breaches on Portfolio</title>
+    <link>https://albovo.github.io/en/tags/breaches/</link>
+    <description>Recent content in Breaches on Portfolio</description>
+    <generator>Hugo -- 0.142.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://albovo.github.io/en/tags/breaches/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Email Harvester 🕵</title>
+      <link>https://albovo.github.io/en/projects/emailharvester/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/en/projects/emailharvester/</guid>
+      <description>A tool that discovers email addresses associated with a company&amp;#39;s domain and checks whether the organization has been involved in any past data breaches.</description>
+    </item>
+  </channel>
+</rss>

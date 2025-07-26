@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/en/projects/">
+</noscript><meta property="og:url" content="https://albovo.github.io/en/projects/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Projects">
   <meta property="og:description" content="My personal portfolio.">
@@ -175,13 +172,40 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Email Harvester 🕵
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Email Harvester 🕵️‍♂️ 📋 Overview Email Harvester is a full‑stack web application that automatically discovers email addresses under a given domain, checks each against public data‑breach APIs to flag compromised accounts and presents the results in a simple, interactive interface. It combines a Flask‑powered Python backend for scraping and breach lookups with a Node.js/EJS frontend, all orchestrated via Docker Compose for one‑step deployment.
+🎯 Key Features Domain email scraping: Crawl websites and public resources to extract email addresses. Asynchronous processing: Backend tasks run in parallel for high throughput. Secure vs. predicted: Classify emails found directly (“secure”) versus those inferred by pattern (“predicted”). Breach verification: Integrate with HaveIBeenPwned (or similar) to highlight compromised addresses. Intuitive UI: Built with Node.js and EJS templates for real‑time feedback. Persistent storage: Store results in MongoDB for later analysis and export. Containerized deployment: Docker Compose script brings up all services (backend, frontend, database) in one command. 🏗️ Architecture Backend (Flask/Python) Exposes REST endpoints to initiate domain scans, retrieve stored results and perform breach checks. Utilizes asynchronous HTTP requests and background workers to handle large crawls. Frontend (Node.js/EJS) Renders search form and results pages. Interacts with the backend API to start scans and fetch updates. Database (MongoDB) Persists scraped email addresses, classification tags and breach‑status metadata. Orchestration Docker Compose defines three services: backend, frontend and mongodb, ensuring consistent environments and easy scaling. 🔧 Prerequisites Docker Docker Compose 🚀 Getting Started Clone the repo
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-07-26 00:00:00 +0000 UTC'>July 26, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;310 words&nbsp;·&nbsp;AlBovo, Mark-74</footer>
+  <a class="entry-link" aria-label="post link to Email Harvester 🕵" href="https://albovo.github.io/en/projects/emailharvester/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Suricata Testing 🛡
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Suricata testing 🛡️ 📋 Overview Suricata is a high‑performance, open‑source Network Intrusion Detection System (IDS), Intrusion Prevention System (IPS) and Network Security Monitoring (NSM) engine maintained by the Open Information Security Foundation (OISF). This repository provides a turnkey environment, using Docker and Docker Compose, to deploy Suricata in IDS mode (with an option for IPS) against a simulated industrial network, enabling you to test custom detection rules, generate realistic traffic patterns, and visualize alerts in real time.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-07-26 00:00:00 +0000 UTC'>July 26, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;508 words&nbsp;·&nbsp;AlBovo, Mark-74</footer>
+  <a class="entry-link" aria-label="post link to Suricata Testing 🛡" href="https://albovo.github.io/en/projects/suricata/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Solitario Croce
     </h2>
   </header>
   <div class="entry-content">
     <p>Solitario Croce ♣️ Development of a game 🎮 in C# using the WPF framework; the game is a solitaire based on customized playing cards.
 Development team 🤖 This project has been developed by:
-Agostini Alan Angiolillo Matteo Balducci Marco Bovo Alan Davide Game 🎮 The game we developed is the Solitario a Croce. How to play 🤔: Five cards from the deck are placed in the center of the table to form a cross ➕....</p>
+Agostini Alan Angiolillo Matteo Balducci Marco Bovo Alan Davide Game 🎮 The game we developed is the Solitario a Croce. ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-22 00:00:00 +0000 UTC'>July 22, 2024</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;208 words&nbsp;·&nbsp;AlBovo, Mark-74</footer>
   <a class="entry-link" aria-label="post link to Solitario Croce" href="https://albovo.github.io/en/projects/solitario/"></a>
@@ -193,7 +217,8 @@ Agostini Alan Angiolillo Matteo Balducci Marco Bovo Alan Davide Game 🎮 The ga
     </h2>
   </header>
   <div class="entry-content">
-    <p>Minesweeper Game 🚩 Minesweeper is a classic computer game that requires a combination of strategy and logic. The game is played on a grid, and the objective is to uncover all the hidden mines without detonating any of them. To do this, players click on individual squares, and the numbers revealed indicate the number of mines in adjacent squares. Armed with this information, players use deductive reasoning to mark squares they suspect contain mines with flags and gradually clear the grid of all non-mined areas....</p>
+    <p>Minesweeper Game 🚩 Minesweeper is a classic computer game that requires a combination of strategy and logic. The game is played on a grid, and the objective is to uncover all the hidden mines without detonating any of them. To do this, players click on individual squares, and the numbers revealed indicate the number of mines in adjacent squares. Armed with this information, players use deductive reasoning to mark squares they suspect contain mines with flags and gradually clear the grid of all non-mined areas. The challenge lies in making calculated guesses and avoiding mines, and successful Minesweeper players often develop a keen eye for patterns and strategies to conquer the game.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>May 27, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;320 words&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to Minesweeper 🚩" href="https://albovo.github.io/en/projects/mines/"></a>

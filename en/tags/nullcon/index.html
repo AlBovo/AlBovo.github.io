@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/en/tags/nullcon/">
+</noscript><meta property="og:url" content="https://albovo.github.io/en/tags/nullcon/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="NullCon">
   <meta property="og:description" content="My personal portfolio.">
@@ -164,9 +161,10 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>nullCon CTF 2023 Web 🌐 TYpical Boss In this challenge, it was noticeable that if you accessed the main directory ‘/’ of the challenge’s website, the web server would render all the files and directories present on the page (including a file named database.db, which was an SQLite database). As soon as I found this file, I analyzed its contents until I discovered the hashed password of the admin. This hash (in SHA-1) started with a very famous prefix known for its vulnerabilities in PHP, namely 0e....</p>
+    <p>nullCon CTF 2023 Web 🌐 TYpical Boss In this challenge, it was noticeable that if you accessed the main directory ‘/’ of the challenge’s website, the web server would render all the files and directories present on the page (including a file named database.db, which was an SQLite database). As soon as I found this file, I analyzed its contents until I discovered the hashed password of the admin. This hash (in SHA-1) started with a very famous prefix known for its vulnerabilities in PHP, namely 0e. In fact, the password would be interpreted by PHP as a number, specifically 0. The only way I had to bypass the login was to find a SHA-1 hash that also started with 0e. This is one useful repository with a lot of these hashes: Repository
+...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>May 28, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;1686 words&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>May 28, 2024</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;1685 words&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to nullCon CTF 2023" href="https://albovo.github.io/en/ctf/nullconctf2023/"></a>
 </article>
     </main>

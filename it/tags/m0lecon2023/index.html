@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/it/tags/m0lecon2023/">
+</noscript><meta property="og:url" content="https://albovo.github.io/it/tags/m0lecon2023/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="M0lecon2023">
   <meta property="og:description" content="My personal portfolio.">
@@ -165,7 +162,8 @@
   </header>
   <div class="entry-content">
     <p>m0lecon CTF 2023 Beginner Web 🌐 Unguessable Questa sfida è stata la più facile nella CTF (aveva più risoluzioni del sanity check, lol). Infatti, per risolverla, tutto ciò che dovevi fare era capire che il sito web recuperava la bandiera da un punto finale /vjfYkHzyZGJ4A7cPNutFeM/flag, e per ottenerla abbiamo aperto l’endpoint enumerato l’intero sito.
-... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card....</p>
+... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card.style.backgroundColor = &#34;red&#34;; text.innerText = &#34;Wrong, try again&#34;; } else { card.style.backgroundColor = &#34;green&#34;; fetch(&#34;/vjfYkHzyZGJ4A7cPNutFeM/flag&#34;) .then((response) =&gt; response.text()) .then((str) =&gt; { text.innerText = str }); } card.removeAttribute(&#34;hidden&#34;); } ... Secure Access La challenge aveva un allegato, un file di bytecode Python (.pyc), che una volta decompilato, aveva questa funzione:
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>maggio 27, 2024</span>&nbsp;·&nbsp;7 minuti&nbsp;·&nbsp;1365 parole&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to M0lecon CTF 2023 Beginner" href="https://albovo.github.io/it/ctf/m0leconctf2023/"></a>

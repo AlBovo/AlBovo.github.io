@@ -4,10 +4,24 @@
     <title>Projects on Portfolio</title>
     <link>https://albovo.github.io/it/projects/</link>
     <description>Recent content in Projects on Portfolio</description>
-    <generator>Hugo -- 0.125.7</generator>
+    <generator>Hugo -- 0.142.0</generator>
     <language>it</language>
-    <lastBuildDate>Tue, 23 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.github.io/it/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Email Harvester 🕵</title>
+      <link>https://albovo.github.io/it/projects/emailharvester/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/it/projects/emailharvester/</guid>
+      <description>Uno strumento che raccoglie gli indirizzi email legati al dominio di un’azienda e verifica se l’organizzazione ha subito violazioni di dati in passato.</description>
+    </item>
+    <item>
+      <title>Test di Suricata 🛡</title>
+      <link>https://albovo.github.io/it/projects/suricata/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/it/projects/suricata/</guid>
+      <description>Un ambiente pronto per eseguire Suricata in modalità IDS (e, se necessario, IPS) per proteggere una rete industriale simulata.</description>
+    </item>
     <item>
       <title>Solitario Croce</title>
       <link>https://albovo.github.io/it/projects/solitario/</link>

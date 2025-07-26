@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/en/tags/m0lecon/">
+</noscript><meta property="og:url" content="https://albovo.github.io/en/tags/m0lecon/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="M0lecon">
   <meta property="og:description" content="My personal portfolio.">
@@ -165,7 +162,8 @@
   </header>
   <div class="entry-content">
     <p>m0lecon CTF 2023 Beginner Web 🌐 Unguessable This challenge was the easiest in the CTF (it had more solves than the sanity check, lol). In fact, to solve it, all you had to do was understand that the website fetched the flag from an endpoint /vjfYkHzyZGJ4A7cPNutFeM/flag, and to obtain it we opened the endpoint sniffed the whole network.
-... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card....</p>
+... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card.style.backgroundColor = &#34;red&#34;; text.innerText = &#34;Wrong, try again&#34;; } else { card.style.backgroundColor = &#34;green&#34;; fetch(&#34;/vjfYkHzyZGJ4A7cPNutFeM/flag&#34;) .then((response) =&gt; response.text()) .then((str) =&gt; { text.innerText = str }); } card.removeAttribute(&#34;hidden&#34;); } ... Secure Access The challenge had an attachment, a Python bytecode file (.pyc), which once decompiled, resulted in this function:
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>May 27, 2024</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;1348 words&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to M0lecon CTF 2023 Beginner" href="https://albovo.github.io/en/ctf/m0leconctf2023/"></a>

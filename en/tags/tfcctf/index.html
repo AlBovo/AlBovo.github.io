@@ -57,10 +57,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:url" content="https://albovo.github.io/en/tags/tfcctf/">
+</noscript><meta property="og:url" content="https://albovo.github.io/en/tags/tfcctf/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Tfcctf">
   <meta property="og:description" content="My personal portfolio.">
@@ -164,7 +161,8 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag. In fact the database.db file had a query to initialize the notes table with this code: query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!...</p>
+    <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag. In fact the database.db file had a query to initialize the notes table with this code: query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) This could only means that the flag wasn’t hidden and the easiest way to find it was to make a GET request to the url http://challs.tfcctf.com:port/posts/view/admin and the flag was in fact right there.
+...</p>
   </div>
   <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>August 20, 2023</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;2449 words&nbsp;·&nbsp;AlBovo</footer>
   <a class="entry-link" aria-label="post link to TFC CTF 2023" href="https://albovo.github.io/en/ctf/tfcctf2023/"></a>

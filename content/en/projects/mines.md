@@ -11,7 +11,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "A project about the famous minesweeper game made for Console or Web GUI."
-canonicalURL: "https://albovo.tech/en/projects/"
+canonicalURL: "https://albovo.github.io/en/projects/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
@@ -71,5 +71,5 @@ docker run mine/mine:latest
 Then Docker will display the local port where the website is being hosted.
 
 ## How does it look like 👀
-![web gui](/screenWeb.png)
-![console](/screenTerminal.png)
+![web gui](/images/screenWeb.png)
+![console](/images/screenTerminal.png)

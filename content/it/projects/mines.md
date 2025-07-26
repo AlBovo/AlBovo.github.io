@@ -11,7 +11,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Un progetto riguardo il gioco Campo minato per terminale e interfaccia web."
-canonicalURL: "https://albovo.tech/it/projects/"
+canonicalURL: "https://albovo.github.io/it/projects/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
@@ -71,5 +71,5 @@ docker run mine/mine:latest
 In seguito, Docker mostrerà la porta locale su cui il sito web è ospitato.
 
 ## Come appare 👀
-![web gui](/screenWeb.png)
-![console](/screenTerminal.png)
+![web gui](/images/screenWeb.png)
+![console](/images/screenTerminal.png)

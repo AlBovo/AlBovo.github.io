@@ -12,7 +12,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "All the writeups of the challenges I've written for the UlisseCTF 2025 edition."
-canonicalURL: "https://albovo.tech/en/ctf/"
+canonicalURL: "https://albovo.github.io/en/ctf/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

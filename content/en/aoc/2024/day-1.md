@@ -12,7 +12,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "The first problem of AoC 2024."
-canonicalURL: "https://albovo.tech/en/aoc/"
+canonicalURL: "https://albovo.github.io/en/aoc/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

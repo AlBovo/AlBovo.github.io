@@ -12,7 +12,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Alcune writeups della pascalCTF Beginner ctf 2025."
-canonicalURL: "https://albovo.tech/it/ctf/"
+canonicalURL: "https://albovo.github.io/it/ctf/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

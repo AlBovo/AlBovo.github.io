@@ -56,7 +56,8 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://albovo.github.io/en/ctf/pascalctf2025/">
+</noscript>
+<meta property="og:url" content="https://albovo.github.io/en/ctf/pascalctf2025/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Pascal CTF Beginner 2025">
   <meta property="og:description" content="Some writeups of the pascalCTF Beginner ctf 2025 edition.">
@@ -333,7 +334,7 @@ Therefore there isn&rsquo;t any need to create a script to solve this challenge.
 </span></span><span class="line"><span class="cl">    <span class="n">enc_flag</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;output.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">romanize</span><span class="p">(</span><span class="n">enc_flag</span><span class="p">))</span>
 </span></span></code></pre></div><h3 id="mindblowing">MindBlowing<a hidden class="anchor" aria-hidden="true" href="#mindblowing">#</a></h3>
-<p>This challenge offers a service that computes the <strong>bitwise AND</strong> between a sentence (likely the flag) and a series of integers provided by the user. To make everything more interesting, each integer must have no more than <em>40 bits set to 1</em>. Once the calculations are done, the challenge outputs an array of results.<!-- raw HTML omitted --></p>
+<p>This challenge offers a service that computes the <strong>bitwise AND</strong> between a sentence (likely the flag) and a series of integers provided by the user. To make everything more interesting, each integer must have no more than <em>40 bits set to 1</em>. Once the calculations are done, the challenge outputs an array of results.</p>
 <p>There are several strategies to solve this challenge. One approach involves sending approximately <strong>15 integers</strong>, each with 40 consecutive bits set to 1, and progressively <em>right-shifted</em> by <code>40 * x</code>, where <code>x</code> is the index of the integer. Afterward, the flag can be recovered by computing the <em>bitwise OR</em> of the results array and converting the resulting integer to bytes (in big-endian order, of course).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Util.number</span> <span class="kn">import</span> <span class="o">*</span>

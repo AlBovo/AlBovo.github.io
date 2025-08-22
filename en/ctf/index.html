@@ -57,7 +57,8 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="https://albovo.github.io/en/ctf/">
+</noscript>
+<meta property="og:url" content="https://albovo.github.io/en/ctf/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Capture The Flag 🚩">
   <meta property="og:description" content="My personal portfolio.">
@@ -172,6 +173,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">scriptCTF 2025
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>scriptCTF 2025 🚩 Back From Where 💻 Problem Statement The problem can be stated as follows:
+You are given an \(N \times N\) grid of integers \(a_{ij}\). A path is considered valid if it starts top-left and only moves down or right. For each cell \((i,j)\) find the maximum number of trailing zeros in the product of values along any valid path.
+Writeup 📜 Number of trailing zero’s The first question is how to practically calculate the number of trailing zero’s of a number $m$. The answer is pretty straightforward: we find how many times $m$ is divisible by $5$ and by $2$ the number of trailing zero’s is how many five’s and two’s can be matched together. Suppose $m$ is divisible by five $f$ times and by two $t$ times, then the number of trailing zero’s is \(min(f, t)\).
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-22 00:00:00 +0000 UTC'>August 22, 2025</span>&nbsp;·&nbsp;14 min&nbsp;·&nbsp;2974 words&nbsp;·&nbsp;Ale18V, AlBovo, katchup</footer>
+  <a class="entry-link" aria-label="post link to scriptCTF 2025" href="https://albovo.github.io/en/ctf/scriptctf2025/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">ENOWARS 9
     </h2>
   </header>
@@ -244,7 +260,8 @@ Analysis The challenge provided a register endpoint where users were asked to su
     </h2>
   </header>
   <div class="entry-content">
-    <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag. In fact the database.db file had a query to initialize the notes table with this code: query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) This could only means that the flag wasn’t hidden and the easiest way to find it was to make a GET request to the url http://challs.tfcctf.com:port/posts/view/admin and the flag was in fact right there.
+    <p>TFC CTF 2023 Web 🌐 Baby Ducky Notes This challenge looked like a normal notes sharing site, but after a quick view to the source code, it was easy to find the way to read the flag. In fact the database.db file had a query to initialize the notes table with this code:
+query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) This could only means that the flag wasn’t hidden and the easiest way to find it was to make a GET request to the url http://challs.tfcctf.com:port/posts/view/admin and the flag was in fact right there.
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>August 20, 2023</span>&nbsp;·&nbsp;12 min&nbsp;·&nbsp;2449 words&nbsp;·&nbsp;AlBovo</footer>

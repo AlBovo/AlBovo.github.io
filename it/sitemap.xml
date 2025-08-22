@@ -2,6 +2,136 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://albovo.github.io/it/ctf/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/ctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/ctf/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/ctf/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/ctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/ctf/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/osint/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/osint/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/osint/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/programming/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/programming/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/programming/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/pyjail/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/pyjail/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/pyjail/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/scriptctf/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/scriptctf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/scriptctf/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/ctf/scriptctf2025/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/ctf/scriptctf2025/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/ctf/scriptctf2025/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/web/</loc>
+    <lastmod>2025-08-22T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/web/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/web/"
+                />
+  </url><url>
     <loc>https://albovo.github.io/it/tags/attack-defense/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -15,19 +145,6 @@
                 href="https://albovo.github.io/it/tags/attack-defense/"
                 />
   </url><url>
-    <loc>https://albovo.github.io/it/ctf/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/ctf/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/ctf/"
-                />
-  </url><url>
     <loc>https://albovo.github.io/it/tags/crypto/</loc>
     <lastmod>2025-07-29T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -39,19 +156,6 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.github.io/it/tags/crypto/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/ctf/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/ctf/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/ctf/"
                 />
   </url><url>
     <loc>https://albovo.github.io/it/tags/enowars/</loc>
@@ -78,45 +182,6 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.github.io/it/ctf/enowars2025/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/web/</loc>
-    <lastmod>2025-07-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/web/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/web/"
                 />
   </url><url>
     <loc>https://albovo.github.io/it/tags/breaches/</loc>
@@ -474,19 +539,6 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://albovo.github.io/it/aoc/2024/day-1/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/programming/</loc>
-    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/programming/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/programming/"
                 />
   </url><url>
     <loc>https://albovo.github.io/it/tags/rust/</loc>

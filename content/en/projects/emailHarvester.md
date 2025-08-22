@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "A tool that discovers email addresses associated with a company's domain and checks whether the organization has been involved in any past data breaches."
 canonicalURL: "https://albovo.github.io/en/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

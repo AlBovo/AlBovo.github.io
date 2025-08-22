@@ -13,9 +13,8 @@ hidemeta: false
 comments: false
 description: "Some writeups of the pascalCTF Beginner ctf 2025 edition."
 canonicalURL: "https://albovo.github.io/en/ctf/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true
@@ -117,7 +116,8 @@ if __name__ == "__main__":
 ```
 
 ### MindBlowing
-This challenge offers a service that computes the **bitwise AND** between a sentence (likely the flag) and a series of integers provided by the user. To make everything more interesting, each integer must have no more than *40 bits set to 1*. Once the calculations are done, the challenge outputs an array of results.<br>
+This challenge offers a service that computes the **bitwise AND** between a sentence (likely the flag) and a series of integers provided by the user. To make everything more interesting, each integer must have no more than *40 bits set to 1*. Once the calculations are done, the challenge outputs an array of results.
+
 
 There are several strategies to solve this challenge. One approach involves sending approximately **15 integers**, each with 40 consecutive bits set to 1, and progressively *right-shifted* by `40 * x`, where `x` is the index of the integer. Afterward, the flag can be recovered by computing the *bitwise OR* of the results array and converting the resulting integer to bytes (in big-endian order, of course). 
 

@@ -13,9 +13,8 @@ hidemeta: false
 comments: false
 description: "Alcune writeup della TFC CTF 2023."
 canonicalURL: "https://albovo.github.io/it/ctf/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

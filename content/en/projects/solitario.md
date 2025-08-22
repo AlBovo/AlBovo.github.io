@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "A school project about a solitaire card game designed by a small team of students."
 canonicalURL: "https://albovo.github.io/en/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

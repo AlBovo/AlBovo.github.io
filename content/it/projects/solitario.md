@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "Un progetto scolastico riguardo un solitario di carte progettato da un piccolo team di studenti."
 canonicalURL: "https://albovo.github.io/it/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

@@ -13,9 +13,8 @@ hidemeta: false
 comments: false
 description: "Some writeups of the ENOWARS 9th edition."
 canonicalURL: "https://albovo.github.io/en/ctf/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

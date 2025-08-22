@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "A project about the famous minesweeper game made for Console or Web GUI."
 canonicalURL: "https://albovo.github.io/en/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

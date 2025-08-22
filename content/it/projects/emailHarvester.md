@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "Uno strumento che raccoglie gli indirizzi email legati al dominio di un’azienda e verifica se l’organizzazione ha subito violazioni di dati in passato."
 canonicalURL: "https://albovo.github.io/it/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

@@ -13,9 +13,8 @@ hidemeta: false
 comments: false
 description: "Alcune writeups della pascalCTF Beginner ctf 2025."
 canonicalURL: "https://albovo.github.io/it/ctf/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true
@@ -120,7 +119,8 @@ if __name__ == "__main__":
 
 ### MindBlowing
 Questa challenge offre un servizio che calcola l'**AND bitwise** tra una stringa (probabilmente la flag) e una serie di interi forniti dall'utente. Per rendere tutto più interessante, ogni intero non può avere più di *40 bit impostati a 1*.  
-Una volta completati i calcoli, la challenge restituisce un array di risultati.<br>
+Una volta completati i calcoli, la challenge restituisce un array di risultati.
+
 
 Esistono diverse strategie per risolvere questa challenge. Un approccio consiste nell'inviare circa **15 interi**, ognuno con 40 bit consecutivi impostati a 1, e progressivamente *shiftati a destra* di `40 * x`, dove `x` è l'indice dell'intero. Successivamente, è possibile recuperare la flag calcolando l'*OR bitwise* dell'array dei risultati e convertendo l'intero risultante in byte (in ordine *big-endian*, ovviamente).
 

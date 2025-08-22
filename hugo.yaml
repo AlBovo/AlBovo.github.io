@@ -103,8 +103,6 @@ params:
   enableEmoji: true
   displayFullLangName: true
 
-  math: true
-
   assets:
     # disableHLJS: true # to disable highlight.js
     # disableFingerprinting: true
@@ -205,11 +203,6 @@ pygmentsUseClasses: true
 markup:
   highlight:
     noClasses: false
-    # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
-    # lineNos: true
-    # style: monokai
   goldmark:
     extensions:
       passthrough:

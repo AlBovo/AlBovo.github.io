@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "Un progetto riguardo il gioco Campo minato per terminale e interfaccia web."
 canonicalURL: "https://albovo.github.io/it/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

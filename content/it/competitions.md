@@ -13,9 +13,8 @@ hidemeta: false
 comments: false
 # description: "A page with all my personal achivement"
 canonicalURL: "https://albovo.github.io/en/competitions/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

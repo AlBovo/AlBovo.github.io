@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "A setup for Suricata in IDS mode (and IPS if needed) to protect a simulated industrial network."
 canonicalURL: "https://albovo.github.io/en/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

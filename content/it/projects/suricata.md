@@ -12,9 +12,8 @@ hidemeta: false
 comments: false
 description: "Un ambiente pronto per eseguire Suricata in modalità IDS (e, se necessario, IPS) per proteggere una rete industriale simulata."
 canonicalURL: "https://albovo.github.io/en/projects/"
-disableHLJS: true # to disable highlightjs
-disableShare: false
 disableHLJS: false
+disableShare: false
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true

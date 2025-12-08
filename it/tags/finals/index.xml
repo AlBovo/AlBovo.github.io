@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Finals on Portfolio</title>
+    <link>https://albovo.github.io/it/tags/finals/</link>
+    <description>Recent content in Finals on Portfolio</description>
+    <generator>Hugo -- 0.142.0</generator>
+    <language>it</language>
+    <lastBuildDate>Mon, 08 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://albovo.github.io/it/tags/finals/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finali SnakeCTF 2025</title>
+      <link>https://albovo.github.io/it/ctf/snakefinals2025/</link>
+      <pubDate>Mon, 08 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/it/ctf/snakefinals2025/</guid>
+      <description>I writeup di tutte le challenge che ho risolto durante le Finali SnakeCTF 2025.</description>
+    </item>
+  </channel>
+</rss>

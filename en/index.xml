@@ -6,8 +6,15 @@
     <description>Recent content on Portfolio</description>
     <generator>Hugo -- 0.142.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 08 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Dec 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Competitions 🏆</title>
+      <link>https://albovo.github.io/en/competitions/</link>
+      <pubDate>Thu, 11 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/en/competitions/</guid>
+      <description>A timeline of my competitive programming and cybersecurity achievements</description>
+    </item>
     <item>
       <title>SnakeCTF Finals 2025</title>
       <link>https://albovo.github.io/en/ctf/snakefinals2025/</link>
@@ -42,13 +49,6 @@
       <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://albovo.github.io/en/projects/suricata/</guid>
       <description>A setup for Suricata in IDS mode (and IPS if needed) to protect a simulated industrial network.</description>
-    </item>
-    <item>
-      <title>Competitions 🏆</title>
-      <link>https://albovo.github.io/en/competitions/</link>
-      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
-      <guid>https://albovo.github.io/en/competitions/</guid>
-      <description></description>
     </item>
     <item>
       <title>UlisseCTF 2025</title>

@@ -1,0 +1,33 @@
+{{/* Timeline partial for competitions */}}
+{{ $competitions := .Params.competitions }}
+
+{{ if $competitions }}
+<div class="timeline-container">
+    {{ range $competitions }}
+    <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+            <div class="timeline-header">
+                <h3 class="timeline-title">{{ .title }}</h3>
+                <span class="timeline-date">{{ .date }}</span>
+            </div>
+            {{ if .description }}
+            <p class="timeline-description">{{ .description | markdownify }}</p>
+            {{ end }}
+            {{ if .tags }}
+            <div class="timeline-tags">
+                {{ range .tags }}
+                <span class="timeline-tag">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+            {{ if .link }}
+            <a href="{{ .link }}" class="timeline-link" target="_blank" rel="noopener noreferrer">
+                {{ if $.Site.Language.Lang | eq "it" }}Leggi di più{{ else }}Read more{{ end }} →
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

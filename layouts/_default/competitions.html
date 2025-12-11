@@ -1,0 +1,25 @@
+{{ define "main" }}
+<article class="post-single">
+    <header class="post-header">
+        <h1 class="post-title entry-hint-parent">
+            {{ .Title }}
+        </h1>
+        {{ if .Description }}
+        <div class="post-description">
+            {{ .Description }}
+        </div>
+        {{ end }}
+    </header>
+
+    {{ partial "timeline-styles.html" . }}
+    
+    <div class="post-content">
+        {{ .Content }}
+        {{ partial "timeline.html" . }}
+    </div>
+
+    <footer class="post-footer">
+        {{ partial "post_meta.html" . }}
+    </footer>
+</article>
+{{ end }}

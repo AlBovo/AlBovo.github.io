@@ -22,6 +22,11 @@ ShowWordCount: false
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 
+editPost:
+    URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/it"
+    Text: "Suggerisci modifiche" # edit text
+    appendFilePath: true # to append file path to Edit link
+
 competitions:
   - title: "CyberChallenge.IT 2025"
     date: "2025"
@@ -41,5 +46,3 @@ competitions:
     tags: ["programmazione", "algoritmi", "olimpiadi"]
     link: "https://olimpiadi-informatica.it/"
 ---
-
-Ecco una timeline delle competizioni a cui ho partecipato nel mio percorso nella programmazione competitiva e nella cybersecurity.

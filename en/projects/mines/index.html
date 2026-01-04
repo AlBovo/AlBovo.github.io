@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +10,11 @@
 <meta name="description" content="A project about the famous minesweeper game made for Console or Web GUI.">
 <meta name="author" content="AlBovo">
 <link rel="canonical" href="https://albovo.github.io/en/projects/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://albovo.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://albovo.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://albovo.github.io/favicon.ico">
 <link rel="mask-icon" href="https://albovo.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
@@ -40,23 +40,38 @@
                 --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
+                color-scheme: dark;
             }
 
             .list {
                 background: var(--theme);
             }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
+            .toc {
+                background: var(--entry);
             }
+        }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
             }
         }
 
     </style>
 </noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
 <meta property="og:url" content="https://albovo.github.io/en/projects/mines/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Minesweeper 🚩">
@@ -132,27 +147,15 @@
 }
 </script>
 </head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
+<body id="top">
+    <header class="header">
     <nav class="nav">
         <div class="logo">
             <a href="https://albovo.github.io/en/" accesskey="h" title="Home (Alt + H)">
-                <img src="https://albovo.github.io/apple-touch-icon.png" alt="" aria-label="logo"
+                <img src="https://albovo.github.io/favicon.ico" alt="" aria-label="logo"
                     height="35">Home</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -172,12 +175,12 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://albovo.github.io/it/" title="Italian"
-                            aria-label=":it: It">🇮🇹 It</a>
-                    </li>
-                </ul>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="https://albovo.github.io/it/" title="Italian"
+                                aria-label=":it: It">🇮🇹 It</a>
+                        </li>
+                    </ul>
             </div>
         </div>
         <ul id="menu">
@@ -215,12 +218,14 @@
     <div class="post-description">
       A project about the famous minesweeper game made for Console or Web GUI.
     </div>
-    <div class="post-meta"><span title='2024-05-27 00:00:00 +0000 UTC'>May 27, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;320 words&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Translations:
+    <div class="post-meta"><span title='2024-05-27 00:00:00 +0000 UTC'>May 27, 2024</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>320 words</span>&nbsp;·&nbsp;<span>AlBovo</span>&nbsp;|&nbsp;<span>Translations:</span>
 <ul class="i18n_list">
     <li>
         <a href="https://albovo.github.io/it/projects/mines/">🇮🇹 It</a>
     </li>
-</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/projects/mines.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+</ul>&nbsp;|&nbsp;<span>
+    <a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/projects/mines.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+</span>
 
 </div>
   </header> <div class="toc">
@@ -358,7 +363,7 @@ To play on the web, simply right-click to flag a selected square as a bomb, and 
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://albovo.github.io/en/">Portfolio</a></span> · 
+        <span>&copy; 2026 <a href="https://albovo.github.io/en/">Portfolio</a></span> · 
 
     <span>
         Powered by
@@ -373,9 +378,14 @@ To play on the web, simply right-click to flag a selected square as a bomb, and 
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
+    let menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
         menu.onscroll = function () {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
@@ -416,11 +426,12 @@ To play on the web, simply right-click to flag a selected square as a bomb, and 
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })

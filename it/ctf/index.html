@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" dir="auto">
+<html lang="it" dir="auto" data-theme="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +10,15 @@
 <meta name="description" content="Capture The Flag 🚩 - Portfolio">
 <meta name="author" content="AlBovo">
 <link rel="canonical" href="https://albovo.github.io/it/ctf/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://albovo.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://albovo.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://albovo.github.io/favicon.ico">
 <link rel="mask-icon" href="https://albovo.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://albovo.github.io/it/ctf/index.xml">
+<link rel="alternate" type="application/rss+xml" href="https://albovo.github.io/it/ctf/index.xml" title="rss">
 <link rel="alternate" hreflang="en" href="https://albovo.github.io/en/ctf/">
 <link rel="alternate" hreflang="it" href="https://albovo.github.io/it/ctf/">
 <noscript>
@@ -41,23 +41,38 @@
                 --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
+                color-scheme: dark;
             }
 
             .list {
                 background: var(--theme);
             }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
+            .toc {
+                background: var(--entry);
             }
+        }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
             }
         }
 
     </style>
 </noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
 <meta property="og:url" content="https://albovo.github.io/it/ctf/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="Capture The Flag 🚩">
@@ -84,27 +99,15 @@
 }
 </script>
 </head>
-
 <body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
+    <header class="header">
     <nav class="nav">
         <div class="logo">
             <a href="https://albovo.github.io/it/" accesskey="h" title="Home (Alt + H)">
-                <img src="https://albovo.github.io/apple-touch-icon.png" alt="" aria-label="logo"
+                <img src="https://albovo.github.io/favicon.ico" alt="" aria-label="logo"
                     height="35">Home</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -124,12 +127,12 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://albovo.github.io/en/" title="🇬🇧 En"
-                            aria-label=":uk: En">🇬🇧 En</a>
-                    </li>
-                </ul>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="https://albovo.github.io/en/" title="🇬🇧 En"
+                                aria-label=":uk: En">🇬🇧 En</a>
+                        </li>
+                    </ul>
             </div>
         </div>
         <ul id="menu">
@@ -181,7 +184,7 @@
 Shellcode Wannabe Shellcode Wannabe era un semplice binario ELF per x86_64 scritto in C, che forniva all’utente quattro azioni principali:
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-08 00:00:00 +0000 UTC'>dicembre 8, 2025</span>&nbsp;·&nbsp;16 minuti&nbsp;·&nbsp;3271 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2025-12-08 00:00:00 +0000 UTC'>dicembre 8, 2025</span>&nbsp;·&nbsp;<span>16 minuti</span>&nbsp;·&nbsp;<span>3271 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to Finali SnakeCTF 2025" href="https://albovo.github.io/it/ctf/snakefinals2025/"></a>
 </article>
 
@@ -195,7 +198,7 @@ Shellcode Wannabe Shellcode Wannabe era un semplice binario ELF per x86_64 scrit
 Ti viene data una griglia $N \times N$ di interi $a_{ij}$. Un percorso è considerato valido se parte dall’angolo in alto a sinistra e si muove solo verso il basso o verso destra. Per ogni cella $(i,j)$ trova il numero massimo di zeri finali nel prodotto dei valori lungo un qualsiasi percorso valido.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-08-22 00:00:00 +0000 UTC'>agosto 22, 2025</span>&nbsp;·&nbsp;14 minuti&nbsp;·&nbsp;2891 parole&nbsp;·&nbsp;Ale18V, AlBovo, katchup</footer>
+  <footer class="entry-footer"><span title='2025-08-22 00:00:00 +0000 UTC'>agosto 22, 2025</span>&nbsp;·&nbsp;<span>14 minuti</span>&nbsp;·&nbsp;<span>2891 parole</span>&nbsp;·&nbsp;<span>Ale18V, AlBovo, katchup</span></footer>
   <a class="entry-link" aria-label="post link to scriptCTF 2025" href="https://albovo.github.io/it/ctf/scriptctf2025/"></a>
 </article>
 
@@ -208,7 +211,7 @@ Ti viene data una griglia $N \times N$ di interi $a_{ij}$. Un percorso è consid
     <p>ENOWARS 9 🚩 ParceroTV 🌐 Panoramica ParceroTV era un’applicazione web di condivisione video, simile a una versione in piccolo di YouTube, sviluppata con un backend in Rust usando il framework Actix-web e un database SQLite. Il servizio permetteva agli utenti di registrarsi, effettuare il login e caricare video e “shorts”. I video potevano essere contrassegnati come pubblici o privati, e gli utenti potevano creare playlist, commentare i video e visualizzare i profili di altri utenti. L’applicazione includeva anche una funzionalità “shorts” con didascalie auto-generate in spagnolo.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-07-29 00:00:00 +0000 UTC'>luglio 29, 2025</span>&nbsp;·&nbsp;8 minuti&nbsp;·&nbsp;1567 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2025-07-29 00:00:00 +0000 UTC'>luglio 29, 2025</span>&nbsp;·&nbsp;<span>8 minuti</span>&nbsp;·&nbsp;<span>1567 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to ENOWARS 9" href="https://albovo.github.io/it/ctf/enowars2025/"></a>
 </article>
 
@@ -223,7 +226,7 @@ L’app offriva anche un endpoint di test dei template, che consentiva agli uten
 Analisi La challenge forniva un endpoint di registrazione, dove l’utente poteva scegliere un nome utente e un nome personalizzato per il file di log. Questi valori venivano poi usati per generare un UUID che identificava in modo univoco il file di log dell’utente.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-04-08 00:00:00 +0000 UTC'>aprile 8, 2025</span>&nbsp;·&nbsp;13 minuti&nbsp;·&nbsp;2733 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2025-04-08 00:00:00 +0000 UTC'>aprile 8, 2025</span>&nbsp;·&nbsp;<span>13 minuti</span>&nbsp;·&nbsp;<span>2733 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to UlisseCTF 2025" href="https://albovo.github.io/it/ctf/ulissectf2025/"></a>
 </article>
 
@@ -236,7 +239,7 @@ Analisi La challenge forniva un endpoint di registrazione, dove l’utente potev
     <p>Pascal CTF Beginner 2025 Web 🌐 Static Fl@g Questa challenge è una delle più semplici nel contesto della sicurezza web, in quanto si basa su un controllo lato client per rivelare la flag. La flag è incorporata nel codice JavaScript della pagina index, codificata in base64, il che la rende facilmente individuabile tramite ispezione del codice. Di conseguenza, non è necessario scrivere uno script per risolvere questa challenge.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2025-03-26 00:00:00 +0000 UTC'>marzo 26, 2025</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2003 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2025-03-26 00:00:00 +0000 UTC'>marzo 26, 2025</span>&nbsp;·&nbsp;<span>10 minuti</span>&nbsp;·&nbsp;<span>2003 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to Pascal CTF Beginner 2025" href="https://albovo.github.io/it/ctf/pascalctf2025/"></a>
 </article>
 
@@ -249,7 +252,7 @@ Analisi La challenge forniva un endpoint di registrazione, dove l’utente potev
     <p>nullCon CTF 2023 Web 🌐 TYpical Boss In questa challenge, è possibile notare come se si accede all’endpoint ‘/’ della challenge, il sito renderizzerà tutti i file e directory presenti nella pagina (includendo un file chiamato database.db, che era un database SQLite). Appena ho trovato questo file, ho provato ad analizzare il contenuto finché non ho trovato la password hashata dell’admin. Questo hash (in SHA-1) iniziava con un prefisso molto conosciuto per delle potenziali vulnerabilità in PHP, ovvero 0e. Infatti, questa password verrà ogni volta interpetata da PHP come un numero, nello specifico 0. L’unica via che avevo per bypassare quindi questo login era di trovare un plaintext che hashato in SHA-1 incominciasse anche lui per 0e. Questa è una repository molto utile per quanto riguarda il pentesting: Repository
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>maggio 28, 2024</span>&nbsp;·&nbsp;8 minuti&nbsp;·&nbsp;1641 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2024-05-28 00:00:00 +0000 UTC'>maggio 28, 2024</span>&nbsp;·&nbsp;<span>8 minuti</span>&nbsp;·&nbsp;<span>1641 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to nullCon CTF 2023" href="https://albovo.github.io/it/ctf/nullconctf2023/"></a>
 </article>
 
@@ -263,7 +266,7 @@ Analisi La challenge forniva un endpoint di registrazione, dove l’utente potev
 ... function update(res) { // the function used by the site to get the flag if (res === &#34;wrong&#34;) { card.style.backgroundColor = &#34;red&#34;; text.innerText = &#34;Wrong, try again&#34;; } else { card.style.backgroundColor = &#34;green&#34;; fetch(&#34;/vjfYkHzyZGJ4A7cPNutFeM/flag&#34;) .then((response) =&gt; response.text()) .then((str) =&gt; { text.innerText = str }); } card.removeAttribute(&#34;hidden&#34;); } ... Secure Access La challenge aveva un allegato, un file di bytecode Python (.pyc), che una volta decompilato, aveva questa funzione:
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>maggio 27, 2024</span>&nbsp;·&nbsp;7 minuti&nbsp;·&nbsp;1365 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2024-05-27 00:00:00 +0000 UTC'>maggio 27, 2024</span>&nbsp;·&nbsp;<span>7 minuti</span>&nbsp;·&nbsp;<span>1365 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to M0lecon CTF 2023 Beginner" href="https://albovo.github.io/it/ctf/m0leconctf2023/"></a>
 </article>
 
@@ -277,13 +280,13 @@ Analisi La challenge forniva un endpoint di registrazione, dove l’utente potev
 query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden ) VALUES ( 1, &#39;Here is a ducky flag!&#39;, &#39;{os.environ.get(&#34;FLAG&#34;)}&#39;, 0 ); &#39;&#39;&#39;) Questo significava che chiaramente la flag non era nascosta e che il metodo più semplice per trovarla era effettuare una richiesta GET all’URL http://challs.tfcctf.com:port/posts/view/admin, dove la flag era visibile.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>agosto 20, 2023</span>&nbsp;·&nbsp;10 minuti&nbsp;·&nbsp;2119 parole&nbsp;·&nbsp;AlBovo</footer>
+  <footer class="entry-footer"><span title='2023-08-20 00:00:00 +0000 UTC'>agosto 20, 2023</span>&nbsp;·&nbsp;<span>10 minuti</span>&nbsp;·&nbsp;<span>2119 parole</span>&nbsp;·&nbsp;<span>AlBovo</span></footer>
   <a class="entry-link" aria-label="post link to TFC CTF 2023" href="https://albovo.github.io/it/ctf/tfcctf2023/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://albovo.github.io/it/">Portfolio</a></span> · 
+        <span>&copy; 2026 <a href="https://albovo.github.io/it/">Portfolio</a></span> · 
 
     <span>
         Powered by
@@ -298,9 +301,14 @@ query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden 
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
+    let menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
         menu.onscroll = function () {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
@@ -341,11 +349,12 @@ query(con, f&#39;&#39;&#39; INSERT INTO posts ( user_id, title, content, hidden 
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })

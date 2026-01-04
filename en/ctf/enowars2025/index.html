@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +10,11 @@
 <meta name="description" content="Some writeups of the ENOWARS 9th edition.">
 <meta name="author" content="AlBovo">
 <link rel="canonical" href="https://albovo.github.io/en/ctf/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://albovo.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://albovo.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://albovo.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://albovo.github.io/favicon.ico">
+<link rel="apple-touch-icon" href="https://albovo.github.io/favicon.ico">
 <link rel="mask-icon" href="https://albovo.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
@@ -40,23 +40,38 @@
                 --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
+                color-scheme: dark;
             }
 
             .list {
                 background: var(--theme);
             }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
+            .toc {
+                background: var(--entry);
             }
+        }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
             }
         }
 
     </style>
 </noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
 <meta property="og:url" content="https://albovo.github.io/en/ctf/enowars2025/">
   <meta property="og:site_name" content="Portfolio">
   <meta property="og:title" content="ENOWARS 9">
@@ -132,27 +147,15 @@
 }
 </script>
 </head>
-
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
+<body id="top">
+    <header class="header">
     <nav class="nav">
         <div class="logo">
             <a href="https://albovo.github.io/en/" accesskey="h" title="Home (Alt + H)">
-                <img src="https://albovo.github.io/apple-touch-icon.png" alt="" aria-label="logo"
+                <img src="https://albovo.github.io/favicon.ico" alt="" aria-label="logo"
                     height="35">Home</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -172,12 +175,12 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
-                <ul class="lang-switch"><li>|</li>
-                    <li>
-                        <a href="https://albovo.github.io/it/" title="Italian"
-                            aria-label=":it: It">🇮🇹 It</a>
-                    </li>
-                </ul>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="https://albovo.github.io/it/" title="Italian"
+                                aria-label=":it: It">🇮🇹 It</a>
+                        </li>
+                    </ul>
             </div>
         </div>
         <ul id="menu">
@@ -215,12 +218,14 @@
     <div class="post-description">
       Some writeups of the ENOWARS 9th edition.
     </div>
-    <div class="post-meta"><span title='2025-07-29 00:00:00 +0000 UTC'>July 29, 2025</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;1531 words&nbsp;·&nbsp;AlBovo&nbsp;|&nbsp;Translations:
+    <div class="post-meta"><span title='2025-07-29 00:00:00 +0000 UTC'>July 29, 2025</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;·&nbsp;<span>1531 words</span>&nbsp;·&nbsp;<span>AlBovo</span>&nbsp;|&nbsp;<span>Translations:</span>
 <ul class="i18n_list">
     <li>
         <a href="https://albovo.github.io/it/ctf/enowars2025/">🇮🇹 It</a>
     </li>
-</ul>&nbsp;|&nbsp;<a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/enowars2025.md" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+</ul>&nbsp;|&nbsp;<span>
+    <a href="https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en/ctf/enowars2025.md" rel="noopener noreferrer edit" target="_blank">Suggest Changes</a>
+</span>
 
 </div>
   </header> <div class="toc">
@@ -527,34 +532,34 @@
 <li>
 <p><strong>Patch for Private Video Access</strong>: The <code>get_private_videos_by_userid</code> function was modified to include a crucial authorization check. It now compares the <code>user_id</code> from the session with the <code>user_id</code> from the URL. If they do not match, the request is rejected.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- a/backend/src/main.rs
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/backend/src/main.rs
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -654,8 +654,11 @@ async fn get_private_videos_by_userid(
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>     pool: web::Data&lt;Pool&gt;,
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ b/backend/src/main.rs
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -654,8 +654,11 @@ async fn get_private_videos_by_userid(
+</span></span></span><span class="line"><span class="cl">     pool: web::Data&lt;Pool&gt;,
 </span></span><span class="line"><span class="cl">     user_id: web::Path&lt;i32&gt;,
 </span></span><span class="line"><span class="cl"> ) -&gt; Result&lt;impl Responder, Error&gt; {
 </span></span><span class="line"><span class="cl">     if let Ok(Some(_user_id)) = session.get::&lt;i32&gt;(&#34;user_id&#34;) {
 </span></span><span class="line"><span class="cl"><span class="gd">-        let conn = get_db_conn(&amp;pool).await?;
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span>         let user_id = user_id.into_inner();
+</span></span></span><span class="line"><span class="cl">         let user_id = user_id.into_inner();
 </span></span><span class="line"><span class="cl"><span class="gi">+        if _user_id != user_id {
 </span></span></span><span class="line"><span class="cl"><span class="gi">+            return Ok(redirect!(&#34;/no_permission&#34;));
 </span></span></span><span class="line"><span class="cl"><span class="gi">+        }
 </span></span></span><span class="line"><span class="cl"><span class="gi">+        let conn = get_db_conn(&amp;pool).await?;
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>         let videoss = web::block(move || select_private_videos_by_userid(conn, user_id))
+</span></span></span><span class="line"><span class="cl">         let videoss = web::block(move || select_private_videos_by_userid(conn, user_id))
 </span></span><span class="line"><span class="cl">             .await?
 </span></span><span class="line"><span class="cl">             .map_err(error::ErrorInternalServerError)?;
 </span></span></code></pre></div></li>
 <li>
 <p><strong>Defense-in-Depth for Video Info</strong>: A similar check was added to the <code>/get_video_info/{path:.*}</code> endpoint. This patch ensures that only the owner of a video can fetch its detailed metadata, preventing potential information leaks even if an attacker found another way to access a video path.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="line"><span class="cl"><span class="gd">--- a/backend/src/main.rs
-</span></span></span><span class="line"><span class="cl"><span class="gd"></span><span class="gi">+++ b/backend/src/main.rs
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span><span class="gu">@@ -738,6 +741,9 @@ async fn get_video_info(
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>         let video_info = web::block(move || select_video_by_path(conn, &amp;path))
+</span></span></span><span class="line"><span class="cl"><span class="gi">+++ b/backend/src/main.rs
+</span></span></span><span class="line"><span class="cl"><span class="gu">@@ -738,6 +741,9 @@ async fn get_video_info(
+</span></span></span><span class="line"><span class="cl">         let video_info = web::block(move || select_video_by_path(conn, &amp;path))
 </span></span><span class="line"><span class="cl">             .await?
 </span></span><span class="line"><span class="cl">             .map_err(error::ErrorInternalServerError)?;
 </span></span><span class="line"><span class="cl"><span class="gi">+            if video_info.userId != user_id {
 </span></span></span><span class="line"><span class="cl"><span class="gi">+                return Ok(redirect!(&#34;/no_permission&#34;));
 </span></span></span><span class="line"><span class="cl"><span class="gi">+            }
-</span></span></span><span class="line"><span class="cl"><span class="gi"></span>         Ok(HttpResponse::Ok().json(video_info))
+</span></span></span><span class="line"><span class="cl">         Ok(HttpResponse::Ok().json(video_info))
 </span></span><span class="line"><span class="cl">     }
 </span></span><span class="line"><span class="cl"> } else {
 </span></span></code></pre></div></li>
@@ -660,7 +665,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://albovo.github.io/en/">Portfolio</a></span> · 
+        <span>&copy; 2026 <a href="https://albovo.github.io/en/">Portfolio</a></span> · 
 
     <span>
         Powered by
@@ -675,9 +680,14 @@
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
+    let menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
         menu.onscroll = function () {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
@@ -718,11 +728,12 @@
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })

@@ -1,0 +1,54 @@
+{{- $scratch := newScratch }}
+
+{{- /* Calculate word count including timeline competitions data */ -}}
+{{- $wordCount := .WordCount -}}
+{{- $readingTime := .ReadingTime -}}
+
+{{- with .Params.competitions -}}
+{{- $timelineWords := 0 -}}
+{{- range . -}}
+{{- with .title -}}
+{{- $timelineWords = add $timelineWords (len (split . " ")) -}}
+{{- end -}}
+{{- with .description -}}
+{{- $timelineWords = add $timelineWords (len (split . " ")) -}}
+{{- end -}}
+{{- with .date -}}
+{{- $timelineWords = add $timelineWords 1 -}}
+{{- end -}}
+{{- range .tags -}}
+{{- $timelineWords = add $timelineWords 1 -}}
+{{- end -}}
+{{- end -}}
+{{- $wordCount = add $wordCount $timelineWords -}}
+{{- /* Average reading speed: 200-250 words per minute, we use 200 */ -}}
+{{- $readingTime = div (add $wordCount 199) 200 -}}
+{{- if lt $readingTime 1 -}}
+{{- $readingTime = 1 -}}
+{{- end -}}
+{{- end -}}
+
+{{- if not .Date.IsZero -}}
+{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default ":date_long"
+site.Params.DateFormat)))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" $readingTime | default (printf "%d min"
+$readingTime)))) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "words" $wordCount | default (printf "%d words"
+$wordCount)))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") -}}
+{{- with (partial "author.html" .) }}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" .)) }}
+{{- end }}
+{{- end }}
+
+{{- with ($scratch.Get "meta") }}
+{{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- end -}}

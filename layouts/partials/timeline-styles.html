@@ -26,7 +26,7 @@
 
     .timeline-marker {
         position: absolute;
-        left: -42px;
+        left: -36px;
         top: 5px;
         width: 16px;
         height: 16px;
@@ -51,10 +51,10 @@
         border: 1px solid var(--border);
     }
 
-    .timeline-content:hover {
+    /* .timeline-content:hover {
         transform: translateX(5px);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
+    } */
 
     .timeline-header {
         display: flex;
@@ -102,12 +102,13 @@
         border-radius: 15px;
         font-size: 0.8rem;
         font-weight: 500;
-        transition: transform 0.2s ease, opacity 0.2s ease;
+        text-decoration: none;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
     }
 
     .timeline-tag:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
+        opacity: 0.6;
     }
 
     .timeline-link {
@@ -120,9 +121,6 @@
         transition: color 0.2s ease;
     }
 
-    .timeline-link:hover {
-        text-decoration: underline;
-    }
 
     /* Responsive design */
     @media (max-width: 600px) {
@@ -136,7 +134,7 @@
         }
 
         .timeline-marker {
-            left: -32px;
+            left: -26px;
             width: 12px;
             height: 12px;
         }

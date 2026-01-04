@@ -1,7 +1,8 @@
 ---
 title: "Competitions \U0001F3C6"
-date: 2025-12-11T00:00:00+00:00
+date: 2026-01-05T00:00:00+00:00
 layout: "competitions"
+translationKey: "competitions"
 tags: ["cybersec", "programming", "oii", "olicyber", "cyberchallenge", "highschool"]
 author: "AlBovo"
 showToc: true

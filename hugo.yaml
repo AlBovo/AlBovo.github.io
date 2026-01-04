@@ -37,6 +37,7 @@ languages:
 
     params:
       languageAltTitle: Italian
+      DateFormat: "2 Gennaio 2006"
       profileMode:
         enabled: true # needs to be explicitly set
         title: Alan Davide Bovo

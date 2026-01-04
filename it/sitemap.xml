@@ -405,77 +405,6 @@
                 href="https://albovo.github.io/it/projects/suricata/"
                 />
   </url><url>
-    <loc>https://albovo.github.io/it/competitions/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/competitions/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/competitions/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/cyberchallenge/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/cyberchallenge/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/cyberchallenge/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/cybersec/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/cybersec/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/cybersec/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/oii/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/oii/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/oii/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/olicyber/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://albovo.github.io/en/tags/olicyber/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://albovo.github.io/it/tags/olicyber/"
-                />
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/programmazione/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://albovo.github.io/it/tags/superiori/</loc>
-    <lastmod>2025-04-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://albovo.github.io/it/tags/binary/</loc>
     <lastmod>2025-04-08T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -916,5 +845,57 @@
                 hreflang="it"
                 href="https://albovo.github.io/it/categories/"
                 />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/cyberchallenge/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/cyberchallenge/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/cyberchallenge/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/cybersec/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/cybersec/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/cybersec/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/oii/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/oii/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/oii/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/olicyber/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://albovo.github.io/en/tags/olicyber/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://albovo.github.io/it/tags/olicyber/"
+                />
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/programmazione/</loc>
+  </url><url>
+    <loc>https://albovo.github.io/it/tags/superiori/</loc>
   </url>
 </urlset>

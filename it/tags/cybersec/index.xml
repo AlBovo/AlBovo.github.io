@@ -6,6 +6,14 @@
     <description>Recent content in Cybersec on Portfolio</description>
     <generator>Hugo -- 0.154.2</generator>
     <language>it</language>
+    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://albovo.github.io/it/tags/cybersec/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Competizioni 🏆</title>
+      <link>https://albovo.github.io/it/competitions/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://albovo.github.io/it/competitions/</guid>
+      <description>Una timeline dei miei traguardi nella programmazione competitiva e nella cybersecurity</description>
+    </item>
   </channel>
 </rss>

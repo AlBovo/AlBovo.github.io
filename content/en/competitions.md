@@ -72,7 +72,7 @@ competitions:
     link: "https://olimpiadi-informatica.it/"
 
   - title: "OIS - Italian Olympiad in Informatics for Teams"
-    date: "2024"
+    date: "2025"
     description: "National finalist with Blaisone of the Italian Olympiad in Informatics for Teams (6th place)."
     tags: ["programming", "algorithms", "olympiad", "squads"]
     link: "https://sites.google.com/aldini.istruzioneer.it/olimpiadi-informatica-squadre/homepage"
@@ -100,4 +100,17 @@ competitions:
     description: "Part of the italian national cybersecurity CTF team"
     tags: ["cybersecurity", "ctf", "national", "teamitaly"]
     link: "https://teamitaly.eu/"
+
+  - title: "OIS - Italian Olympiad in Informatics for Teams"
+    date: "2026"
+    description: "National finalist with Blaisone of the Italian Olympiad in Informatics for Teams (12th place)."
+    tags: ["programming", "algorithms", "olympiad", "squads"]
+    link: "https://sites.google.com/aldini.istruzioneer.it/olimpiadi-informatica-squadre/homepage"
+
+  - title: "OliCyber.IT 🥇"
+    date: "2026"
+    description: "National finalist and bronze medalist of the Italian Olympiad in Cybersecurity (1st place overall)."
+    tags: ["cybersecurity", "olympiad", "national"]
+    link: "https://olicyber.it/"
+
 ---

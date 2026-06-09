@@ -23,7 +23,10 @@ jobs:
 
       - name: Setup Hugo
         run: |
-          curl -L -o /tmp/hugo.tar.gz 'https://github.com/gohugoio/hugo/releases/download/v0.154.2/hugo_extended_0.154.2_linux-amd64.tar.gz'
+          LATEST_TAG=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          VERSION=${LATEST_TAG#v}
+          echo "Using Hugo release $LATEST_TAG (version $VERSION)"
+          curl -L -o /tmp/hugo.tar.gz "https://github.com/gohugoio/hugo/releases/download/${LATEST_TAG}/hugo_extended_${VERSION}_linux-amd64.tar.gz"
           tar -C ${RUNNER_TEMP} -zxvf /tmp/hugo.tar.gz hugo
       - name: Build
         run: ${RUNNER_TEMP}/hugo

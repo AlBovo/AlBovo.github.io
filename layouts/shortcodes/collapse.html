@@ -1,0 +1,12 @@
+{{ if .Get "summary" }}
+{{ else }}
+{{ warnf "missing value for param 'summary': %s" .Position }}
+{{ end }}
+{{ $id := .Get "id" }}
+{{ $open := "" }}
+{{ if (eq (.Get "openByDefault") true) }}{{ $open = " open=true" }}{{ end }}
+{{ if $id }}<span id="{{ $id }}"></span>{{ end }}
+{{ printf "<p><details%s>" $open | safeHTML }}
+  <summary markdown="span">{{ .Get "summary" | markdownify }}</summary>
+  {{ .Inner | markdownify }}
+</details></p>

@@ -32,7 +32,7 @@ cover:
     hidden: true # only hide on current single page
 editPost:
     URL: "https://github.com/AlBovo/AlBovo.github.io/blob/main/content/en"
-    Text: "Suggest Changes" # edit text
+    Text: "Suggest changes" # edit text
     appendFilePath: true # to append file path to Edit link
 ---
 

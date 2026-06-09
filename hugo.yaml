@@ -25,12 +25,12 @@ staticDir:
 
 languages:
   en:
-    languageName: ":uk: En"
+    label: ":uk: En"
     weight: 1
     contentDir: content/en
 
   it:
-    languageName: ":it: It"
+    label: ":it: It"
     weight: 2
     title: Portfolio
     contentDir: content/it
@@ -166,7 +166,7 @@ params:
 
   editPost:
     URL: "https://github.com/AlBovo/AlBovo.github.io"
-    Text: "Suggest Changes" # edit text
+    Text: "Suggest changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
   # # for search
